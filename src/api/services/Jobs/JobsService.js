@@ -1,9 +1,9 @@
 import CommonService from "../common/commonService";
 
-class AuthenticationService extends CommonService {
-  login = (params) => {
+class JobsService extends CommonService {
+  get = () => {
     return this.http
-      .post(`api/login`, params )
+      .get(`/api/job-types`)
       .then(({ data }) => data)
       .catch((error) => {
         console.log(error);
@@ -12,9 +12,9 @@ class AuthenticationService extends CommonService {
       });
   };
 
-  register = (params) => {
+  getByTypes = (jobId) => {
     return this.http
-      .post(`api/register`, params)
+      .get(`/api/job-types/${jobId}`)
       .then(({ data }) => data)
       .catch((error) => {
         console.log(error);
@@ -24,6 +24,6 @@ class AuthenticationService extends CommonService {
   };
 }
 
-const AuthenticationAPI = new AuthenticationService();
+const JobsServiceAPI = new JobsService();
 
-export default AuthenticationAPI;
+export default JobsServiceAPI;

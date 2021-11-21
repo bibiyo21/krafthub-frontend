@@ -71,3 +71,8 @@ body, html, .App, #root, .auth-wrapper {
 .forgot-password a {
   color: #f39c12;
 }
+
+.navbar-light {
+  background-color: transparent;
+  box-shadow: none;
+}
