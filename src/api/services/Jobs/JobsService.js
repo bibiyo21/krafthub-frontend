@@ -22,6 +22,17 @@ class JobsService extends CommonService {
         throw error;
       });
   };
+
+  saveAvailability = (params) => {
+    return this.http
+      .post(`/api/availabilities`, params)
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+
+        throw error;
+      });
+  };
 }
 
 const JobsServiceAPI = new JobsService();

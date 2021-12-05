@@ -12,6 +12,18 @@ class AvailabilitiesService extends CommonService {
         throw error;
       });
   };
+
+  getMyJobs = (params) => {
+    return this.http
+      .get(
+        `/api/my-availabilities`,{ params }
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
+  };
 }
 
 const AvailabilitiesServiceAPI = new AvailabilitiesService();

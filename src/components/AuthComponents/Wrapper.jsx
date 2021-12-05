@@ -1,6 +1,10 @@
 import React from "react";
 
 const Wrapper = ({ children }) => {
+  if (localStorage.getItem('token')) {
+    window.location.replace("/home");
+  }
+
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">

@@ -35,7 +35,7 @@ const  Signup = () => {
       zipcode,
       agreement
     }).then((response) => {
-      console.log(response)
+      window.location.replace("/home");
     }).catch(({ response }) => {
       if (response?.data?.errors !== undefined) {
         setErrors(response?.data?.errors)
@@ -90,47 +90,6 @@ const  Signup = () => {
           <input type="text" className="form-control" placeholder="Zip Code" {...register("zipcode", { required: true })} />
           {errors?.zipcode !== undefined && <p className="text-danger">{errors.zipcode[0]}</p>}
         </Form.Group>
-        {/* <Row>
-          <Col md="6">
-            <Form.Group className="mb-3">
-              <input type="text" className="form-control" placeholder="Fist Name" {...register("first_name", { required: true })} />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <input type="text" className="form-control" placeholder="Last Name" {...register("last_name", { required: true })} />
-            </Form.Group>
-          </Col>
-          <Col md="6">
-            <Form.Group className="mb-3">
-              <input type="text" className="form-control" placeholder="Email" {...register("email", { required: true })} />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <input type="text" className="form-control" placeholder="Phone Number" {...register("cellphone_number", { required: true })} />
-            </Form.Group>
-          </Col>
-        </Row>
-        
-        <Row>
-        <Col md="6">
-            <Form.Group className="mb-3">
-              <input type="text" className="form-control" placeholder="Password" {...register("password", { required: true })} />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <Form.Control type="email" placeholder="Confirma Password" {...register("password_confirmation", { required: true })} />
-            </Form.Group>
-          </Col>
-          <Col md="6">
-            <Form.Group className="mb-3">
-              <input type="text" className="form-control" placeholder="Address" {...register("house_info", { required: true })} />
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-              <input type="text" className="form-control" placeholder="Zip Code" {...register("zipcode", { required: true })} />
-            </Form.Group>
-          </Col>
-        </Row> */}
 
         <div class="form-check">
           <input type="checkbox" class="form-check-input" {...register("agreement")} />
@@ -145,7 +104,7 @@ const  Signup = () => {
           Register
         </Button>
         <p className="forgot-password text-right">
-          Already registered <Link to={"/sign-in"}>Sign In</Link>
+          Already registered <Link to={"/login"}>Sign In</Link>
         </p>
       </Form>
     </Wrapper>

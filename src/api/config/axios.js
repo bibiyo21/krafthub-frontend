@@ -5,7 +5,7 @@ import responseInterceptor from "./interceptor.response";
 // replace bearer here
 // for testing only
 export const axiosInstance = axios.create({
-  baseURL: `//localhost/`,
+  baseURL: `https://krafthub.herokuapp.com/`,
 });
 
 // insert JWT token
