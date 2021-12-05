@@ -25,6 +25,9 @@ const MyJob = () => {
     JobsServiceAPI.saveAvailability({ job_id, time_in, time_out })
       .then((response) => {
         setSavingMessage({responseType: "success",  message: response.message})
+        AvailabilitiesServiceAPI.getMyJobs().then(({ results }) => {
+          setMyJobs(results);
+        });
       })
       .catch(({ response }) => {
         if (response?.data?.message !== undefined) {
