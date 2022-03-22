@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navigations from "../Navigations";
 import { Card, Form, Button, Alert, Accordion } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import JobsServiceAPI from "../../api/services/Jobs/JobsService";
@@ -52,58 +51,54 @@ const MyJob = () => {
   return (
     <>
       <Wrapper>
-        <Accordion className="mb-3">
-          <Accordion.Item eventKey="0">
-            <Accordion.Header><strong>Add Job</strong></Accordion.Header>
-            <Accordion.Body>
-            <Card >
-              <Card.Body>
-                <Form onSubmit={handleSubmit(onSubmit)}>
+        <Card className="mb-4">
+          <Card.Body>
+            <Card.Title >
+              <strong className="pl-3">Add Job</strong>
+            </Card.Title>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              {
+                savingMessage && <Alert variant={savingMessage.responseType} onClose={() => setSavingMessage(null)} dismissible>
+                  <p>{savingMessage.message}</p>
+                </Alert>
+              }
+
+              <Form.Group className="mb-3">
+                <select defaultValue="" className="form-select" {...register("job")} onChange={onJobSearch}>
+                  <option value="" disabled >Choose a Profession</option>
                   {
-                    savingMessage && <Alert variant={savingMessage.responseType} onClose={() => setSavingMessage(null)} dismissible>
-                      <p>{savingMessage.message}</p>
-                    </Alert>
+                    jobs && jobs.map((job, index) => {
+                      return <option key={`job-${index}`} value={job.id}>{job.title}</option>
+                    })
                   }
+                </select>
+              </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <select defaultValue="" className="form-select" {...register("job")} onChange={onJobSearch}>
-                      <option value="" disabled >Choose a Profession</option>
-                      {
-                        jobs && jobs.map((job, index) => {
-                          return <option key={`job-${index}`} value={job.id}>{job.title}</option>
-                        })
-                      }
-                    </select>
-                  </Form.Group>
+              <Form.Group className="mb-3">
+                <select defaultValue="" className="form-select" {...register("jobType")}>
+                  <option value="" disabled >Choose a Specialist</option>
+                  {
+                    jobTypes && jobTypes.map((job, index) => {
+                      return <option key={`jobtype-${index}`} value={job.id}>{job.title}</option>
+                    })
+                  }
+                </select>
+              </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <select defaultValue="" className="form-select" {...register("jobType")}>
-                      <option value="" disabled >Choose a Specialist</option>
-                      {
-                        jobTypes && jobTypes.map((job, index) => {
-                          return <option key={`jobtype-${index}`} value={job.id}>{job.title}</option>
-                        })
-                      }
-                    </select>
-                  </Form.Group>
+              <Form.Group className="mb-3">
+                <input type="text" className="form-control" placeholder="Time In" {...register("time_in")} />
+              </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <input type="text" className="form-control" placeholder="Time In" {...register("time_in")} />
-                  </Form.Group>
+              <Form.Group className="mb-3">
+                <input type="text" className="form-control" placeholder="Time out" {...register("time_out")} />
+              </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <input type="text" className="form-control" placeholder="Time out" {...register("time_out")} />
-                  </Form.Group>
-
-                  <Button variant="primary" type="submit" disabled={loading}>
-                    Save
-                  </Button>
-                </Form>
-              </Card.Body>
-            </Card>
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
+              <Button variant="primary" type="submit" disabled={loading}>
+                Save
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
 
         <Card>
           <Card.Body>
