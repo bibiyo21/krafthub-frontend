@@ -5,9 +5,11 @@ import { Routes, Route } from "react-router-dom";
 
 import Login from "./components/AuthComponents/Login";
 import SignUp from "./components/AuthComponents/Signup";
-import Home from "./components/Home";
-import MyJob from './components/MyJob';
-import NotFoundPage from './components/NotFoundPage';
+import Home from "./components/Pages/Home";
+import MyJob from './components/Profile/MyJob';
+import Admin from './components/Pages/Admin';
+import NotFoundPage from './components/Pages/NotFoundPage';
+import Profile from './components/Profile';
 
 function App() {
 
@@ -18,7 +20,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/my-job" element={<MyJob />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/job" element={<MyJob />} />
+        <Route path="/admin/settings" element={<Admin />} />
         <Route path="*" component={<NotFoundPage />} />
       </Routes>
     </div>

@@ -38,6 +38,62 @@ const SearchBar = ({
       setJobs(results);
     })
   }, [])
+
+  return (
+    <section class="contact-us" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 align-self-center">
+            <div class="row">
+              <div class="col-lg-12">
+                <form className="p-3" id="contact" onSubmit={handleSubmit(onSearch)}>
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <fieldset>
+                        <input type="text" className="form-control" placeholder="Search Maker" {...register("userName")} />
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-3">
+                      <fieldset>
+                        <select defaultValue="" className="form-select" {...register("job")} onChange={onJobSearch}>
+                          <option value="" disabled >Choose a Profession</option>
+                          {
+                            jobs && jobs.map((job, index) => {
+                              return <option key={`job-${index}`} value={job.id}>{job.title}</option>
+                            })
+                          }
+                        </select>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-3">
+                      <fieldset>
+                      <select defaultValue="" className="form-select" {...register("jobType")}>
+                        <option value="" disabled >Choose a Specialist</option>
+                        {
+                          jobTypes && jobTypes.map((job, index) => {
+                            return <option key={`jobtype-${index}`} value={job.id}>{job.title}</option>
+                          })
+                        }
+                      </select>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-3">
+                      <fieldset className="text-center">
+                        <button type="submit" id="form-submit" class="button">
+                        <i className="fa fa-search"></i>
+                          Search
+                        </button>
+                      </fieldset>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
   
   return (
     <Form onSubmit={handleSubmit(onSearch)}>

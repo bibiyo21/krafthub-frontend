@@ -15,35 +15,33 @@ const AvailabilityList = ({ list = null }) => {
   //   console.log(list)
   //   return <p>No Result </p>
   // }
-  
 
   return (
-    <div className="container-fluid mt-3">
-      <Row>
+    <section class="upcoming-meetings mt-5 py-5" id="meetings">
+      <div class="container">
+        <div class="row">
         {
           list.map((availability) => {
             const { first_name, last_name, profession, specialty, time_in, time_out } = availability
             return (
               <Col md="3" className="mb-3">
-                <Card style={{ width: "18rem" }}>
-                  <i className="fas fa-user card-img-top fa-5x text-center my-4"></i>
-                  <Card.Body>
-                    <Card.Title className="text-center">{`${first_name} ${last_name}`}</Card.Title>
-                    <Card.Text>
-                      <b>{profession}</b> : {specialty} 
-                    </Card.Text>
-                    <Card.Text>
-                      <b>Time Availability:</b> {time_in} to {time_out}
-                    </Card.Text>
-                    <Button variant="primary" className="btn-block">Book Now</Button>
-                  </Card.Body>
-                </Card>
+                <div className="meeting-item">
+                  <div className="thumb bg-white">
+                    <i className="fas fa-user card-img-top fa-5x text-center my-4"></i>
+                  </div>
+                  <div className="down-content">
+                    <h3>{`${first_name} ${last_name}`}</h3>
+                    <p><b>{profession}</b> : {specialty} </p>
+                    <p><b>Time Availability:</b> {time_in} to {time_out}</p>
+                  </div>
+                </div>
+                
               </Col>
             );
           })}
-      </Row>
-    </div>
-    
+        </div>
+      </div>
+    </section>
   );
 };
 
