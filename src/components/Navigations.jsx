@@ -2,43 +2,59 @@ import React from "react";
 import AuthenticationAPI from "../api/services/Authentication/AuthenticationService";
 
 const Navigations = () => {
-
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const logout = () => {
     AuthenticationAPI.logout().then(() => {
       window.location.replace("/");
-    })
-  }
+    });
+  };
 
-  return (<header class="header-area header-sticky background-header">
-      <div class="container">
-          <div class="row">
-              <div class="col-12">
-                  <nav class="main-nav">
-                      <a href="/" class="logo">
-                          KRAFTHUB
+  return (
+    <header className="header-area header-sticky background-header">
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <nav className="main-nav">
+              <a href="/" className="logo">
+                KRAFTHUB
+              </a>
+              <ul className="nav">
+                <li className="has-sub">
+                  <a href="javascript:void(0)">
+                    <i className="fas fa-user"></i> Hi, {user.first_name}
+                  </a>
+                  <ul className="sub-menu">
+                    {user.access_level === 4 && (
+                      <li>
+                        <a href="/admin/user-management">Admin</a>
+                      </li>
+                    )}
+                    <li>
+                      <a href="/profile">My Profile</a>
+                    </li>
+                    <li>
+                      <a
+                        href="javascript:void(0);"
+                        onClick={() => {
+                          logout();
+                        }}
+                      >
+                        Logout
                       </a>
-                      <ul class="nav">
-                          {/* <li class="scroll-to-section active"><a href="#top" class="">Home</a></li>
-                          <li><a href="meetings.html">Meetings</a></li>
-                          <li class="scroll-to-section"><a href="#apply">Apply Now</a></li> */}
-                          <li class="has-sub">
-                              <a href="javascript:void(0)"><i className="fas fa-user"></i> Hi, {user.first_name}</a>
-                              <ul class="sub-menu">
-                                  <li><a href="/profile">My Profile</a></li>
-                                  <li><a href="javascript:void(0);" onClick={() => {logout()}}>Logout</a></li>
-                              </ul>
-                          </li>
-                      </ul>        
-                      <a class="menu-trigger">
-                          <span>Menu</span>
-                      </a>
-                  </nav>
-              </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <a className="menu-trigger">
+                <span>Menu</span>
+              </a>
+            </nav>
           </div>
+        </div>
       </div>
-  </header>)
+    </header>
+  );
 };
 
 export default Navigations;

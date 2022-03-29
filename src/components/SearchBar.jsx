@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Form, Row, Col, Button } from "react-bootstrap";
 import JobsServiceAPI from "../api/services/Jobs/JobsService";
 import { useForm } from "react-hook-form";
 import AvailabilitiesServiceAPI from "../api/services/Availabilities/AvailabilitiesService";
