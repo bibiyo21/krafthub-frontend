@@ -26,7 +26,7 @@ const Navigations = () => {
                           <li class="has-sub">
                               <a href="javascript:void(0)"><i className="fas fa-user"></i> Hi, {user.first_name}</a>
                               <ul class="sub-menu">
-                                  <li><a href="/profile/job">My Profile</a></li>
+                                  <li><a href="/profile">My Profile</a></li>
                                   <li><a href="javascript:void(0);" onClick={() => {logout()}}>Logout</a></li>
                               </ul>
                           </li>

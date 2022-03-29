@@ -2,10 +2,15 @@ import axios from "axios";
 import requestInterceptor from "./interceptor.request";
 import responseInterceptor from "./interceptor.response";
 
+let baseURL = `https://krafthub.herokuapp.com/`
+if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+  baseURL = `http://localhost:8888/`;
+}
+
 // replace bearer here
 // for testing only
 export const axiosInstance = axios.create({
-  baseURL: `http://localhost:8888/`,
+  baseURL: baseURL
 });
 
 // insert JWT token
