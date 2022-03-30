@@ -24,6 +24,18 @@ class AvailabilitiesService extends CommonService {
         throw error;
       });
   };
+
+  bookJob = (params) => {
+    return this.http
+      .post(
+        `/api/book`, params
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+    });
+  }
 }
 
 const AvailabilitiesServiceAPI = new AvailabilitiesService();

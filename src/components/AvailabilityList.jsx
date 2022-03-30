@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from 'react-dom';
-import { Col, Button, Modal, Form, Label } from "react-bootstrap";
+import { Col, Button, Modal, Form } from "react-bootstrap";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
 
 const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
+  const [makerId, setMakerId] = useState(null);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  useEffect(() => {
-    console.log('rerender')
-  }, [list]);
+  const handleClose = () => {
+      setMakerId(null)
+      setShow(false)
+    };
+  const handleShow = ({ selectedId }) => {
+      setMakerId(selectedId);
+      setShow(true);
+    };
 
   if (list === null) {
     return "";
   }
-
-  // if (!list.length) {
-  //   console.log(list)
-  //   return <p>No Result </p>
-  // }
 
   return (
     <>
@@ -27,10 +28,10 @@ const AvailabilityList = ({ list = null }) => {
         <div class="container">
           <div class="row">
           {
-            list.map((availability) => {
-              const { first_name, last_name, profession, specialty, time_in, time_out } = availability
+            list.map((availability, index) => {
+              const { first_name, last_name, profession, specialty, time_in, time_out, id } = availability
               return (
-                <Col md="3" className="mb-3">
+                <Col md="3" className="mb-3" key={`availability_${index}`}>
                   <div className="meeting-item">
                     <div className="thumb bg-white">
                       <i className="fas fa-user card-img-top fa-5x text-center my-4"></i>
@@ -40,7 +41,7 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow()} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id})} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
@@ -50,40 +51,57 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} />
     </>
     
   );
 };
 
-const BookingModal = ({ show, handleClose }) => {
+const BookingModal = ({ show, handleClose, makerId }) => {
+  const form = useRef(null);
   const onBookMaker = () => {
-    console.log('booked');
+    BookingsServiceAPI.bookJob({
+      maker_id: makerId,
+      eta: `${form.current['date'].value} ${form.current['time'].value}`,
+      additional_info: form.current['additional_info'].value
+    }).then((data) => {
+      toast.success(data.message);
+      handleClose();
+    })
   }
 
   return ReactDOM.createPortal(
-    <Modal size="lg" show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <label>Schedule</label>
-        <Form.Group className="mb-3">
-          <input type="date" className="form-control" placeholder="Date" />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <input type="time" className="form-control" placeholder="Date" />
-        </Form.Group>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={onBookMaker}>
-          Book now
-        </Button>
-      </Modal.Footer>
-    </Modal>,
+    <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <label>Schedule</label>
+          <Form ref={form}>
+            <Form.Group className="mb-3">
+              <input type="date" className="form-control" name="date" />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <input type="time" className="form-control" name="time" />
+            </Form.Group>
+            <label>Description of Job</label>
+            <Form.Group className="mb-3">
+              <textarea className="form-control" name="additional_info"></textarea>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={onBookMaker}>
+            Book now
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <ToastContainer />
+    </>,
     document.getElementById('modal')
   );
 }

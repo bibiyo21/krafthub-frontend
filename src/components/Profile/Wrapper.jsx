@@ -14,7 +14,8 @@ const Wrapper = ({ children }) => {
               <Nav className="flex-column">
                 <Nav.Link href={`/profile`} className="text-dark">Profile</Nav.Link>
                 <Nav.Link href={`/profile/job`} className="text-dark">Jobs</Nav.Link>
-                <Nav.Link href="/" className="text-dark">Scheduled Booking</Nav.Link>
+                <Nav.Link href="/bookings/scheduled" className="text-dark">Scheduled Booking</Nav.Link>
+                <Nav.Link href="/bookings/jobs" className="text-dark">Scheduled Jobs</Nav.Link>
               </Nav>
             </Card>
           

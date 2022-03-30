@@ -11,6 +11,8 @@ import Admin from './components/Admin';
 import BookingManagement from './components/Admin/BookingManagement';
 import NotFoundPage from './components/Pages/NotFoundPage';
 import Profile from './components/Profile';
+import ScheduledBooking from './components/Profile/ScheduledBooking';
+import JobBooking from './components/Profile/JobBooking';
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/job" element={<MyJob />} />
+        <Route path="/bookings/jobs" element={<JobBooking />} />
+        <Route path="/bookings/scheduled" element={<ScheduledBooking />} />
         <Route path="/admin/user-management" element={<Admin />} />
         <Route path="/admin/booking-management" element={<BookingManagement />} />
         <Route path="*" component={<NotFoundPage />} />
