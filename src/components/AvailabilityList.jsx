@@ -108,7 +108,7 @@ const BookingModal = ({ show, handleClose, makerId }) => {
             
              <label>Mode of Payment</label>
             <Form.Group className="mb-3">
-             <div className="radio">
+           
           <label>
             <input
               type="radio"
@@ -118,8 +118,8 @@ const BookingModal = ({ show, handleClose, makerId }) => {
             />
             Cash Payment
           </label>
-        </div>
-        <div className="radio">
+
+      
           <label>
             <input
               type="radio"
@@ -129,7 +129,7 @@ const BookingModal = ({ show, handleClose, makerId }) => {
             />
             Gcash
           </label>
-        </div>
+       
         
             </Form.Group>
             
