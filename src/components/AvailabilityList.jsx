@@ -22,6 +22,22 @@ const AvailabilityList = ({ list = null }) => {
     return "";
   }
 
+   constructor() {
+    super();
+    this.state = {
+      name: "React"
+    };
+    this.onValueChange = this.onValueChange.bind(this);
+    this.formSubmit = this.formSubmit.bind(this);
+  }
+
+  onValueChange(event) {
+    this.setState({
+      selectedOption: event.target.value
+    });
+  }
+  
+  
   return (
     <>
       <section class="upcoming-meetings mt-5 py-5" id="meetings">
@@ -89,6 +105,33 @@ const BookingModal = ({ show, handleClose, makerId }) => {
             <Form.Group className="mb-3">
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
+            
+            <label>Mode of Payment</label>
+            <Form.Group className="mb-3">
+                 <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value="Cash"
+              checked={this.state.selectedOption === "Cash"}
+              onChange={this.onValueChange}
+            />
+            Cash Payment
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              value="Gcash"
+              checked={this.state.selectedOption === "Gcash"}
+              onChange={this.onValueChange}
+            />
+            Gcash Payment
+          </label>
+            
+            </Form.Group>
+            
           </Form>
         </Modal.Body>
         <Modal.Footer>
