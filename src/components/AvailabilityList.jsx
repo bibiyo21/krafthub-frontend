@@ -9,31 +9,19 @@ const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
 
-  const [payment, setPayment] = useState('cash')
-  
   const handleClose = () => {
       setMakerId(null)
       setShow(false)
-      setPayment(false)
     };
-  
-  const handleShow = ({ selectedId, payment }) => {
+  const handleShow = ({ selectedId }) => {
       setMakerId(selectedId);
       setShow(true);
-      setPayment(true)
     };
-  
-  const handleChange = (event) => {
-    setPayment(event.target.value)
-  }
-    
-  
+
   if (list === null) {
     return "";
   }
 
-
-  }
  
   
   return (
@@ -65,13 +53,13 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} onChange={onChange}/>
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} />
     </>
     
   );
 };
 
-const BookingModal = ({ show, payment, handleClose, makerId, onChange }) => {
+const BookingModal = ({ show, handleClose, makerId }) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -109,9 +97,8 @@ const BookingModal = ({ show, payment, handleClose, makerId, onChange }) => {
           <label>
             <input
               type="radio"
-              id="cash"
-              checked={payment === 'Cash'}
-              onChange={onChange}
+              value="Cash"
+              name = "Cash"
             />
             Cash Payment
           </label>
@@ -119,9 +106,8 @@ const BookingModal = ({ show, payment, handleClose, makerId, onChange }) => {
           <label>
             <input
               type="radio"
-              id="gcash"
-              checked={payment === 'GCash'}
-              onChange={onChange}
+              value="Gcash"
+              name = "Gcash"
             />
             Gcash Payment
           </label>
