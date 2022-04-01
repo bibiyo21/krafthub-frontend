@@ -4,7 +4,7 @@ import { Col, Button, Modal, Form } from "react-bootstrap";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
-import ImageComponent from "../images/ImageComponent";
+import image from "../images/QRCode.png";
 
 
 const AvailabilityList = ({ list = null }) => {
@@ -27,7 +27,7 @@ const AvailabilityList = ({ list = null }) => {
       };
     });
     
-    if(checked.gcash) {
+    if(!checked.gcash) {
       setShowModal(true)
     } else { 
        setShowModal(false)
@@ -112,13 +112,13 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} />
     </>
     
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image}) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -134,7 +134,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   
   return ReactDOM.createPortal(
     <>
-      <Modal checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
+      <Modal image={image} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -179,8 +179,8 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           </label>
             </Form.Group>
             
-           <Modal text="GCASH QR" show={showModal} onClose={handleOnClose}>
-              <ImageComponent />
+           <Modal text="GCASH QR" show={showModal} onClose={handleOnClose} >
+              <img src={image}/>
              </Modal>
             
           </Form>
