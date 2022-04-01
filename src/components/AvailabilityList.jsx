@@ -83,11 +83,6 @@ const BookingModal = ({ show, handleClose, makerId }) => {
     })
   }
   
-  
-  const setGender(event) {
-    console.log(event.target.value);
-  }
-
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
