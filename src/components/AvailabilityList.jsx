@@ -32,21 +32,7 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(true);
     };
   
-    const prof = {profession};
-    const amountS = '0';
-  
-  if(prof === 'Carpentry') {
-    
-      amountS = '300';
-  } else if (prof === 'Plumbing') {
-      amountS = '400';
-  } else if (prof ==='Cleaning') {
-      amountS = '450';
-  } else if (prof ==='Electrician') {
-      amountS = '550';
-  } else {
-    amountS = '500';
-  }
+   const prof = '';
   
 
   if (list === null) {
@@ -63,6 +49,8 @@ const AvailabilityList = ({ list = null }) => {
           {
             list.map((availability, index) => {
               const { first_name, last_name, profession, specialty, time_in, time_out, id } = availability
+              
+              prof = {profession}
               return (
                 <Col md="3" className="mb-3" key={`availability_${index}`}>
                   <div className="meeting-item">
@@ -103,7 +91,21 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
     })
   }
   
-
+ 
+  const amountS = '0';
+  
+  if(prof === 'Carpentry') {
+    
+      amountS = '300';
+  } else if (prof === 'Plumbing') {
+      amountS = '400';
+  } else if (prof ==='Cleaning') {
+      amountS = '450';
+  } else if (prof ==='Electrician') {
+      amountS = '550';
+  } else {
+    amountS = '500';
+  }
   
   
   return ReactDOM.createPortal(
