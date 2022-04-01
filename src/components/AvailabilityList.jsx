@@ -9,35 +9,30 @@ const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
 
-  const [state, setState] = useState({
-    payment: '',
-  })
-  
-  const {payment} = state
+  const [payment, setPayment] = useState('cash')
   
   const handleClose = () => {
       setMakerId(null)
       setShow(false)
+      setPayment(false)
     };
+  
   const handleShow = ({ selectedId, payment }) => {
       setMakerId(selectedId);
       setShow(true);
-      setState(true);
+      setPayment(true)
     };
-
+  
+  const handleChange = (event) => {
+    setPayment(event.target.value)
+  }
+    
+  
   if (list === null) {
     return "";
   }
 
-  const onChange = event => {
-    event.persist()
-    const {id, name, value, type} = event.target
 
-    if (type === 'radio') {
-      setState(prev => ({...prev, payment: id}))
-    } else {
-      setState(prev => ({...prev, [name]: value}))
-    }
   }
  
   
@@ -76,7 +71,7 @@ const AvailabilityList = ({ list = null }) => {
   );
 };
 
-const BookingModal = ({ show, state, handleClose, makerId, onChange }) => {
+const BookingModal = ({ show, payment, handleClose, makerId, onChange }) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -114,7 +109,6 @@ const BookingModal = ({ show, state, handleClose, makerId, onChange }) => {
           <label>
             <input
               type="radio"
-              name="payment"
               id="cash"
               checked={payment === 'Cash'}
               onChange={onChange}
@@ -125,7 +119,6 @@ const BookingModal = ({ show, state, handleClose, makerId, onChange }) => {
           <label>
             <input
               type="radio"
-              name="payment"
               id="gcash"
               checked={payment === 'GCash'}
               onChange={onChange}
