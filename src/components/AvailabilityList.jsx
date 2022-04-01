@@ -126,7 +126,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
             
-            <label> Amount </Label> <p> amountS </p>
+            <label> Amount </label> <p> amountS </p>
                   
             <label>Mode of Payment</label>
             <Form.Group className="mb-3">
