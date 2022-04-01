@@ -18,7 +18,13 @@ const AvailabilityList = ({ list = null }) => {
   
   const changeRadio = (e) => {
     console.log([e.target.value].toString());
-    
+       
+    if([e.target.value].toString() === 'gcash') {
+      setShowModal(true)
+    } else { 
+       setShowModal(false)
+
+    }
     setChecked(() => {
       return {
         cash: false,
@@ -26,13 +32,7 @@ const AvailabilityList = ({ list = null }) => {
         [e.target.value]: true
       };
     });
-    
-    if([e.target.value].toString() === 'gcash') {
-      setShowModal(true)
-    } else { 
-       setShowModal(false)
-
-    }
+ 
     
   };
   
