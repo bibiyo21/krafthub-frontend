@@ -9,7 +9,7 @@ const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
   const [checked, setChecked] = useState({ cash: true, gcash: false });
-  const [amountS, setAmount] = useState('0');
+  const [amountS, setAmount] = useState(null);
          
   
   
@@ -25,6 +25,7 @@ const AvailabilityList = ({ list = null }) => {
   
   const handleClose = () => {
       setMakerId(null)
+      setAmount(null)
       setShow(false)
       setChecked(false)
     };
