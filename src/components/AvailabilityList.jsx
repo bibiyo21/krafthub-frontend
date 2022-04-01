@@ -9,7 +9,9 @@ const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
   const [checked, setChecked] = useState({ cash: true, gcash: false });
-  const amountS = '0';
+  const [amountS, setAmount] = useState('0');
+         
+  
   
   const changeRadio = (e) => {
     setChecked(() => {
@@ -33,6 +35,23 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(true);
     };
   
+    const getProfession = ({ selectedProf }) => {
+      
+       
+                if(selectedProf === 'Carpentry') {
+                    setAmount('300');
+                } else if (selectedProf === 'Plumbing') {
+                    setAmount('400');
+                } else if (selectedProf ==='Cleaning') {
+                    setAmount('450');
+                } else if (selectedProf ==='Electrician') {
+                    setAmount('550');
+                } else {
+                   setAmount('500');
+                }
+     
+ 
+    };
 
   
 
@@ -63,14 +82,13 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id})} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id} getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
                 </Col>
               );
               
-                               const prof = {profession};
             })}
           </div>
         </div>
@@ -93,26 +111,11 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
       handleClose();
     })
   }
-  
- 
-  
-  
-                if(prof === 'Carpentry') {
 
-                    amountS = '300';
-                } else if (prof === 'Plumbing') {
-                    amountS = '400';
-                } else if (prof ==='Cleaning') {
-                    amountS = '450';
-                } else if (prof ==='Electrician') {
-                    amountS = '550';
-                } else {
-                  amountS = '500';
-                }
   
   return ReactDOM.createPortal(
     <>
-      <Modal checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} >
+      <Modal checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -130,7 +133,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
             
-            <label> Amount </label> <p> amountS </p>
+            <label> Amount </label> <p> {amountS} </p>
                   
             <label>Mode of Payment</label>
             <Form.Group className="mb-3">
