@@ -93,13 +93,13 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} />
     </>
     
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS}) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
