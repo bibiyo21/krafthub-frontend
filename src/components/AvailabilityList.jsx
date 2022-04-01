@@ -98,8 +98,7 @@ const BookingModal = ({ show, handleClose, makerId }) => {
             <input
               type="radio"
               value="Cash"
-              checked={this.state.selectedOption === "Cash"}
-              onChange={this.onValueChange}
+              name = "Cash"
             />
             Cash Payment
           </label>
@@ -108,8 +107,7 @@ const BookingModal = ({ show, handleClose, makerId }) => {
             <input
               type="radio"
               value="Gcash"
-              checked={this.state.selectedOption === "Gcash"}
-              onChange={this.onValueChange}
+              name = "Gcash"
             />
             Gcash Payment
           </label>
