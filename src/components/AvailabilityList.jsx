@@ -179,9 +179,10 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           </label>
             </Form.Group>
             
-           <Modal text="GCASH QR" show={showModal} onClose={handleOnClose} closeButton>
-              <img src={image}  onClose={handleOnClose}  closeButton/>
-             </Modal>
+           <Modal.Header text="GCASH QR" show={showModal} closeButton>
+              <Modal.Title>Pay with QR Code</Modal.Title>
+              <img src={image} width="250" height="300" closeButton/>
+             </Modal.Header>
             
           </Form>
         </Modal.Body>
