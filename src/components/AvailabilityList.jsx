@@ -82,7 +82,7 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id} getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
