@@ -27,7 +27,7 @@ const AvailabilityList = ({ list = null }) => {
       };
     });
     
-    if(!checked.gcash) {
+    if(checked.cash) {
       setShowModal(true)
     } else { 
        setShowModal(false)
@@ -180,7 +180,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
             </Form.Group>
             
            <Modal text="GCASH QR" show={showModal} onClose={handleOnClose} >
-              <img src={image}/>
+              <img src={image}  onClose={handleOnClose} />
              </Modal>
             
           </Form>
