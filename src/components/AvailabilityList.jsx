@@ -8,7 +8,18 @@ import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
 const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
-
+  const [checked, setChecked] = useState({ cash: true, gcash: false });
+  
+  const changeRadio = (e) => {
+    setChecked(() => {
+      return {
+        apple: false,
+        orange: false,
+        [e.target.value]: true
+      };
+    });
+  };
+  
   const handleClose = () => {
       setMakerId(null)
       setShow(false)
@@ -71,6 +82,11 @@ const BookingModal = ({ show, handleClose, makerId }) => {
       handleClose();
     })
   }
+  
+  
+  const setGender(event) {
+    console.log(event.target.value);
+  }
 
   return ReactDOM.createPortal(
     <>
@@ -97,17 +113,21 @@ const BookingModal = ({ show, handleClose, makerId }) => {
           <label>
             <input
               type="radio"
-              value="Cash"
-              name = "Cash"
+              checked={checked.cash}
+              value="cash"
+               name="choice"
+              onChange={changeRadio}
             />
             Cash Payment
           </label>
  
           <label>
             <input
-              type="radio"
-              value="Gcash"
-              name = "Gcash"
+               type="radio"
+              checked={checked.gcash}
+              value="gcash"
+              name="choice"
+              onChange={changeRadio}"
             />
             Gcash Payment
           </label>
