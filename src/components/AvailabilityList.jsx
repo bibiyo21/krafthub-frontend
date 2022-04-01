@@ -13,8 +13,8 @@ const AvailabilityList = ({ list = null }) => {
   const changeRadio = (e) => {
     setChecked(() => {
       return {
-        apple: false,
-        orange: false,
+        cash: false,
+        gcash: false,
         [e.target.value]: true
       };
     });
@@ -23,10 +23,12 @@ const AvailabilityList = ({ list = null }) => {
   const handleClose = () => {
       setMakerId(null)
       setShow(false)
+      setChecked(false)
     };
   const handleShow = ({ selectedId }) => {
       setMakerId(selectedId);
       setShow(true);
+      setChecked(true);
     };
 
   if (list === null) {
@@ -64,13 +66,13 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} />
     </>
     
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId }) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio }) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -85,7 +87,7 @@ const BookingModal = ({ show, handleClose, makerId }) => {
   
   return ReactDOM.createPortal(
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} checked={checked} changeRadio={changeRadio} >
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
