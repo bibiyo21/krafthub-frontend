@@ -17,6 +17,8 @@ const AvailabilityList = ({ list = null }) => {
   
   
   const changeRadio = (e) => {
+    console.log([e.target.value]);
+    
     setChecked(() => {
       return {
         cash: false,
