@@ -31,7 +31,7 @@ const AvailabilityList = ({ list = null }) => {
       setShowModal(true)
     } else { 
        setShowModal(false)
-       setChecked(checked.cash)
+
     }
     
   };
@@ -39,6 +39,14 @@ const AvailabilityList = ({ list = null }) => {
     
   const handleOnClose = () => {
         setShowModal(false)
+    
+        setChecked(() => {
+              return {
+        cash: false,
+        gcash: false,
+        [e.target.value]: true
+        };
+       });
     };
   
   const handleClose = () => {
