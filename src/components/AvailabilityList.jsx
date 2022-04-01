@@ -27,7 +27,7 @@ const AvailabilityList = ({ list = null }) => {
       };
     });
     
-    if(gcash) {
+    if(checked.gcash) {
       setShowModal(true)
     } else { 
        setShowModal(false)
