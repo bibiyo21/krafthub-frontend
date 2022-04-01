@@ -122,7 +122,7 @@ const BookingModal = ({ show, handleClose, makerId }) => {
               checked={checked.gcash}
               value="gcash"
               name="choice"
-              onChange={changeRadio}"
+              onChange={changeRadio}
             />
             Gcash Payment
           </label>
