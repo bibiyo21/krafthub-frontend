@@ -27,7 +27,7 @@ const AvailabilityList = ({ list = null }) => {
       };
     });
     
-    if([e.target.value] === '['gcash']') {
+    if(gcash) {
       setShowModal(true)
     } else { 
        setShowModal(false)
