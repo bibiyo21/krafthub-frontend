@@ -45,7 +45,6 @@ const AvailabilityList = ({ list = null }) => {
       setAmount(null)
       setShow(false)
       setChecked(false)
-      setShowModal(false)
     };
   
   const handleShow = ({ selectedId }) => {
@@ -180,14 +179,19 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
             </Form.Group>
             
            <Modal text="GCASH QR" show={showModal}>
-           <Modal.Header  closeButton>
               <Modal.Title>Pay with QR Code</Modal.Title>
               <Modal.Body>
               
               <img src={image} width="250" height="300" closeButton/>
               </Modal.Body>
-             </Modal.Header>
+               <Modal.Footer>
+              <Button variant="primary" onClick={handleOnClose}>
+               Close
+               </Button>
+              </Modal.Footer>
             </Modal>
+            
+            
           </Form>
         </Modal.Body>
         <Modal.Footer>
