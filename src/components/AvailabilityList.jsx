@@ -4,6 +4,8 @@ import { Col, Button, Modal, Form } from "react-bootstrap";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
+import ImageComponent from "../images/ImageComponent";
+
 
 const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
@@ -24,8 +26,7 @@ const AvailabilityList = ({ list = null }) => {
     });
     
     if([e.target.value] === 'gcash') {
-      
-      
+      setShowModal(true)
     }
     
   };
@@ -174,7 +175,10 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           </label>
             </Form.Group>
             
-           <Modal text="GCASH QR" show={showModal} onClose={handleOnClose} />
+           <Modal text="GCASH QR" show={showModal} onClose={handleOnClose}>
+              <ImageComponent />
+             </Modal>
+            
           </Form>
         </Modal.Body>
         <Modal.Footer>
