@@ -43,8 +43,7 @@ const AvailabilityList = ({ list = null }) => {
         setChecked(() => {
               return {
         cash: false,
-        gcash: false,
-        [e.target.value]: true
+        gcash: false
         };
        });
     };
