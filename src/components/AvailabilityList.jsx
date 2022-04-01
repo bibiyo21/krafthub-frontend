@@ -63,13 +63,13 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} onChange={Onchange}/>
     </>
     
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId }) => {
+const BookingModal = ({ show, handleClose, makerId, onChange }) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -84,7 +84,7 @@ const BookingModal = ({ show, handleClose, makerId }) => {
 
   return ReactDOM.createPortal(
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} onChange={onChange}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
