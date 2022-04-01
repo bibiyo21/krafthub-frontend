@@ -31,6 +31,7 @@ const AvailabilityList = ({ list = null }) => {
       setShowModal(true)
     } else { 
        setShowModal(false)
+       setChecked(checked.cash)
     }
     
   };
