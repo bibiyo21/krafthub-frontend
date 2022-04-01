@@ -182,7 +182,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
               <Modal.Title>Pay with QR Code</Modal.Title>
               <Modal.Body>
               
-              <img src={image} width="250" height="300" closeButton/>
+              <img src={image} width="200" height="250"/>
               </Modal.Body>
                <Modal.Footer>
               <Button variant="primary" onClick={handleOnClose}>
