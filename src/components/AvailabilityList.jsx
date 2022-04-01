@@ -22,21 +22,7 @@ const AvailabilityList = ({ list = null }) => {
     return "";
   }
 
-   constructor() {
-    super();
-    this.state = {
-      name: "React"
-    };
-    this.onValueChange = this.onValueChange.bind(this);
-    this.formSubmit = this.formSubmit.bind(this);
-  }
-
-  onValueChange(event) {
-    this.setState({
-      selectedOption: event.target.value
-    });
-  }
-  
+ 
   
   return (
     <>
