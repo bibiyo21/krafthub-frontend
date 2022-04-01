@@ -31,6 +31,23 @@ const AvailabilityList = ({ list = null }) => {
       setShow(true);
       setChecked(true);
     };
+  
+    const prof = {profession};
+    const amountS = '300';
+  
+  if(prof === 'Carpentry') {
+    
+      amount = '300';
+  } else if (prof === 'Plumbing') {
+      amount = '400';
+  } else if (prof ==='Cleaning') {
+      amount = '450';
+  } else if (prof ==='Electrician') {
+      amount = '550';
+  } else {
+    amount = '500'
+  }
+  
 
   if (list === null) {
     return "";
@@ -86,6 +103,9 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
     })
   }
   
+
+  
+  
   return ReactDOM.createPortal(
     <>
       <Modal checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} >
@@ -101,11 +121,13 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
             <Form.Group className="mb-3">
               <input type="time" className="form-control" name="time" />
             </Form.Group>
-            <label>Description of Job</label>
+            <label>Message</label>
             <Form.Group className="mb-3">
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
             
+            <label> Amount </Label> <p> amountS
+                  
             <label>Mode of Payment</label>
             <Form.Group className="mb-3">
           <label>
