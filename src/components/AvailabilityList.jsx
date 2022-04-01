@@ -25,6 +25,7 @@ const AvailabilityList = ({ list = null }) => {
       setShow(false)
       setChecked(false)
     };
+  
   const handleShow = ({ selectedId }) => {
       setMakerId(selectedId);
       setShow(true);
@@ -72,7 +73,7 @@ const AvailabilityList = ({ list = null }) => {
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio }) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -87,7 +88,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio }) => {
   
   return ReactDOM.createPortal(
     <>
-      <Modal checked = {checked} show={show} onHide={handleClose} checked={checked} changeRadio={changeRadio} >
+      <Modal checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} >
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
