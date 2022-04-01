@@ -9,6 +9,12 @@ const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
 
+  const [state, setState] = useState({
+    payment: '',
+  })
+  
+  const {payment} = state
+  
   const handleClose = () => {
       setMakerId(null)
       setShow(false)
@@ -27,9 +33,9 @@ const AvailabilityList = ({ list = null }) => {
     const {id, name, value, type} = event.target
 
     if (type === 'radio') {
-      setShow(prev => ({...prev, payment: id}))
+      setState(prev => ({...prev, payment: id}))
     } else {
-      setShow(prev => ({...prev, [name]: value}))
+      setState(prev => ({...prev, [name]: value}))
     }
   }
  
@@ -63,7 +69,7 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} onChange={Onchange}/>
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} onChange={onChange}/>
     </>
     
   );
@@ -84,7 +90,7 @@ const BookingModal = ({ show, handleClose, makerId, onChange }) => {
 
   return ReactDOM.createPortal(
     <>
-      <Modal show={show} onHide={handleClose} onChange={onChange}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
