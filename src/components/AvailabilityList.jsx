@@ -33,19 +33,19 @@ const AvailabilityList = ({ list = null }) => {
     };
   
     const prof = {profession};
-    const amountS = '300';
+    const amountS = '0';
   
   if(prof === 'Carpentry') {
     
-      amount = '300';
+      amountS = '300';
   } else if (prof === 'Plumbing') {
-      amount = '400';
+      amountS = '400';
   } else if (prof ==='Cleaning') {
-      amount = '450';
+      amountS = '450';
   } else if (prof ==='Electrician') {
-      amount = '550';
+      amountS = '550';
   } else {
-    amount = '500'
+    amountS = '500';
   }
   
 
@@ -126,7 +126,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
             
-            <label> Amount </Label> <p> amountS
+            <label> Amount </Label> <p> amountS </p>
                   
             <label>Mode of Payment</label>
             <Form.Group className="mb-3">
