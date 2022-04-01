@@ -19,9 +19,10 @@ const AvailabilityList = ({ list = null }) => {
       setMakerId(null)
       setShow(false)
     };
-  const handleShow = ({ selectedId }) => {
+  const handleShow = ({ selectedId, payment }) => {
       setMakerId(selectedId);
       setShow(true);
+      setState(true);
     };
 
   if (list === null) {
@@ -75,7 +76,7 @@ const AvailabilityList = ({ list = null }) => {
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId, onChange }) => {
+const BookingModal = ({ show, state, handleClose, makerId, onChange }) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
