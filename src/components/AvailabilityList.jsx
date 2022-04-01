@@ -179,8 +179,8 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           </label>
             </Form.Group>
             
-           <Modal text="GCASH QR" show={showModal} onClose={handleOnClose} >
-              <img src={image}  onClose={handleOnClose} />
+           <Modal text="GCASH QR" show={showModal} onClose={handleOnClose} closeButton>
+              <img src={image}  onClose={handleOnClose}  closeButton/>
              </Modal>
             
           </Form>
