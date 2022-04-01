@@ -22,6 +22,16 @@ const AvailabilityList = ({ list = null }) => {
     return "";
   }
 
+  const onChange = event => {
+    event.persist()
+    const {id, name, value, type} = event.target
+
+    if (type === 'radio') {
+      setState(prev => ({...prev, payment: id}))
+    } else {
+      setState(prev => ({...prev, [name]: value}))
+    }
+  }
  
   
   return (
@@ -71,27 +81,12 @@ const BookingModal = ({ show, handleClose, makerId }) => {
       handleClose();
     })
   }
-  
-  
-  
-  constructor() {
-    super();
-    this.state = {
-      name: "React"
-    };
-    this.onChangeValue = this.onChangeValue.bind(this);
-  }
 
-  onChangeValue(event) {
-    console.log(event.target.value);
-  }
-
-render() {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>a
+          <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <label>Schedule</label>
@@ -112,8 +107,10 @@ render() {
           <label>
             <input
               type="radio"
-              value="Cash"
-              name = "Cash"
+              name="payment"
+              id="cash"
+              checked={payment === 'Cash'}
+              onChange={onChange}
             />
             Cash Payment
           </label>
@@ -121,8 +118,10 @@ render() {
           <label>
             <input
               type="radio"
-              value="Gcash"
-              name = "Gcash"
+              name="payment"
+              id="gcash"
+              checked={payment === 'GCash'}
+              onChange={onChange}
             />
             Gcash Payment
           </label>
@@ -144,7 +143,6 @@ render() {
     </>,
     document.getElementById('modal')
   );
-  }
 }
 
 export default AvailabilityList;
