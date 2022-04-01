@@ -9,6 +9,7 @@ const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
   const [checked, setChecked] = useState({ cash: true, gcash: false });
+  const amountS = '0';
   
   const changeRadio = (e) => {
     setChecked(() => {
@@ -67,23 +68,9 @@ const AvailabilityList = ({ list = null }) => {
                     </div>
                   </div>
                 </Col>
-                 const prof = {profession}
-                 const amountS = '0';
-  
-                if(prof === 'Carpentry') {
-
-                    amountS = '300';
-                } else if (prof === 'Plumbing') {
-                    amountS = '400';
-                } else if (prof ==='Cleaning') {
-                    amountS = '450';
-                } else if (prof ==='Electrician') {
-                    amountS = '550';
-                } else {
-                  amountS = '500';
-                }
-
               );
+              
+                               const prof = {profession};
             })}
           </div>
         </div>
@@ -110,6 +97,18 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked }) => {
  
   
   
+                if(prof === 'Carpentry') {
+
+                    amountS = '300';
+                } else if (prof === 'Plumbing') {
+                    amountS = '400';
+                } else if (prof ==='Cleaning') {
+                    amountS = '450';
+                } else if (prof ==='Electrician') {
+                    amountS = '550';
+                } else {
+                  amountS = '500';
+                }
   
   return ReactDOM.createPortal(
     <>
