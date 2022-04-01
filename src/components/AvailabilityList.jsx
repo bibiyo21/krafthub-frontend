@@ -17,11 +17,11 @@ const AvailabilityList = ({ list = null }) => {
   
   
   const changeRadio = (e) => {
-    console.log([e.target.value]);
+    console.log([e.target.value].toString());
     
     setChecked(() => {
       return {
-        cash: true,
+        cash: false,
         gcash: false,
         [e.target.value]: true
       };
@@ -39,13 +39,7 @@ const AvailabilityList = ({ list = null }) => {
     
   const handleOnClose = () => {
         setShowModal(false)
-    
-        setChecked(() => {
-              return {
-        cash: true,
-        gcash: false
-        };
-       });
+
     };
   
   const handleClose = () => {
