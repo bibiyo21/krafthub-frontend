@@ -27,8 +27,10 @@ const AvailabilityList = ({ list = null }) => {
       };
     });
     
-    if([e.target.value] === 'gcash') {
+    if([e.target.value] === '['gcash']') {
       setShowModal(true)
+    } else { 
+       setShowModal(false)
     }
     
   };
