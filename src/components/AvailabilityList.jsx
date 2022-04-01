@@ -10,7 +10,8 @@ const AvailabilityList = ({ list = null }) => {
   const [makerId, setMakerId] = useState(null);
   const [checked, setChecked] = useState({ cash: true, gcash: false });
   const [amountS, setAmount] = useState(null);
-         
+  
+  const [showModal, setShowModal] = useState(false);
   
   
   const changeRadio = (e) => {
@@ -21,13 +22,25 @@ const AvailabilityList = ({ list = null }) => {
         [e.target.value]: true
       };
     });
+    
+    if([e.target.value] === 'gcash') {
+      
+      
+    }
+    
   };
+  
+    
+  const handleOnClose = () => {
+        setShowModal(false)
+    };
   
   const handleClose = () => {
       setMakerId(null)
       setAmount(null)
       setShow(false)
       setChecked(false)
+      setShowModal(false)
     };
   
   const handleShow = ({ selectedId }) => {
@@ -40,15 +53,15 @@ const AvailabilityList = ({ list = null }) => {
       
        
                 if(selectedProf === 'Carpentry') {
-                    setAmount('300');
+                    setAmount('Php300.00');
                 } else if (selectedProf === 'Plumbing') {
-                    setAmount('400');
+                    setAmount('Php400.00');
                 } else if (selectedProf ==='Cleaning') {
-                    setAmount('450');
+                    setAmount('Php450.00');
                 } else if (selectedProf ==='Electrician') {
-                    setAmount('550');
+                    setAmount('Php550.00');
                 } else {
-                   setAmount('500');
+                   setAmount('Php500.00');
                 }
      
  
@@ -94,13 +107,13 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} />
     </>
     
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose}) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -116,7 +129,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   
   return ReactDOM.createPortal(
     <>
-      <Modal checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS}>
+      <Modal checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -159,9 +172,9 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
             />
             Gcash Payment
           </label>
-            
             </Form.Group>
             
+           <Modal text={setText} show={showModal} onClose={handleOnClose} />
           </Form>
         </Modal.Body>
         <Modal.Footer>
