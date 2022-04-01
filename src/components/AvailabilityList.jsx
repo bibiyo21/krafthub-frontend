@@ -71,12 +71,27 @@ const BookingModal = ({ show, handleClose, makerId }) => {
       handleClose();
     })
   }
+  
+  
+  
+  constructor() {
+    super();
+    this.state = {
+      name: "React"
+    };
+    this.onChangeValue = this.onChangeValue.bind(this);
+  }
 
+  onChangeValue(event) {
+    console.log(event.target.value);
+  }
+
+render() {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
+          <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>a
         </Modal.Header>
         <Modal.Body>
           <label>Schedule</label>
@@ -129,6 +144,7 @@ const BookingModal = ({ show, handleClose, makerId }) => {
     </>,
     document.getElementById('modal')
   );
+  }
 }
 
 export default AvailabilityList;
