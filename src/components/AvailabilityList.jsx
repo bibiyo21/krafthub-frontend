@@ -66,7 +66,7 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} />
     </>
     
   );
@@ -87,7 +87,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio }) => {
   
   return ReactDOM.createPortal(
     <>
-      <Modal show={show} onHide={handleClose} checked={checked} changeRadio={changeRadio} >
+      <Modal checked = {checked} show={show} onHide={handleClose} checked={checked} changeRadio={changeRadio} >
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
