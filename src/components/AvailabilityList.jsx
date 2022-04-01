@@ -21,7 +21,7 @@ const AvailabilityList = ({ list = null }) => {
     
     setChecked(() => {
       return {
-        cash: false,
+        cash: true,
         gcash: false,
         [e.target.value]: true
       };
@@ -42,7 +42,7 @@ const AvailabilityList = ({ list = null }) => {
     
         setChecked(() => {
               return {
-        cash: false,
+        cash: true,
         gcash: false
         };
        });
