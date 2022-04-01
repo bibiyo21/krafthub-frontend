@@ -27,9 +27,9 @@ const AvailabilityList = ({ list = null }) => {
     const {id, name, value, type} = event.target
 
     if (type === 'radio') {
-      setState(prev => ({...prev, payment: id}))
+      setShow(prev => ({...prev, payment: id}))
     } else {
-      setState(prev => ({...prev, [name]: value}))
+      setShow(prev => ({...prev, [name]: value}))
     }
   }
  
