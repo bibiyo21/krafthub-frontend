@@ -20,6 +20,7 @@ const AvailabilityList = ({ list = null }) => {
   const [minDate, setMinDate] = useState(null);
   const [status, setStatus] = useState(null);
   
+  
   const today = date => date.toISOString().slice(0, 10);
       
   console.log(today(new Date()));
@@ -77,13 +78,7 @@ const AvailabilityList = ({ list = null }) => {
               }
           
         });
-    
-        BookingsServiceAPI.getJobs().then(({ results }) => {
-             console.log (results);
-             
-         });
-    
-        
+     
  
       console.log(status);
 
@@ -162,7 +157,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
     BookingsServiceAPI.bookJob({
       maker_id: makerId,
       eta: `${form.current['date'].value} ${form.current['time'].value}`,
-      additional_info: form.current['additional_info'].value
+      additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + checked
     }).then((data) => {
       toast.success(data.message);
       handleClose();
@@ -221,7 +216,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
               <Modal.Title>Pay with QR Code</Modal.Title>
               <Modal.Body>
               
-              <img src={image} width="200" height="250"/>
+              <img src={image} width="150" height="200"/>
               </Modal.Body>
                <Modal.Footer>
               <Button variant="primary" onClick={handleOnClose}>
