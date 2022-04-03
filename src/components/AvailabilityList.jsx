@@ -64,9 +64,9 @@ const AvailabilityList = ({ list = null }) => {
     console.log(selectedId);
      
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
-              const valuesArray = JSON.parse(results);
-              console.log (valuesArray);
-              setStatus(results);
+              
+              console.log (JSON.parse(results));
+              setStatus(JSON.parse(results));
         });
  
     
