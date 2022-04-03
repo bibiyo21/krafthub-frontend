@@ -17,7 +17,7 @@ const AvailabilityList = ({ list = null }) => {
   const [minDate, setMinDate] = useState(null);
   
   const min_date = new Date(), 
-    date = today.getDate() +  '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    date = min_date.getDate() +  '/' + (min_date.getMonth() + 1) + '/' + min_date.getFullYear();
 
   
   const changeRadio = (e) => {
