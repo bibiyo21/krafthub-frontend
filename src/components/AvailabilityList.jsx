@@ -61,12 +61,15 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(true);
       setMinDate(today(new Date()));
       
+    console.log(selectedId);
      
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
-            setStatus(results);
+              const valuesArray = JSON.parse(results);
+              console.log (valuesArray);
+              setStatus(results);
         });
+ 
     
-      console.log(status);
 
     };
   
