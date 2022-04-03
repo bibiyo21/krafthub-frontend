@@ -94,8 +94,10 @@ const AvailabilityList = ({ list = null }) => {
           {
             list.map((availability, index) => {
               const { first_name, last_name, profession, specialty, time_in, time_out, id , status} = availability
-              const isActive = (status === 'pending');
+              const isActive = (status === 'pending')
               
+              console.log(status +'~~~~'+ isActive)
+          
               return (
                 <Col md="3" className="mb-3" key={`availability_${index}`}>
                   <div className="meeting-item">
@@ -107,7 +109,7 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
+                        <Button disabled={isActive ? true : false} onClick={() => handleShow({selectedId: id}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
