@@ -13,7 +13,8 @@ import image from "../images/QRCode.png";
 const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
-  const [checked, radioValue, setChecked, setRadioValue] = useState({ cash: true, gcash: false });
+  const [checked, setChecked] = useState({ cash: true, gcash: false });
+  const [radioValue, setRadioValue] = useState(null);
   const [amountS, setAmount] = useState(null);
   
   const [showModal, setShowModal] = useState(false);
