@@ -14,7 +14,10 @@ const AvailabilityList = ({ list = null }) => {
   const [amountS, setAmount] = useState(null);
   
   const [showModal, setShowModal] = useState(false);
+  const [minDate, setMinDate] = useState(null);
   
+  const min_date = new Date();
+  setMinDate = (moment(min_date).format('DD/MM/YYYY'));
   
   const changeRadio = (e) => {
     console.log([e.target.value].toString());
@@ -113,13 +116,13 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} />
     </>
     
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate}) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -135,7 +138,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   
   return ReactDOM.createPortal(
     <>
-      <Modal image={image} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
+      <Modal image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -143,7 +146,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           <label>Schedule</label>
           <Form ref={form}>
             <Form.Group className="mb-3">
-              <input type="date" className="form-control" name="date" />
+              <input type="date" min={minDate} className="form-control" name="date" />
             </Form.Group>
             <Form.Group className="mb-3">
               <input type="time" className="form-control" name="time" />
