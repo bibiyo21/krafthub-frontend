@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
 import image from "../images/QRCode.png";
+import moment from 'moment';
 
 
 const AvailabilityList = ({ list = null }) => {
