@@ -65,11 +65,11 @@ const AvailabilityList = ({ list = null }) => {
      
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
-              console.log (JSON.parse(results));
-              setStatus(JSON.parse(results));
+              console.log (results);
+              setStatus(JSON.stringify(results));
         });
  
-    
+      console.log(status);
 
     };
   
