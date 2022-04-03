@@ -56,7 +56,7 @@ const AvailabilityList = ({ list = null }) => {
       setMakerId(selectedId);
       setShow(true);
       setChecked(true);
-      setMinDate(min_date);
+      setMinDate(min_date.getDate());
     };
   
     const getProfession = ({ selectedProf }) => {
@@ -92,7 +92,7 @@ const AvailabilityList = ({ list = null }) => {
           <div class="row">
           {
             list.map((availability, index) => {
-              const { first_name, last_name, profession, specialty, time_in, time_out, id } = availability
+              const { first_name, last_name, profession, specialty, time_in, time_out, id , status} = availability
              
               
               return (
