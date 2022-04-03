@@ -67,14 +67,7 @@ const AvailabilityList = ({ list = null }) => {
       };
     
       console.log(getData);
-  }
-    
-    
-    
-    
-    
-    
-    
+
     };
   
     const getProfession = ({ selectedProf }) => {
