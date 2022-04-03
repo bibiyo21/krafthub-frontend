@@ -66,7 +66,14 @@ const AvailabilityList = ({ list = null }) => {
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
               console.log (results);
-              setStatus(JSON.stringify(results));
+          
+              for (let i = 0; i < results.length; i++) {
+                  if(results[i].bookingid === selectedId) 
+                  {
+                    setStatus(true);
+                  }
+              }
+          
         });
  
       console.log(status);
