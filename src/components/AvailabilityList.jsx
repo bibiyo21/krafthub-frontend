@@ -18,7 +18,7 @@ const AvailabilityList = ({ list = null }) => {
   
   const [showModal, setShowModal] = useState(false);
   const [minDate, setMinDate] = useState(null);
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(false);
   
   
   const today = date => date.toISOString().slice(0, 10);
@@ -70,7 +70,7 @@ const AvailabilityList = ({ list = null }) => {
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
               console.log (results);
-          
+              setStatus(false);
               for (let i = 0; i < results.length; i++) {
                   if(results[i].bookingid === selectedId) 
                   {
@@ -143,7 +143,7 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} status={status}  />
     </>
     
   );
@@ -152,7 +152,7 @@ const AvailabilityList = ({ list = null }) => {
 
 
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue, status}) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -168,7 +168,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   
   return ReactDOM.createPortal(
     <>
-      <Modal radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
+      <Modal status={status} radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -233,7 +233,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={onBookMaker}>
+          <Button variant="primary" onClick={onBookMaker}  disabled={status}>
             Book now
           </Button>
         </Modal.Footer>
