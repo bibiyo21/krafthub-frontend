@@ -17,7 +17,7 @@ const AvailabilityList = ({ list = null }) => {
   const [minDate, setMinDate] = useState(null);
   
   const today = new Date(); 
-  const min_date = today.getDate() +  '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+  const min_date = today.getFullYear() +  '-' + (today.getMonth() + 1) + '-' + today.getDate();
   
   console.log(min_date);
   
