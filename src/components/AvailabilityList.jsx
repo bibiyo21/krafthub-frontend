@@ -62,9 +62,9 @@ const AvailabilityList = ({ list = null }) => {
       setMinDate(today(new Date()));
       
      
-        BookingsServiceAPI.getScheduled({maker_id: selectedId).then(({ results }) => {
+        BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
             setStatus(results);
-        })
+        });
     
       console.log(status);
 
