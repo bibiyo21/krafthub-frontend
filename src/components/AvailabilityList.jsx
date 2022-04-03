@@ -218,7 +218,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
               <Modal.Title>Pay with QR Code</Modal.Title>
               <Modal.Body>
               
-              <img src={image} style="border: none; width: 100%; height: 100%" alt="Gcash QR Code"/>
+              <img src={image} width: 50% height: 70% alt="Gcash QR Code"/>
               </Modal.Body>
                <Modal.Footer>
               <Button variant="primary" onClick={handleOnClose}>
