@@ -63,7 +63,7 @@ const AvailabilityList = ({ list = null }) => {
       
      
         BookingsServiceAPI.getJobs({maker_id: selectedId}).then(({ results }) => {
-     
+          console.log(results);
           setStatus(results);
         
          });
