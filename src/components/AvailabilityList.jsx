@@ -19,7 +19,7 @@ const AvailabilityList = ({ list = null }) => {
   const today = new Date(); 
   const min_date = today.getFullYear() +  '-' + (today.getMonth() + 1) + '-' + today.getDate();
   
-  console.log(min_date);
+  console.log(min_date.format('YYYY-MM-DD'));
   
   const changeRadio = (e) => {
     console.log([e.target.value].toString());
@@ -75,7 +75,8 @@ const AvailabilityList = ({ list = null }) => {
                 } else {
                    setAmount('Php500.00');
                 }
-     
+      
+   
  
     };
 
@@ -127,6 +128,9 @@ const AvailabilityList = ({ list = null }) => {
   );
 };
 
+
+
+
 const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate}) => {
   const form = useRef(null);
   const onBookMaker = () => {
@@ -136,6 +140,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
       additional_info: form.current['additional_info'].value
     }).then((data) => {
       toast.success(data.message);
+      console.log(data.message);
       handleClose();
     })
   }
