@@ -22,10 +22,8 @@ const AvailabilityList = ({ list = null }) => {
   
   const today = date => date.toISOString().slice(0, 10);
       
-  console.log(today(new Date()));
   
   const changeRadio = (e) => {
-    console.log([e.target.value].toString());
     setRadioValue([e.target.value].toString())
        
     if([e.target.value].toString() === 'gcash') {
@@ -64,11 +62,11 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(true);
       setMinDate(today(new Date()));
       
-    console.log(selectedId);
+ 
      
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
-              console.log (results);
+             
               setStatus(false);
               for (let i = 0; i < results.length; i++) {
                   if(results[i].makerid === selectedId) 
