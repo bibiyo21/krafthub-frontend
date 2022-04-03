@@ -7,6 +7,7 @@ if (window.location.hostname === "localhost" || window.location.hostname === "12
   baseURL = `http://localhost:8888/`;
 }
 
+
 // replace bearer here
 // for testing only
 export const axiosInstance = axios.create({
