@@ -16,7 +16,7 @@ const AvailabilityList = ({ list = null }) => {
   
   const [showModal, setShowModal] = useState(false);
   const [minDate, setMinDate] = useState(null);
-  const [getStatus, setStatus] = useState(null);
+  const [status, setStatus] = useState(null);
   
   const today = date => date.toISOString().slice(0, 10);
       
@@ -62,13 +62,11 @@ const AvailabilityList = ({ list = null }) => {
       setMinDate(today(new Date()));
       
      
-        BookingsServiceAPI.getJobs({maker_id: selectedId}).then(({ results }) => {
-          console.log(results);
-          setStatus(results);
-        
-         });
+        BookingsServiceAPI.getScheduled({maker_id: selectedId).then(({ results }) => {
+            setStatus(results);
+        })
     
-      console.log(getStatus);
+      console.log(status);
 
     };
   
