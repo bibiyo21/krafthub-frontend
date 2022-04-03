@@ -56,7 +56,7 @@ const AvailabilityList = ({ list = null }) => {
       setMakerId(selectedId);
       setShow(true);
       setChecked(true);
-      setMinDate = (min_date);
+      setMinDate(min_date);
     };
   
     const getProfession = ({ selectedProf }) => {
