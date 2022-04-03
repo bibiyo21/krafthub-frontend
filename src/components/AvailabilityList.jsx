@@ -13,7 +13,7 @@ import image from "../images/QRCode.png";
 const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
-  const [checked, setChecked] = useState({ cash: true, gcash: false });
+  const [checked, radioValue, setChecked, setRadioValue] = useState({ cash: true, gcash: false });
   const [amountS, setAmount] = useState(null);
   
   const [showModal, setShowModal] = useState(false);
@@ -27,6 +27,7 @@ const AvailabilityList = ({ list = null }) => {
   
   const changeRadio = (e) => {
     console.log([e.target.value].toString());
+    setRadioValue([e.target.value].toString())
        
     if([e.target.value].toString() === 'gcash') {
       setShowModal(true)
@@ -142,7 +143,7 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} />
     </>
     
   );
@@ -151,13 +152,13 @@ const AvailabilityList = ({ list = null }) => {
 
 
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue}) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
       maker_id: makerId,
       eta: `${form.current['date'].value} ${form.current['time'].value}`,
-      additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + checked
+      additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
     }).then((data) => {
       toast.success(data.message);
       handleClose();
@@ -167,7 +168,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   
   return ReactDOM.createPortal(
     <>
-      <Modal image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
+      <Modal radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -216,7 +217,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
               <Modal.Title>Pay with QR Code</Modal.Title>
               <Modal.Body>
               
-              <img src={image} width="150" height="200"/>
+              <img src={image} style="border: none; width: 100%; height: 100%" alt="Gcash QR Code" "/>
               </Modal.Body>
                <Modal.Footer>
               <Button variant="primary" onClick={handleOnClose}>
