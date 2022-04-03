@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import { Col, Button, Modal, Form } from "react-bootstrap";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import JobsServiceAPI from "../../api/services/Jobs/JobsService";
 import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
+import AvailabilitiesServiceAPI from "../../api/services/Availabilities/AvailabilitiesService";
 import image from "../images/QRCode.png";
 
 
@@ -75,6 +77,16 @@ const AvailabilityList = ({ list = null }) => {
               }
           
         });
+    
+         AvailabilitiesServiceAPI.getMyJobs().then(({ results }) => {
+             console.log (results);
+             
+         });
+
+          JobsServiceAPI.get().then(({ results }) => {
+             console.log (results);
+            
+         })
  
       console.log(status);
 
