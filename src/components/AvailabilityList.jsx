@@ -90,34 +90,6 @@ const BookingModal = ({ show, handleClose, makerId }) => {
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
             
-            
-             <label>Mode of Payment</label>
-            <Form.Group className="mb-3">
-             <div className="radio">
-          <label>
-            <input
-              type="radio"
-              value="Cash"
-              checked={this.state.selectedOption === "Cash"}
-              onChange={this.onValueChange}
-            />
-            Cash Payment
-          </label>
-        </div>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              value="Gcash"
-              checked={this.state.selectedOption === "Gcash"}
-              onChange={this.onValueChange}
-            />
-            Gcash
-          </label>
-        </div>
-        
-            </Form.Group>
-            
           </Form>
         </Modal.Body>
         <Modal.Footer>
