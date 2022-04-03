@@ -29,6 +29,8 @@ const ScheduledBooking = () => {
   const handleShow = ({bookingId, status}) => {
     setShow(true)
     setBookingState(status)
+    
+    console.log(bookingState);
     setBookingId(bookingId);
   };
 
@@ -116,7 +118,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
             Close
           </Button>
           <Button variant="primary" onClick={() => onChangeStatus()}>
-            Book now
+            Confirm
           </Button>
         </Modal.Footer>
       </Modal>
