@@ -16,7 +16,8 @@ const AvailabilityList = ({ list = null }) => {
   const [showModal, setShowModal] = useState(false);
   const [minDate, setMinDate] = useState(null);
   
-  const min_date = new Date();
+  const min_date = new Date(), 
+    date = today.getDate()  '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 
   
   const changeRadio = (e) => {
@@ -56,7 +57,7 @@ const AvailabilityList = ({ list = null }) => {
       setMakerId(selectedId);
       setShow(true);
       setChecked(true);
-      setMinDate(min_date.getDate());
+      setMinDate(min_date);
     };
   
     const getProfession = ({ selectedProf }) => {
