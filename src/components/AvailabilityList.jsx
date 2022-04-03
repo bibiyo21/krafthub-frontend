@@ -17,10 +17,9 @@ const AvailabilityList = ({ list = null }) => {
   const [showModal, setShowModal] = useState(false);
   const [minDate, setMinDate] = useState(null);
   
-  const today = new Date(); 
-  const min_date = today.getFullYear() +  '-' + (today.getMonth() + 1) + '-' + today.getDate();
-  
-  console.log(min_date.toISOString().slice(0, 10));
+  const today = date => date.toISOString().slice(0, 10);
+      
+  console.log(today(new Date()));
   
   const changeRadio = (e) => {
     console.log([e.target.value].toString());
@@ -59,7 +58,7 @@ const AvailabilityList = ({ list = null }) => {
       setMakerId(selectedId);
       setShow(true);
       setChecked(true);
-      setMinDate(min_date.toISOString().slice(0, 10));
+      setMinDate(today(new Date()));
     };
   
     const getProfession = ({ selectedProf }) => {
