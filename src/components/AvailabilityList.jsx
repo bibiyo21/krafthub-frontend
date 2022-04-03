@@ -17,7 +17,7 @@ const AvailabilityList = ({ list = null }) => {
   const [minDate, setMinDate] = useState(null);
   
   const min_date = new Date(), 
-    date = today.getDate()  '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+    date = today.getDate() +  '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 
   
   const changeRadio = (e) => {
@@ -94,7 +94,7 @@ const AvailabilityList = ({ list = null }) => {
           {
             list.map((availability, index) => {
               const { first_name, last_name, profession, specialty, time_in, time_out, id , status} = availability
-             
+              const isActive = (status === 'pending');
               
               return (
                 <Col md="3" className="mb-3" key={`availability_${index}`}>
