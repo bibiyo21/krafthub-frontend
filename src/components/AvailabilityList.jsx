@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
 import image from "../images/QRCode.png";
+import moment from 'moment';
 
 
 const AvailabilityList = ({ list = null }) => {
@@ -19,7 +20,7 @@ const AvailabilityList = ({ list = null }) => {
   const today = new Date(); 
   const min_date = today.getFullYear() +  '-' + (today.getMonth() + 1) + '-' + today.getDate();
   
-  console.log(min_date.format('YYYY-MM-DD'));
+  console.log(moment(min_date).format('YYYY-MM-DD'));
   
   const changeRadio = (e) => {
     console.log([e.target.value].toString());
@@ -156,7 +157,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           <label>Schedule</label>
           <Form ref={form}>
             <Form.Group className="mb-3">
-              <input type="date" min="2022-04-03"  className="form-control" name="date" />
+              <input type="date" min={moment(min_date).format('YYYY-MM-DD')}  className="form-control" name="date" />
             </Form.Group>
             <Form.Group className="mb-3">
               <input type="time" className="form-control" name="time" />
