@@ -62,7 +62,7 @@ const AvailabilityList = ({ list = null }) => {
       setMinDate(today(new Date()));
       
      
-        BookingsServiceAPI.getJobs({}).then(({ results }) => {
+        BookingsServiceAPI.getJobs({selectedId}).then(({ results }) => {
      
           setStatus(results);
         
