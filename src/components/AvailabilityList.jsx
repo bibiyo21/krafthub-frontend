@@ -151,7 +151,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           <label>Schedule</label>
           <Form ref={form}>
             <Form.Group className="mb-3">
-              <input type="date" min={minDate} className="form-control" name="date" />
+              <input type="date" min="2022-04-03"  className="form-control" name="date" />
             </Form.Group>
             <Form.Group className="mb-3">
               <input type="time" className="form-control" name="time" />
