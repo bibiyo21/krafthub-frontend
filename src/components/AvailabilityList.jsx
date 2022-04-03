@@ -4,23 +4,82 @@ import { Col, Button, Modal, Form } from "react-bootstrap";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
+import image from "../images/QRCode.png";
+
 
 const AvailabilityList = ({ list = null }) => {
   const [show, setShow] = useState(false);
   const [makerId, setMakerId] = useState(null);
+  const [checked, setChecked] = useState({ cash: true, gcash: false });
+  const [amountS, setAmount] = useState(null);
+  
+  const [showModal, setShowModal] = useState(false);
+  
+  
+  const changeRadio = (e) => {
+    console.log([e.target.value].toString());
+       
+    if([e.target.value].toString() === 'gcash') {
+      setShowModal(true)
+    } else { 
+       setShowModal(false)
 
+    }
+    setChecked(() => {
+      return {
+        cash: false,
+        gcash: false,
+        [e.target.value]: true
+      };
+    });
+ 
+    
+  };
+  
+    
+  const handleOnClose = () => {
+        setShowModal(false)
+
+    };
+  
   const handleClose = () => {
       setMakerId(null)
+      setAmount(null)
       setShow(false)
+      setChecked(false)
     };
+  
   const handleShow = ({ selectedId }) => {
       setMakerId(selectedId);
       setShow(true);
+      setChecked(true);
     };
+  
+    const getProfession = ({ selectedProf }) => {
+      
+       
+                if(selectedProf === 'Carpentry') {
+                    setAmount('Php300.00');
+                } else if (selectedProf === 'Plumbing') {
+                    setAmount('Php400.00');
+                } else if (selectedProf ==='Cleaning') {
+                    setAmount('Php450.00');
+                } else if (selectedProf ==='Electrician') {
+                    setAmount('Php550.00');
+                } else {
+                   setAmount('Php500.00');
+                }
+     
+ 
+    };
+
+  
 
   if (list === null) {
     return "";
   }
+
+ 
   
   return (
     <>
@@ -30,6 +89,8 @@ const AvailabilityList = ({ list = null }) => {
           {
             list.map((availability, index) => {
               const { first_name, last_name, profession, specialty, time_in, time_out, id } = availability
+             
+              
               return (
                 <Col md="3" className="mb-3" key={`availability_${index}`}>
                   <div className="meeting-item">
@@ -41,23 +102,24 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id})} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
                 </Col>
               );
+              
             })}
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} />
     </>
     
   );
 };
 
-const BookingModal = ({ show, handleClose, makerId }) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image}) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
@@ -70,9 +132,10 @@ const BookingModal = ({ show, handleClose, makerId }) => {
     })
   }
 
+  
   return ReactDOM.createPortal(
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal image={image} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -85,38 +148,51 @@ const BookingModal = ({ show, handleClose, makerId }) => {
             <Form.Group className="mb-3">
               <input type="time" className="form-control" name="time" />
             </Form.Group>
-            <label>Description of Job</label>
+            <label>Message</label>
             <Form.Group className="mb-3">
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
             
-            
-             <label>Mode of Payment</label>
+            <label> Amount </label> <p> {amountS} </p>
+                  
+            <label>Mode of Payment</label>
             <Form.Group className="mb-3">
-             <div className="radio">
           <label>
             <input
               type="radio"
-              value="Cash"
-              checked={this.state.selectedOption === "Cash"}
-              onChange={this.onValueChange}
+              checked={checked.cash}
+              value="cash"
+               name="choice"
+              onChange={changeRadio}
             />
             Cash Payment
           </label>
-        </div>
-        <div className="radio">
+ 
           <label>
             <input
-              type="radio"
-              value="Gcash"
-              checked={this.state.selectedOption === "Gcash"}
-              onChange={this.onValueChange}
+               type="radio"
+              checked={checked.gcash}
+              value="gcash"
+              name="choice"
+              onChange={changeRadio}
             />
-            Gcash
+            Gcash Payment
           </label>
-        </div>
-        
             </Form.Group>
+            
+           <Modal text="GCASH QR" show={showModal}>
+              <Modal.Title>Pay with QR Code</Modal.Title>
+              <Modal.Body>
+              
+              <img src={image} width="200" height="250"/>
+              </Modal.Body>
+               <Modal.Footer>
+              <Button variant="primary" onClick={handleOnClose}>
+               Close
+               </Button>
+              </Modal.Footer>
+            </Modal>
+            
             
           </Form>
         </Modal.Body>
