@@ -2,7 +2,7 @@ import axios from "axios";
 import requestInterceptor from "./interceptor.request";
 import responseInterceptor from "./interceptor.response";
 
-let baseURL = `https://krafthubv.herokuapp.com/`
+let baseURL = `https://krafthub.herokuapp.com/`
 if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
   baseURL = `http://localhost:8888/`;
 }
