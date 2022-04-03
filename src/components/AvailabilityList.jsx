@@ -22,6 +22,8 @@ const AvailabilityList = ({ list = null }) => {
     return "";
   }
 
+   
+  
   return (
     <>
       <section class="upcoming-meetings mt-5 py-5" id="meetings">
@@ -69,6 +71,8 @@ const BookingModal = ({ show, handleClose, makerId }) => {
       handleClose();
     })
   }
+  
+  
 
   return ReactDOM.createPortal(
     <>
@@ -89,30 +93,31 @@ const BookingModal = ({ show, handleClose, makerId }) => {
             <Form.Group className="mb-3">
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
+            
             <label>Mode of Payment</label>
             <Form.Group className="mb-3">
-           
+              
           <label>
             <input
               type="radio"
               value="Cash"
-              checked={this.state.selectedOption === "Cash"}
-              onChange={this.onValueChange}
+              name = "Cash"
             />
             Cash Payment
           </label>
-
-      
+        </div>
+        <div className="radio">
           <label>
             <input
               type="radio"
               value="Gcash"
-              checked={this.state.selectedOption === "Gcash"}
-              onChange={this.onValueChange}
+              name="Gcash"
             />
-            Gcash
+            Gcash Payment
           </label>
+            
             </Form.Group>
+            
           </Form>
         </Modal.Body>
         <Modal.Footer>
