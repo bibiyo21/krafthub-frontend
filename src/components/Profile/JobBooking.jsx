@@ -116,7 +116,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
             Close
           </Button>
           <Button variant="primary" onClick={() => onChangeStatus()}>
-            Book now
+            Confirm
           </Button>
         </Modal.Footer>
       </Modal>
