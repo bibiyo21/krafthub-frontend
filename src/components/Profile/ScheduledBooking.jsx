@@ -19,6 +19,7 @@ const ScheduledBooking = () => {
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
+  
 
   const handleClose = () => {
     setShow(false)
@@ -39,6 +40,8 @@ const ScheduledBooking = () => {
       
         console.log(results);
       setScheduledBookings(results);
+      
+      
     })
   }
 
@@ -85,10 +88,9 @@ const ScheduledBooking = () => {
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
-                          <Button onClick={() => handleShow({bookingId: booking_id, status: "in_progress"})} variant="info" ><i className="fas fa-spinner"></i></Button>
-                          <Button onClick={() => handleShow({bookingId: booking_id, status: "done"})} variant="success" ><i className="fas fa-check"></i></Button>
-                          <Button onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
-                          <Button onClick={() => handleShow({bookingId: booking_id, status: "pending"})} variant="warning" ><i className="fas fa-clock"></i></Button>
+                          <Button disabled={status === 'pending' ? true : false} onClick={() => handleShow({bookingId: booking_id, status: "in_progress"})} variant="info" ><i className="fas fa-spinner"></i></Button>
+                          <Button disabled={status === 'in_progress' ? true : false} onClick={() => handleShow({bookingId: booking_id, status: "done"})} variant="success" ><i className="fas fa-check"></i></Button>
+                          <Button disabled={status === 'in_progress' ? true : false} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
                         </div>
                       </td>
                     </tr>)
