@@ -83,13 +83,12 @@ const ScheduledBooking = () => {
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
-                      <td><span className={STATUS_ATTR[status].color}>{STATUS_ATTR[status].msg}</span></td>
+                      <td><span className={STATUS_ATTR[status].color}>{STATUS_ATTR[status].msg}</span></td> 
                       <td>{dayjs(eta).format('MMMM DD, YYYY HH:mm')}</td>
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
-                          <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "in_progress"})} variant="info" ><i className="fas fa-spinner"></i></Button>
-                          <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "done"})} variant="success" ><i className="fas fa-check"></i></Button>
+                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
                         </div>
                       </td>
                     </tr>)
