@@ -83,7 +83,7 @@ const ScheduledBooking = () => {
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
-                      <td><span className={STATUS_ATTR[status].color}>{STATUS_ATTR[status].msg}</span></td>
+                      <td><span className={STATUS_ATTR[status].color}>{STATUS_ATTR[status].msg}</span></td> 
                       <td>{dayjs(eta).format('MMMM DD, YYYY HH:mm')}</td>
                       <td>{additional_info}</td>
                       <td>
