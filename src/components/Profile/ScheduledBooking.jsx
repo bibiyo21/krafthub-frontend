@@ -88,7 +88,7 @@ const ScheduledBooking = () => {
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
-                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
+                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
                         </div>
                       </td>
                     </tr>)
