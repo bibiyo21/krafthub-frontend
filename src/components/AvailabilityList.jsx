@@ -71,7 +71,7 @@ const AvailabilityList = ({ list = null }) => {
               console.log (results);
               setStatus(false);
               for (let i = 0; i < results.length; i++) {
-                  if(results[i].makerid === selectedId) 
+                  if((results[i].makerid === selectedId) && (results[i].status === 'pending')) 
                   {
                     setStatus(true);
                     break;
