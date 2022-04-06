@@ -66,7 +66,8 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(true);
       setMinDate(today(new Date()));
     
-         
+         timeout = timeout.replace("AM", "").replace("PM","");
+    console.log(timeout);
     console.log(dayjs(timeout).format('HH:mm'));
       
     console.log(selectedId);
