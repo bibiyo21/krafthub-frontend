@@ -60,7 +60,7 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(false)
     };
   
-  const handleShow = ({ selectedId , timeout:}) => {
+  const handleShow = ({ selectedId , timeout}) => {
       setMakerId(selectedId);
       setShow(true);
       setChecked(true);
