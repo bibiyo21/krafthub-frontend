@@ -228,14 +228,23 @@ const AvailabilityList = ({ list = null }) => {
 const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue, status, minTime, maxTime}) => {
   const form = useRef(null);
   const onBookMaker = () => {
-    BookingsServiceAPI.bookJob({
-      maker_id: makerId,
-      eta: `${form.current['date'].value} ${form.current['time'].value}`,
-      additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
-    }).then((data) => {
-      toast.success(data.message);
-      handleClose();
-    })
+      
+    if ((form.current['time'].min < form.current['time'].value) && (form.current['time'].max > form.current['time'].value)) {
+         BookingsServiceAPI.bookJob({
+            maker_id: makerId,
+            eta: `${form.current['date'].value} ${form.current['time'].value}`,
+            additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
+          }).then((data) => {
+            toast.success(data.message);
+            handleClose();
+          })
+    
+    } else {
+       toast.warning('Selected time is not within worker availability.')
+    }
+     
+    
+   
   }
 
   
@@ -306,7 +315,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={e => this.handle(e), onBookMaker}  disabled={status}>
+          <Button variant="primary" onClick={onBookMaker}  disabled={status}>
             Book now
           </Button>
         </Modal.Footer>
