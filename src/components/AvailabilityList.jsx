@@ -205,7 +205,7 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} status={status}  />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} status={status} minTime={minTime} maxTime={maxTime}/>
     </>
     
   );
@@ -214,7 +214,7 @@ const AvailabilityList = ({ list = null }) => {
 
 
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue, status}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue, status, minTime, maxTime}) => {
   const form = useRef(null);
   const onBookMaker = () => {
     BookingsServiceAPI.bookJob({
