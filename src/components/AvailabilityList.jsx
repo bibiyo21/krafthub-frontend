@@ -252,7 +252,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
               <input type="date" min={minDate}  className="form-control" name="date" />
             </Form.Group>
             <Form.Group className="mb-3">
-              <input type="time" className="form-control" name="time" min={minTime} max={maxTime} />
+              <input type="time" className="form-control" name="time" min={minTime} max={maxTime} required/>
             </Form.Group>
             <label>Message</label>
             <Form.Group className="mb-3">
@@ -306,7 +306,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={onBookMaker}  disabled={status}>
+          <Button variant="primary" onClick={e => this.handle(e), onBookMaker}  disabled={status}>
             Book now
           </Button>
         </Modal.Footer>
