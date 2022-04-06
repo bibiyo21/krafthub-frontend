@@ -20,8 +20,8 @@ const AvailabilityList = ({ list = null }) => {
   const [minDate, setMinDate] = useState(null);
   const [status, setStatus] = useState(false);
   
-  const [minTime, setMinDate] = useState(null);
-  const [maxTime, setMaxDate] = useState(null);
+  const [minTime, setMinTime] = useState(null);
+  const [maxTime, setMaxTime] = useState(null);
   
   
   const today = date => date.toISOString().slice(0, 10);
@@ -126,8 +126,8 @@ const AvailabilityList = ({ list = null }) => {
          }
     
         
-        setMinDate(timein);
-        setMaxDate(timeout);
+        setMinTime(timein);
+        setMaxTime(timeout);
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
               console.log (results);
