@@ -66,7 +66,7 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(true);
       setMinDate(today(new Date()));
         
-         if (timein.incliudes('PM'))
+         if (timein.includes('PM'))
          {
            
             const parseTime = parseInt(timein.substr(1, 2)) + 12;
@@ -79,7 +79,7 @@ const AvailabilityList = ({ list = null }) => {
             console.log(timein);
          }
     
-        if (timeout.incliudes('PM'))
+        if (timeout.includes('PM'))
          {
            
             const parseTime = parseInt(timeout.substr(1, 2)) + 12;
