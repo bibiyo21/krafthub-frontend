@@ -69,23 +69,25 @@ const AvailabilityList = ({ list = null }) => {
          if (timein.includes('PM'))
          {
            
-            const parseTime = parseInt(timein.substr(1, 2)) + 12;
-            timein = parseTime.toString() + timein.substr(2,3);
+            const splitTimeout = timein.split(':');
+            const parseTime = parseInt(splitTimeout[0]) + 12;
+            timein = parseTime.toString() + splitTimeout[1];
            
-            console.log(timein);
+            console.log(timein.replace("PM",""));
            
          } else {
-            timeout = timeout.replace("AM", "");
+            timein = timein.replace("AM", "");
             console.log(timein);
          }
     
         if (timeout.includes('PM'))
          {
+            
+            const splitTimeout = timeout.split(':');
+            const parseTime = parseInt(splitTimeout[0]) + 12;
+            timeout = parseTime.toString() + splitTimeout[1];
            
-            const parseTime = parseInt(timeout.substr(1, 2)) + 12;
-            timeout = parseTime.toString() + timeout.substr(2,3);
-           
-            console.log(timein);
+            console.log(timeout.replace("PM",""));
            
          } else {
             timeout = timeout.replace("AM", "");
