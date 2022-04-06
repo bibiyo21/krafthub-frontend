@@ -75,13 +75,18 @@ const AvailabilityList = ({ list = null }) => {
             const splitTimeout = timein.split(':');
            
             if(splitTimeout[0] == '12') {
+               timein = timein.replace("PM","");
+               console.log(timein);
+            } else {
+              
               const parseTime = parseInt(splitTimeout[0]) + 12;
               timein = parseTime.toString() + ':' + splitTimeout[1];
               timein = timein.replace("PM","");
+              
+              if(splitTimeout[0].length === 1) {
+                  timeout = '0'+timeout;
+              } 
               console.log(timein);
-            } else {
-               timein = timein.replace("PM","");
-               console.log(timein);
             }
            
            
@@ -103,13 +108,19 @@ const AvailabilityList = ({ list = null }) => {
             const splitTimeout = timeout.split(':');
            
             if(splitTimeout[0] == '12') {
+               timeout = timeout.replace("PM","");
+               console.log(timeout);
+            } else {
+                
               const parseTime = parseInt(splitTimeout[0]) + 12;
               timeout = parseTime.toString() + ':' + splitTimeout[1];
               timeout = timeout.replace("PM","");
+              
+              if(splitTimeout[0].length === 1) {
+                  timeout = '0'+timeout;
+              } 
+              
               console.log(timeout);
-            } else {
-                timeout = timeout.replace("PM","");
-               console.log(timeout);
             }
            
            
