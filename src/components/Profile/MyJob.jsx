@@ -86,11 +86,11 @@ const MyJob = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Time In" {...register("time_in")} />
+                <input type="text" className="form-control" placeholder="Time In - HH:MM AM/PM" {...register("time_in")} />
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Time out" {...register("time_out")} />
+                <input type="text" className="form-control" placeholder="Time out - HH:MM AM/PM" {...register("time_out")} />
               </Form.Group>
 
               <Button variant="primary" type="submit" disabled={loading}>
