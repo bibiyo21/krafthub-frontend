@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
 import image from "../images/QRCode.png";
+import * as dayjs from 'dayjs'
 
 
 
@@ -19,12 +20,17 @@ const AvailabilityList = ({ list = null }) => {
   const [minDate, setMinDate] = useState(null);
   const [status, setStatus] = useState(false);
   
+  const [minTime, setMinTime] = useState(null);
+  const [maxTime, setMaxTime] = useState(null);
+  
   
   const today = date => date.toISOString().slice(0, 10);
       
+  console.log(today(new Date()));
+  console.log(dayjs(today(new Date())).format('HH:mm'));
   
   const changeRadio = (e) => {
-  
+    console.log([e.target.value].toString());
     setRadioValue([e.target.value].toString())
        
     if([e.target.value].toString() === 'gcash') {
@@ -57,17 +63,85 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(false)
     };
   
-  const handleShow = ({ selectedId }) => {
+  const handleShow = ({ selectedId , timeout, timein}) => {
       setMakerId(selectedId);
       setShow(true);
       setChecked(true);
       setMinDate(today(new Date()));
-      
-
-     
+        
+        if (timein.includes('PM'))
+         {
+           
+            const splitTimeout = timein.split(':');
+           
+            if(splitTimeout[0] == '12') {
+               timein = timein.replace("PM","");
+               console.log(timein);
+            } else {
+              
+              const parseTime = parseInt(splitTimeout[0]) + 12;
+              timein = parseTime.toString() + ':' + splitTimeout[1];
+              timein = timein.replace("PM","");
+              
+              if(splitTimeout[0].length === 1) {
+                  timeout = '0'+timeout;
+              } 
+              console.log(timein);
+            }
+           
+           
+         } else {
+            const splitTimeout = timein.split(':');
+             if(splitTimeout[0] == '12') {
+               timein = timein.replace("AM", "").replace("12:", "00:");
+               console.log(timein);
+             } else {
+                timein = timein.replace("AM", "");
+                console.log(timein);
+             }
+           
+         }
+    
+        if (timeout.includes('PM'))
+         {
+           
+            const splitTimeout = timeout.split(':');
+           
+            if(splitTimeout[0] == '12') {
+               timeout = timeout.replace("PM","");
+               console.log(timeout);
+            } else {
+                
+              const parseTime = parseInt(splitTimeout[0]) + 12;
+              timeout = parseTime.toString() + ':' + splitTimeout[1];
+              timeout = timeout.replace("PM","");
+              
+              if(splitTimeout[0].length === 1) {
+                  timeout = '0'+timeout;
+              } 
+              
+              console.log(timeout);
+            }
+           
+           
+         } else {
+            const splitTimeout = timeout.split(':');
+             if(splitTimeout[0] == '12') {
+                timeout = timeout.replace("AM", "").replace("12:", "00:");
+                console.log(timeout);
+             } else {
+                 timeout = timeout.replace("AM", "");
+                console.log(timeout);
+             }
+           
+         }
+    
+        
+        setMinTime(timein);
+        setMaxTime(timeout);
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
-         
+              console.log (results);
               setStatus(false);
               for (let i = 0; i < results.length; i++) {
                   if((results[i].makerid === selectedId) && (results[i].status === 'pending')) 
@@ -131,7 +205,7 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id, timeout: time_out, timein: time_in}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
@@ -142,7 +216,7 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} status={status}  />
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} status={status} minTime={minTime} maxTime={maxTime}/>
     </>
     
   );
@@ -151,23 +225,32 @@ const AvailabilityList = ({ list = null }) => {
 
 
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue, status}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue, status, minTime, maxTime}) => {
   const form = useRef(null);
   const onBookMaker = () => {
-    BookingsServiceAPI.bookJob({
-      maker_id: makerId,
-      eta: `${form.current['date'].value} ${form.current['time'].value}`,
-      additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
-    }).then((data) => {
-      toast.success(data.message);
-      handleClose();
-    })
+      
+    if ((form.current['time'].min < form.current['time'].value) && (form.current['time'].max > form.current['time'].value)) {
+         BookingsServiceAPI.bookJob({
+            maker_id: makerId,
+            eta: `${form.current['date'].value} ${form.current['time'].value}`,
+            additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
+          }).then((data) => {
+            toast.success(data.message);
+            handleClose();
+          })
+    
+    } else {
+       toast.warning('Selected time is not within worker availability.')
+    }
+     
+    
+   
   }
 
   
   return ReactDOM.createPortal(
     <>
-      <Modal status={status} radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
+      <Modal minTime={minTime} maxTime={maxTime} status={status} radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -178,7 +261,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
               <input type="date" min={minDate}  className="form-control" name="date" />
             </Form.Group>
             <Form.Group className="mb-3">
-              <input type="time" className="form-control" name="time" />
+              <input type="time" className="form-control" name="time" min={minTime} max={maxTime} required/>
             </Form.Group>
             <label>Message</label>
             <Form.Group className="mb-3">
