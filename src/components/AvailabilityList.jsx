@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BookingsServiceAPI from "../api/services/Bookings/BookingsService";
 import image from "../images/QRCode.png";
+import * as dayjs from 'dayjs'
 
 
 
@@ -23,6 +24,7 @@ const AvailabilityList = ({ list = null }) => {
   const today = date => date.toISOString().slice(0, 10);
       
   console.log(today(new Date()));
+  console.log(dayjs(today(new Date())).format('HH:mm'));
   
   const changeRadio = (e) => {
     console.log([e.target.value].toString());
@@ -58,11 +60,14 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(false)
     };
   
-  const handleShow = ({ selectedId }) => {
+  const handleShow = ({ selectedId , timeout:}) => {
       setMakerId(selectedId);
       setShow(true);
       setChecked(true);
       setMinDate(today(new Date()));
+    
+         
+    console.log(dayjs(timeout).format('HH:mm'));
       
     console.log(selectedId);
      
@@ -132,7 +137,7 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id, timeout: time_out}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
