@@ -60,17 +60,37 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(false)
     };
   
-  const handleShow = ({ selectedId , timeout}) => {
+  const handleShow = ({ selectedId , timeout, timein}) => {
       setMakerId(selectedId);
       setShow(true);
       setChecked(true);
       setMinDate(today(new Date()));
+        
+         if (timein.incliudes('PM'))
+         {
+           
+            const parseTime = parseInt(timein.substr(1, 2)) + 12;
+            timein = parseTime.toString() + timein.substr(2,3);
+           
+            console.log(timein);
+           
+         } else {
+            timeout = timeout.replace("AM", "");
+            console.log(timein);
+         }
     
-         timeout = timeout.replace("AM", "").replace("PM","");
-    console.log(timeout);
-    console.log(dayjs(timeout).format('HH:mm'));
-      
-    console.log(selectedId);
+        if (timeout.incliudes('PM'))
+         {
+           
+            const parseTime = parseInt(timeout.substr(1, 2)) + 12;
+            timeout = parseTime.toString() + timeout.substr(2,3);
+           
+            console.log(timein);
+           
+         } else {
+            timeout = timeout.replace("AM", "");
+            console.log(timeout);
+         }
      
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
@@ -138,7 +158,7 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id, timeout: time_out}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id, timeout: time_out, timein: time_in}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
