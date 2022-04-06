@@ -20,6 +20,9 @@ const AvailabilityList = ({ list = null }) => {
   const [minDate, setMinDate] = useState(null);
   const [status, setStatus] = useState(false);
   
+  const [minTime, setMinDate] = useState(null);
+  const [maxTime, setMaxDate] = useState(null);
+  
   
   const today = date => date.toISOString().slice(0, 10);
       
@@ -66,34 +69,65 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(true);
       setMinDate(today(new Date()));
         
-         if (timein.includes('PM'))
+        if (timein.includes('PM'))
          {
            
             const splitTimeout = timein.split(':');
-            const parseTime = parseInt(splitTimeout[0]) + 12;
-            timein = parseTime.toString() + splitTimeout[1];
            
-            console.log(timein.replace("PM",""));
+            if(splitTimeout[0] == '12') {
+              const parseTime = parseInt(splitTimeout[0]) + 12;
+              timein = parseTime.toString() + ':' + splitTimeout[1];
+              timein = timein.replace("PM","");
+              console.log(timein);
+            } else {
+               timein = timein.replace("PM","");
+               console.log(timein);
+            }
+           
            
          } else {
-            timein = timein.replace("AM", "");
-            console.log(timein);
+            const splitTimeout = timein.split(':');
+             if(splitTimeout[0] == '12') {
+               timein = timein.replace("AM", "").replace("12:", "00:");
+               console.log(timein);
+             } else {
+                timein = timein.replace("AM", "");
+                console.log(timein);
+             }
+           
          }
     
         if (timeout.includes('PM'))
          {
-            
-            const splitTimeout = timeout.split(':');
-            const parseTime = parseInt(splitTimeout[0]) + 12;
-            timeout = parseTime.toString() + splitTimeout[1];
            
-            console.log(timeout.replace("PM",""));
+            const splitTimeout = timeout.split(':');
+           
+            if(splitTimeout[0] == '12') {
+              const parseTime = parseInt(splitTimeout[0]) + 12;
+              timeout = parseTime.toString() + ':' + splitTimeout[1];
+              timeout = timeout.replace("PM","");
+              console.log(timeout);
+            } else {
+                timeout = timeout.replace("PM","");
+               console.log(timeout);
+            }
+           
            
          } else {
-            timeout = timeout.replace("AM", "");
-            console.log(timeout);
+            const splitTimeout = timeout.split(':');
+             if(splitTimeout[0] == '12') {
+                timeout = timeout.replace("AM", "").replace("12:", "00:");
+                console.log(timeout);
+             } else {
+                 timeout = timeout.replace("AM", "");
+                console.log(timeout);
+             }
+           
          }
-     
+    
+        
+        setMinDate(timein);
+        setMaxDate(timeout);
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
               console.log (results);
@@ -196,7 +230,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   
   return ReactDOM.createPortal(
     <>
-      <Modal status={status} radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
+      <Modal minTime={minTime} maxTime={maxTime} status={status} radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -207,7 +241,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
               <input type="date" min={minDate}  className="form-control" name="date" />
             </Form.Group>
             <Form.Group className="mb-3">
-              <input type="time" className="form-control" name="time" />
+              <input type="time" className="form-control" name="time" min={minTime} max={maxTime} />
             </Form.Group>
             <label>Message</label>
             <Form.Group className="mb-3">
