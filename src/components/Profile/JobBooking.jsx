@@ -27,8 +27,9 @@ const JobBooking = () => {
   };
 
   const handleShow = ({bookingId, status}) => {
-    setShow(true)
-    setBookingState(status)
+    setShow(true);
+    console.log(bookingId +'--'+ status);
+    setBookingState(status);
     setBookingId(bookingId);
   };
 
