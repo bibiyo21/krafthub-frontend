@@ -36,6 +36,7 @@ const JobBooking = () => {
   const loadScheduledBooking = () => {
     BookingsServiceAPI.getJobs().then(({ results }) => {
       setScheduledBookings(results);
+      console.log(results);
     })
   }
 
