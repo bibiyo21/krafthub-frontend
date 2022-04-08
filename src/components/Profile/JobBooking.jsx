@@ -41,7 +41,7 @@ const JobBooking = () => {
 
   const onChangeStatus = () => {
     
-       console.log(bookingId +'--'+ status);
+       console.log(bookingId +'--'+ bookingState);
     BookingsServiceAPI.updateBookingStatus({
       id: bookingId,
       status: bookingState,
