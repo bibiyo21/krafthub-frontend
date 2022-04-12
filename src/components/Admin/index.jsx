@@ -54,6 +54,7 @@ const UserModal = ({ show, handleClose }) => {
           <select className="form-select">
             <option value={1}>Active</option>
             <option value={0}>Inactive</option>
+            <option value={2}>Remove</option>
           </select>
         </Form.Group>
       </Modal.Body>
@@ -62,7 +63,7 @@ const UserModal = ({ show, handleClose }) => {
           Close
         </Button>
         <Button variant="primary" onClick={onBookMaker}>
-          Book now
+          Confirm
         </Button>
       </Modal.Footer>
     </Modal>,
