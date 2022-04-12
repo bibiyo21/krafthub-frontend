@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from 'react-dom';
 import { Card, Button, Modal, Form } from "react-bootstrap";
 import Wrapper from "./Wrapper";
+import UserServiceAPI from "../../api/services/Users/UsersService";
+
+
 const Admin = () => {
   const [show, setShow] = useState(false);
-
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [scheduledBookings, setScheduledBookings] = useState(null);
+  
+   const loadUserDetails = () => {
+    UserServiceAPI.getAllUsers().then(({ results }) => {
+      
+        console.log(results);
+      setScheduledBookings(results);
+
+    })
+  }
+  
+  
+   useEffect(() => {
+    loadUserDetails()
+  }, []);
+  
+  
   return (
     <>
       <Wrapper>
