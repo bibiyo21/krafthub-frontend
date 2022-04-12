@@ -233,7 +233,9 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   const onBookMaker = () => {
       
     if ((form.current['time'].min < form.current['time'].value) && (form.current['time'].max > form.current['time'].value)) {
-         BookingsServiceAPI.bookJob({
+        
+        if (radioValue === null) {
+             BookingsServiceAPI.bookJob({
             maker_id: makerId,
             eta: `${form.current['date'].value} ${form.current['time'].value}`,
             additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
@@ -241,6 +243,9 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
             toast.success(data.message);
             handleClose();
           })
+        } else {
+          toast.warning('Please choose payment mode.')
+        }
     
     } else {
        toast.warning('Selected time is not within worker availability.')
