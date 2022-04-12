@@ -83,9 +83,7 @@ const AvailabilityList = ({ list = null }) => {
               timein = parseTime.toString() + ':' + splitTimeout[1];
               timein = timein.replace("PM","");
               
-              if(splitTimeout[0].length === 1) {
-                  timeout = '0'+timeout;
-              } 
+   
               console.log(timein);
             }
            
@@ -97,6 +95,10 @@ const AvailabilityList = ({ list = null }) => {
                console.log(timein);
              } else {
                 timein = timein.replace("AM", "");
+               
+                  if(splitTimeout[0].length === 1) {
+                      timein = '0'+timein;
+                  } 
                 console.log(timein);
              }
            
@@ -115,10 +117,7 @@ const AvailabilityList = ({ list = null }) => {
               const parseTime = parseInt(splitTimeout[0]) + 12;
               timeout = parseTime.toString() + ':' + splitTimeout[1];
               timeout = timeout.replace("PM","");
-              
-              if(splitTimeout[0].length === 1) {
-                  timeout = '0'+timeout;
-              } 
+             
               
               console.log(timeout);
             }
@@ -131,6 +130,10 @@ const AvailabilityList = ({ list = null }) => {
                 console.log(timeout);
              } else {
                  timeout = timeout.replace("AM", "");
+               
+                   if(splitTimeout[0].length === 1) {
+                        timeout = '0'+timeout;
+                    } 
                 console.log(timeout);
              }
            
@@ -230,7 +233,13 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   const onBookMaker = () => {
       
     if ((form.current['time'].min < form.current['time'].value) && (form.current['time'].max > form.current['time'].value)) {
-         BookingsServiceAPI.bookJob({
+        
+        if (radioValue === null) {
+          
+          toast.warning('Please choose payment mode.')
+          
+        } else {
+             BookingsServiceAPI.bookJob({
             maker_id: makerId,
             eta: `${form.current['date'].value} ${form.current['time'].value}`,
             additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
@@ -238,6 +247,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
             toast.success(data.message);
             handleClose();
           })
+          }
     
     } else {
        toast.warning('Selected time is not within worker availability.')
