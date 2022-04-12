@@ -36,7 +36,7 @@ const BookingManagement = () => {
   };
 
   const loadScheduledBooking = () => {
-    BookingsServiceAPI.getScheduled().then(({ results }) => {
+    BookingsServiceAPI.getScheduledAll().then(({ results }) => {
       
         console.log(results);
       setScheduledBookings(results);
