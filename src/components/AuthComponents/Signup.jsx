@@ -52,7 +52,7 @@ const  Signup = () => {
       <Form onSubmit={handleSubmit(onRegister)}>
         <h3>Sign Up</h3>
         <Form.Group className="mb-3">
-          <input type="text" className="form-control" placeholder="Fist Name" {...register("first_name", { required: true })} />
+          <input type="text" className="form-control" placeholder="First Name" {...register("first_name", { required: true })} />
           {errors?.first_name !== undefined && <p className="text-danger">{errors.first_name[0]}</p>}
 
         </Form.Group>
