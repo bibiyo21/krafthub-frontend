@@ -89,7 +89,7 @@ const JobBooking = () => {
                           <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "in_progress"})} variant="info" ><i className="fas fa-spinner"></i></Button>
                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" ><i className="fas fa-check"></i></Button>
                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
-                           <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "paid"})} variant="success" ><i className="fas fa-check"></i></Button>
+                           <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "paid"})} variant="warning" ><i className="fas fa-check"></i></Button>
                          
                             </div>
                       </td>
