@@ -12,6 +12,7 @@ const JobBooking = () => {
   const STATUS_ATTR = {
     pending: {color: 'text-warning', msg: "Pending"},
     done: {color: 'text-success', msg: "Done"},
+    paid: {color: 'text-success', msg: "Paid"},
     cancelled: {color: 'text-danger', msg: "Cancelled"},
     in_progress: {color: 'text-info', msg: "In Progress"},
   }
@@ -27,18 +28,22 @@ const JobBooking = () => {
   };
 
   const handleShow = ({bookingId, status}) => {
-    setShow(true)
-    setBookingState(status)
+    setShow(true);
+    console.log(bookingId +'--'+ status);
+    setBookingState(status);
     setBookingId(bookingId);
   };
 
   const loadScheduledBooking = () => {
     BookingsServiceAPI.getJobs().then(({ results }) => {
       setScheduledBookings(results);
+      console.log(results);
     })
   }
 
   const onChangeStatus = () => {
+    
+       console.log(bookingId +'--'+ bookingState);
     BookingsServiceAPI.updateBookingStatus({
       id: bookingId,
       status: bookingState,
@@ -84,7 +89,9 @@ const JobBooking = () => {
                           <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "in_progress"})} variant="info" ><i className="fas fa-spinner"></i></Button>
                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" ><i className="fas fa-check"></i></Button>
                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
-                        </div>
+                           <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "paid"})} variant="warning" ><i className="fas fa-check"></i></Button>
+                         
+                            </div>
                       </td>
                     </tr>)
                   })
