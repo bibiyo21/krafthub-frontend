@@ -6,6 +6,11 @@ import BookingsServiceAPI from "../../api/services/Bookings/BookingsService";
 import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import jsPDF from 'jspdf';
+import pdfMake from 'pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import htmlToPdfmake from 'html-to-pdfmake';
+
 
 const BookingManagement = () => {
    const STATUS_ATTR = {
@@ -44,6 +49,23 @@ const BookingManagement = () => {
       
     })
   }
+  
+ const printDocument = () => {
+      //const input = document.getElementById('divToPrint');
+    
+          const doc = new jsPDF();
+         
+          //get table html
+          const pdfTable = document.getElementById('divToPrint');
+          //html to pdf format
+          var html = htmlToPdfmake(pdfTable.innerHTML);
+        
+          const documentDefinition = { content: html };
+          pdfMake.vfs = pdfFonts.pdfMake.vfs;
+          pdfMake.createPdf(documentDefinition).open();
+        
+    }
+  
 
   const onChangeStatus = () => {
     BookingsServiceAPI.updateBookingStatus({
@@ -63,9 +85,15 @@ const BookingManagement = () => {
   return (
     <>
       <Wrapper>
+         <Button onClick={() => printDocument()} variant="secondary" ><i className="fas fa-check"></i>
+            Export
+         </Button>
+                            
+
         <Card className="mb-4">
+         <div id="divToPrint">
           <Card.Body>
-            <Card.Title>Scheduled Bookings</Card.Title>
+            <Card.Title> Booking Summary Report </Card.Title>
             <table className="table table-responsive table-condensed table-striped table-hover">
               <thead>
                 <tr>
@@ -103,7 +131,10 @@ const BookingManagement = () => {
               </tbody>
             </table>
           </Card.Body>
+         </div>
         </Card>
+         
+         
       </Wrapper>
       <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} />
     </>
