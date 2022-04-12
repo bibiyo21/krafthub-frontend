@@ -12,6 +12,18 @@ class BookingsService extends CommonService {
         throw error;
       });
   };
+  
+  getScheduledAll = (params) => {
+    return this.http
+      .get(
+        `/api/bookings/scheduledAll`,{ params }
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
+  };
 
   getJobs = (params) => {
     return this.http
