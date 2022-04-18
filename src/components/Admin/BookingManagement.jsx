@@ -49,7 +49,7 @@ const BookingManagement = () => {
   const printToPdf = () => {
     const doc = new jspdf();
    const html = document.getElementById("simple_table").innerHTML;
-   doc.fromHTML(html, 15, 15, {
+   doc.html(html, 15, 15, {
       width: 150
             });
       doc.save("Bookings.pdf");
