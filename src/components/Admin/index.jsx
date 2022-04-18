@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Card, Button, Modal, Form } from "react-bootstrap";
 import Wrapper from "./Wrapper";
 import UserServiceAPI from "../../api/services/Users/UsersService";
+import pdf from '../pdf'
 
 
 const Admin = () => {
