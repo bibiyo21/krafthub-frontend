@@ -67,25 +67,10 @@ const BookingManagement = () => {
     };
     const y = 20;
     doc.setLineWidth(2);
-    doc.autoTable({
-        html: '#simple_table',
-        startY: 70,
-        theme: 'grid',
-        columnStyles: {
-            0: {
-                cellWidth: 180,
-            },
-            1: {
-                cellWidth: 180,
-            },
-            2: {
-                cellWidth: 180,
-            }
-        },
-        styles: {
-            minCellHeight: 40
-        }
-    })
+    doc.fromHTML($("#target").html(), 15, 15, {
+        "width":170,
+        "elementHandlers": specialElementHandlers
+    });
     doc.save('Bookings.pdf');
      
   }
