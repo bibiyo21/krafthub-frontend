@@ -6,6 +6,7 @@ import BookingsServiceAPI from "../../api/services/Bookings/BookingsService";
 import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import jsPDF from "jspdf";
 
 const BookingManagement = () => {
    const STATUS_ATTR = {
@@ -45,6 +46,50 @@ const BookingManagement = () => {
     })
   }
   
+  const printToPdf = () => {
+     
+    const doc = new jsPDF('p', 'pt', 'letter');
+    const htmlstring = '';
+    const tempVarToCheckPageHeight = 0;
+    const specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector  
+        '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"  
+            return true
+        }
+    };
+    const margins = {
+        top: 150,
+        bottom: 60,
+        left: 40,
+        right: 40,
+        width: 600
+    };
+    const y = 20;
+    doc.setLineWidth(2);
+    doc.autoTable({
+        html: '#simple_table',
+        startY: 70,
+        theme: 'grid',
+        columnStyles: {
+            0: {
+                cellWidth: 180,
+            },
+            1: {
+                cellWidth: 180,
+            },
+            2: {
+                cellWidth: 180,
+            }
+        },
+        styles: {
+            minCellHeight: 40
+        }
+    })
+    doc.save('Bookings.pdf');
+     
+  }
+  
   const onChangeStatus = () => {
     BookingsServiceAPI.updateBookingStatus({
       id: bookingId,
@@ -69,7 +114,9 @@ const BookingManagement = () => {
          <div id="divToPrint">
           <Card.Body>
             <Card.Title> Booking Summary Report </Card.Title>
-            <table className="table table-responsive table-condensed table-striped table-hover">
+            <Button onClick={() => printToPdf({})} variant="success" >
+               Export to PDF</Button>
+            <table className="table table-responsive table-condensed table-striped table-hover" id = "simple_table">
               <thead>
                 <tr>
                   <th>Maker</th>
