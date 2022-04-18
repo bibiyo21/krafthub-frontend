@@ -67,7 +67,7 @@ const BookingManagement = () => {
     };
     const y = 20;
     doc.setLineWidth(2);
-    doc.fromHTML("#simple_table");
+    doc.fromHTML(window.document.getElementById('simple_table'), 10, 10,{'width': 180});
     doc.save('Bookings.pdf');
      
   }
