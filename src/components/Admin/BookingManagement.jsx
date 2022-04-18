@@ -6,7 +6,7 @@ import BookingsServiceAPI from "../../api/services/Bookings/BookingsService";
 import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import jsPDF from "jspdf";
+import jspdf from 'jspdf';
 
 const BookingManagement = () => {
    const STATUS_ATTR = {
