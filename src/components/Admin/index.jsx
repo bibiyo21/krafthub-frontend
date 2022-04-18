@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Card, Button, Modal, Form } from "react-bootstrap";
 import Wrapper from "./Wrapper";
 import UserServiceAPI from "../../api/services/Users/UsersService";
+import BookingsServiceAPI from "../../api/services/Bookings/BookingsService";
 import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -92,8 +93,8 @@ const Admin = () => {
                       <td>{cellphone_number}</td>
                       <td>
                         <div className="btn-group">
-                            <Button disabled={access_level === '1' ? true : false} onClick={() => handleShow({bookingId: bookingid, status: "0"})} variant="danger" ><i className="fas fa-times"></i></Button>
-                            <Button disabled={access_level === '0' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "1"})} variant="warning" ><i className="fas fa-check"></i></Button>
+                            <Button disabled={access_level === '1' ? true : false} onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" ><i className="fas fa-times"></i></Button>
+                            <Button disabled={access_level === '0' ? false : true} onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" ><i className="fas fa-check"></i></Button>
                             
                               </div>
                       </td>
