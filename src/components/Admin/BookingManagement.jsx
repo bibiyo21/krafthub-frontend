@@ -47,28 +47,12 @@ const BookingManagement = () => {
   }
   
   const printToPdf = () => {
-     
-    const doc = new jsPDF('p', 'pt', 'letter');
-    const htmlstring = '';
-    const tempVarToCheckPageHeight = 0;
-    const specialElementHandlers = {
-        // element with id of "bypass" - jQuery style selector  
-        '#bypassme': function (element, renderer) {
-            // true = "handled elsewhere, bypass text extraction"  
-            return true
-        }
-    };
-    const margins = {
-        top: 150,
-        bottom: 60,
-        left: 40,
-        right: 40,
-        width: 600
-    };
-    const y = 20;
-    doc.setLineWidth(2);
-    doc.fromHTML(window.document.getElementById('simple_table'), 10, 10,{'width': 180});
-    doc.save('Bookings.pdf');
+    const doc = new jspdf();
+   const html = document.getElementById("simple_table").innerHTML;
+   doc.fromHTML(html, 15, 15, {
+      width: 150
+            });
+      doc.save("Bookings.pdf");
      
   }
   
