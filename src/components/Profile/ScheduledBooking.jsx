@@ -19,6 +19,7 @@ const ScheduledBooking = () => {
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
+  
 
   const handleClose = () => {
     setShow(false)
@@ -29,12 +30,18 @@ const ScheduledBooking = () => {
   const handleShow = ({bookingId, status}) => {
     setShow(true)
     setBookingState(status)
+    
+    console.log(bookingState);
     setBookingId(bookingId);
   };
 
   const loadScheduledBooking = () => {
     BookingsServiceAPI.getScheduled().then(({ results }) => {
+      
+        console.log(results);
       setScheduledBookings(results);
+      
+      
     })
   }
 
@@ -72,7 +79,7 @@ const ScheduledBooking = () => {
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    bookingId, first_name, last_name, status, eta, additional_info
+                    booking_id, first_name, last_name, status, eta, additional_info
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -81,10 +88,7 @@ const ScheduledBooking = () => {
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
-                          <Button onClick={() => handleShow({bookingId, status: "in_progress"})} variant="info" ><i className="fas fa-spinner"></i></Button>
-                          <Button onClick={() => handleShow({bookingId, status: "done"})} variant="success" ><i className="fas fa-check"></i></Button>
-                          <Button onClick={() => handleShow({bookingId, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
-                          <Button onClick={() => handleShow({bookingId, status: "pending"})} variant="warning" ><i className="fas fa-clock"></i></Button>
+                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
                         </div>
                       </td>
                     </tr>)
@@ -116,7 +120,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
             Close
           </Button>
           <Button variant="primary" onClick={() => onChangeStatus()}>
-            Book now
+            Confirm
           </Button>
         </Modal.Footer>
       </Modal>
