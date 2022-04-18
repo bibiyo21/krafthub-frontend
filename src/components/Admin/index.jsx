@@ -47,7 +47,7 @@ const Admin = () => {
   
   const onChangeStatus = () => {
     BookingsServiceAPI.updateBookingStatus({
-      id: bookingId,
+      id: id,
       status: bookingState,
     }).then((data) => {
       toast.success(data.message);
