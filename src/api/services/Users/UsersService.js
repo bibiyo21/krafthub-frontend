@@ -22,7 +22,7 @@ class UsersService extends CommonService {
         console.log(error);
         throw error;
     });
-    
+  }; 
     
    getAllUsers = (params) => {
     return this.http
