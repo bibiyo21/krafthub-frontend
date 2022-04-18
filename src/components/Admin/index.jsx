@@ -72,11 +72,12 @@ const Admin = () => {
             <table className="table table-responsive table-condensed table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Maker</th>
+                  <th>User Name</th>
                   <th>Status</th>
-                  <th>Schedule</th>
-                  <th>Description</th>
-                  <th>Action</th>
+                  <th>Created Date</th>
+                  <th>Address</th>
+                  <th>Email</th>
+                  <th>Mobile No</th>
                 </tr>
               </thead>
               <tbody>
