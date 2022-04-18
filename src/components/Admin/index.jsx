@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Card, Button, Modal, Form } from "react-bootstrap";
 import Wrapper from "./Wrapper";
 import UserServiceAPI from "../../api/services/Users/UsersService";
+import BookingsServiceAPI from "../../api/services/Bookings/BookingsService";
 import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
