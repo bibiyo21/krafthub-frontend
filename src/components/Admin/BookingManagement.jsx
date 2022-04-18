@@ -51,8 +51,6 @@ const BookingManagement = () => {
     const doc = new jsPDF('p', 'pt', 'letter');
     const htmlstring = '';
     const tempVarToCheckPageHeight = 0;
-    const pageHeight = 0;
-    pageHeight = doc.internal.pageSize.height;
     const specialElementHandlers = {
         // element with id of "bypass" - jQuery style selector  
         '#bypassme': function (element, renderer) {
