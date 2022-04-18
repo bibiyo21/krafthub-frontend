@@ -53,14 +53,14 @@ const BookingManagement = () => {
     const tempVarToCheckPageHeight = 0;
     const pageHeight = 0;
     pageHeight = doc.internal.pageSize.height;
-    specialElementHandlers = {
+    const specialElementHandlers = {
         // element with id of "bypass" - jQuery style selector  
         '#bypassme': function (element, renderer) {
             // true = "handled elsewhere, bypass text extraction"  
             return true
         }
     };
-    margins = {
+    const margins = {
         top: 150,
         bottom: 60,
         left: 40,
