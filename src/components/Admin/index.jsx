@@ -46,7 +46,7 @@ const Admin = () => {
   }
   
   const onChangeStatus = () => {
-    BookingsServiceAPI.updateBookingStatus({
+    UserServiceAPI.updateUserStatus({
       id: bookingId,
       status: bookingState,
     }).then((data) => {
