@@ -12,7 +12,18 @@ class UsersService extends CommonService {
       });
   };
   
-  
+  updateUserStatus = (params) => {
+    return this.http
+      .post(
+        `/api/user/updatestatus`, params
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+    });
+    
+    
    getAllUsers = (params) => {
     return this.http
       .get(
