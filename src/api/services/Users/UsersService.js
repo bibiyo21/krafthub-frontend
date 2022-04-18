@@ -11,6 +11,21 @@ class UsersService extends CommonService {
         throw error;
       });
   };
+  
+  
+   getAllUsers = (params) => {
+    return this.http
+      .get(
+        `/api/userAll`,{ params }
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
+  };
+  
+  
 }
 
 const UsersServiceAPI = new UsersService();
