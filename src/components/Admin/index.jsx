@@ -95,7 +95,7 @@ const Admin = () => {
                       <td>
                         <div className="btn-group">
                             <Button disabled={access_level === '1' ? true : false} onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" ><i className="fas fa-times"></i></Button>
-                            <Button disabled={access_level === '0' ? false : true} onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" ><i className="fas fa-check"></i></Button>
+                            <Button disabled={access_level === '0' ? true : false} onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" ><i className="fas fa-check"></i></Button>
                             
                               </div>
                       </td>
