@@ -10,8 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ScheduledBooking = () => {
   const STATUS_ATTR = {
-    pending: {color: 'text-warning', msg: "Pending"},
+    pending: {color: 'text-primary', msg: "Pending"},
     done: {color: 'text-success', msg: "Done"},
+    paid: {color: 'text-warning', msg: "Paid"},
     cancelled: {color: 'text-danger', msg: "Cancelled"},
     in_progress: {color: 'text-info', msg: "In Progress"},
   }
