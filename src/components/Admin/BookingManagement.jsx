@@ -7,6 +7,7 @@ import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const BookingManagement = () => {
    const STATUS_ATTR = {
@@ -48,27 +49,29 @@ const BookingManagement = () => {
   
   const printToPdf = () => {
      
-    const doc = new jsPDF('p', 'pt', 'letter');
-    const htmlstring = '';
-    const tempVarToCheckPageHeight = 0;
-    const specialElementHandlers = {
-        // element with id of "bypass" - jQuery style selector  
-        '#bypassme': function (element, renderer) {
-            // true = "handled elsewhere, bypass text extraction"  
-            return true
-        }
+  const unit = "pt";
+    const size = "A4"; // Use A1, A2, A3 or A4
+    const orientation = "portrait"; // portrait or landscape
+
+    const marginLeft = 40;
+    const doc = new jsPDF(orientation, unit, size);
+
+    doc.setFontSize(15);
+
+    const title = "Booking Summary Report";
+    const headers = [["Booking ID", "First Name", "Last Name", "Status", "Schedule" , "Other Details"]];
+
+    const data = scheduledBookings.map(elt=> [elt.bookingid, elt.first_name, elt.last_name,elt.status, elt.eta, elt.additional_info]);
+
+    let content = {
+      startY: 50,
+      head: headers,
+      body: data
     };
-    const margins = {
-        top: 150,
-        bottom: 60,
-        left: 40,
-        right: 40,
-        width: 600
-    };
-    const y = 20;
-    doc.setLineWidth(2);
-    doc.fromHTML("#simple_table");
-    doc.save('Bookings.pdf');
+
+    doc.text(title, marginLeft, 40);
+    doc.autoTable(content);
+    doc.save("report.pdf")
      
   }
   
