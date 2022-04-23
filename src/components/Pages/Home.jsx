@@ -16,12 +16,16 @@ const Home = () => {
            <Admin />
          )} 
     
+      {user.access_level === 1 && (
+                      
+               <Navigations />
+          <div className="container pt-3">
+            <SearchBar setAvailabilityResult={setAvailabilityList} />
+          </div>
+          <AvailabilityList list={availabilityList} />
+         )} 
     
-      <Navigations />
-      <div className="container pt-3">
-        <SearchBar setAvailabilityResult={setAvailabilityList} />
-      </div>
-      <AvailabilityList list={availabilityList} />
+     
     </>
   );
 };
