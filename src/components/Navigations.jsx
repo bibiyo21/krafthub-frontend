@@ -31,6 +31,12 @@ const Navigations = () => {
                       </li>
                     )}
 
+                     {user.access_level === 1 && (
+                       <li>
+                      <a href="/profile">My Profile</a>
+                      </li>
+                      )}
+
                     <li>
                       <a
                         href="javascript:void(0);"
