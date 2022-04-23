@@ -11,6 +11,14 @@ const Home = () => {
   
   
   return (
+    
+     {user.access_level === 4 && (
+                  <>
+               <Admin />   
+              </>
+      )}
+    
+    
     <>
       <Navigations />
       <div className="container pt-3">
