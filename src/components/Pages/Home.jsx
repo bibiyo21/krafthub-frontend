@@ -3,15 +3,17 @@ import AvailabilityList from "../AvailabilityList";
 import Navigations from "../Navigations";
 import SearchBar from "../SearchBar";
 import Admin  from "../Admin/Index";
+import AuthenticationAPI from "../api/services/Authentication/AuthenticationService";
 
 const Home = () => {
   const [availabilityList, setAvailabilityList] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
+  
   return (
     <>
         {user.access_level === 4 && (
                       
            <Admin />
-           </>
          )} 
     
     
