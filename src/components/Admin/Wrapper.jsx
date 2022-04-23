@@ -5,7 +5,7 @@ import Navigations from "../Navigations";
 const Wrapper = ({ children }) => {
   return (
     <>
-     
+      <Navigations />
       <section class="upcoming-meetings p-5" id="meetings">
         <div class="container">
         <Row>
