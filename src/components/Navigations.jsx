@@ -31,9 +31,6 @@ const Navigations = () => {
                       </li>
                     )}
                     <li>
-                      <a href="/profile">My Profile</a>
-                    </li>
-                    <li>
                       <a
                         href="javascript:void(0);"
                         onClick={() => {
