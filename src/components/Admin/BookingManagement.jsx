@@ -7,6 +7,7 @@ import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const BookingManagement = () => {
    const STATUS_ATTR = {
