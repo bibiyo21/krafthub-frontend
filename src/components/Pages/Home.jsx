@@ -9,16 +9,15 @@ const Home = () => {
   const [availabilityList, setAvailabilityList] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
   
-  
-  return (
+  if(user.access_level === 4) {
+      return (
+    <>
+      <Admin />
+    </>
+  );
+  } else {
     
-     {user.access_level === 4 && (
-                  <>
-               <Admin />   
-              </>
-      )}
-    
-    
+      return (
     <>
       <Navigations />
       <div className="container pt-3">
@@ -27,6 +26,10 @@ const Home = () => {
       <AvailabilityList list={availabilityList} />
     </>
   );
+    
+  }
+  
+
 };
 
 export default Home;
