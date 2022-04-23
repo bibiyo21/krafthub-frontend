@@ -10,23 +10,25 @@ const Home = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   
   return (
-    <>
+  
         {user.access_level === 4 && (
-                      
+              <>          
            <Admin />
+             </>
          )} 
     
       {user.access_level === 1 && (
-                      
+                   <>     
                <Navigations />
           <div className="container pt-3">
             <SearchBar setAvailabilityResult={setAvailabilityList} />
           </div>
           <AvailabilityList list={availabilityList} />
+             </>
          )} 
     
      
-    </>
+   
   );
 };
 
