@@ -120,11 +120,11 @@ const BookingManagement = () => {
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
-                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "pending"})} variant="success" ><i className="fas fa-check"></i></Button>
-                            <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "in_progress"})} variant="info" ><i className="fas fa-spinner"></i></Button>
-                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" ><i className="fas fa-check"></i></Button>
-                            <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
-                            <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "paid"})} variant="warning" ><i className="fas fa-check"></i></Button>
+                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "pending"})} variant="Primary" >Pending<i className="fas fa-check"></i></Button>
+                            <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "in_progress"})} variant="info" >In Progress<i className="fas fa-spinner"></i></Button>
+                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" >Done<i className="fas fa-check"></i></Button>
+                            <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
+                            <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "paid"})} variant="warning" >Paid<i className="fas fa-check"></i></Button>
                             
                               </div>
                       </td>
