@@ -6,6 +6,7 @@ import BookingsServiceAPI from "../../api/services/Bookings/BookingsService";
 import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import jsPDF from "jspdf";
 
 const BookingManagement = () => {
    const STATUS_ATTR = {
@@ -45,6 +46,34 @@ const BookingManagement = () => {
     })
   }
   
+  const printToPdf = () => {
+     
+  const unit = "pt";
+    const size = "A4"; // Use A1, A2, A3 or A4
+    const orientation = "portrait"; // portrait or landscape
+
+    const marginLeft = 40;
+    const doc = new jsPDF(orientation, unit, size);
+
+    doc.setFontSize(15);
+
+    const title = "Booking Summary Report";
+    const headers = [["Booking ID", "First Name"]];
+
+    const data = scheduledBookings.map(elt=> [elt.bookingid, elt.first_name]);
+
+    let content = {
+      startY: 50,
+      head: headers,
+      body: data
+    };
+
+    doc.text(title, marginLeft, 40);
+    doc.autoTable(content);
+    doc.save("report.pdf")
+     
+  }
+  
   const onChangeStatus = () => {
     BookingsServiceAPI.updateBookingStatus({
       id: bookingId,
@@ -69,7 +98,9 @@ const BookingManagement = () => {
          <div id="divToPrint">
           <Card.Body>
             <Card.Title> Booking Summary Report </Card.Title>
-            <table className="table table-responsive table-condensed table-striped table-hover">
+            <Button onClick={() => printToPdf({})} variant="success" >
+               Export to PDF</Button>
+            <table className="table table-responsive table-condensed table-striped table-hover" id = "simple_table">
               <thead>
                 <tr>
                   <th>Maker</th>
@@ -82,7 +113,7 @@ const BookingManagement = () => {
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    booking_id, first_name, last_name, status, eta, additional_info
+                    bookingid, first_name, last_name, status, eta, additional_info
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -91,11 +122,11 @@ const BookingManagement = () => {
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
-                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "pending"})} variant="primary" >Pending<i className="fas fa-check"></i></Button>
-                            <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "in_progress"})} variant="info" >In Progress<i className="fas fa-spinner"></i></Button>
-                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "done"})} variant="success" > Done <i className="fas fa-check"></i></Button>
-                            <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
-                            <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "paid"})} variant="warning" >Paid<i className="fas fa-check"></i></Button>
+                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "pending"})} variant="Primary" >Pending<i className="fas fa-check"></i></Button>
+                            <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "in_progress"})} variant="info" >In Progress<i className="fas fa-spinner"></i></Button>
+                            <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" >Done<i className="fas fa-check"></i></Button>
+                            <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
+                            <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "paid"})} variant="warning" >Paid<i className="fas fa-check"></i></Button>
                             
                               </div>
                       </td>
