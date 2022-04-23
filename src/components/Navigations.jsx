@@ -30,9 +30,7 @@ const Navigations = () => {
                         <a href="/admin/user-management">Admin</a>
                       </li>
                     )}
-                    <li>
-                      <a href="/profile">My Profile</a>
-                    </li>
+
                     <li>
                       <a
                         href="javascript:void(0);"
