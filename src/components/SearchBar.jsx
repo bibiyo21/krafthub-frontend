@@ -8,13 +8,38 @@ const SearchBar = ({
 }) => {
   const [jobs, setJobs] = useState(null);
   const [jobTypes, setJobTypes] = useState(null);
-
+  const [jobID, setJobID] = useState(null);
+  
   const { register, handleSubmit } = useForm();
   const onSearch = ({ userName, job, jobType }) => {
+    
+    
     AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {
       if (setAvailabilityResult !== null) {
         setAvailabilityResult(results);
+      }  else {
+        jobs && jobs.map(({
+                    id, title
+                  }) => {
+                     if (title.toLowerCase() === userName.toLowerCase()){
+                       setJobID(id);
+                     }
+                  })
+        
+        userName = "";
+       AvailabilitiesServiceAPI.get({ userName, jobID, jobType }).then(({ results }) => {    
+          if (setAvailabilityResult !== null) {
+              setAvailabilityResult(results);
+            } 
+         
+             })
+        };
+        
       }
+      
+      
+      
+      
     })
   };
 
