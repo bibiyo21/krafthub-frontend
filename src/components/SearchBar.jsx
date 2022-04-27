@@ -25,8 +25,9 @@ const SearchBar = ({
                           jobs && jobs.map(({
                               id, title
                             }) => {
-                               if (title.toLowerCase() === userName.toLowerCase()){
-                                 setJobID(id);
+                                console.log({title} + "--" + userName);
+                               if ({title}.toLowerCase() === userName.toLowerCase()){
+                                 setJobID({id});
                                }
                             })
 
