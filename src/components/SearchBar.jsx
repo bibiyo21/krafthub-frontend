@@ -32,8 +32,8 @@ const SearchBar = ({
               setAvailabilityResult(results);
             } 
          
-             })
-        };
+        })
+
         
       }
       
