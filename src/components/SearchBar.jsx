@@ -62,7 +62,7 @@ const SearchBar = ({
                             if (setAvailabilityResult !== null) {
                                 if (results.length !== 0) {
                                 setAvailabilityResult(results);
-                                  break;
+                                 return;
                                 } 
                               } 
 
