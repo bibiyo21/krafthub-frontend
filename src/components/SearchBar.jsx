@@ -24,7 +24,7 @@ const SearchBar = ({
             } else {
 
                   userName = "";
-                  job = jobs.filter(function(jobs){ return jobs.title.toLowerCase() === userName.toLowerCase() })[0].id;
+                  job = jobs.filter(function(jobs){ return jobs.title.toLowerCase() === userName.toLowerCase() });
                    
               
                  AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
