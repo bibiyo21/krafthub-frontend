@@ -60,17 +60,14 @@ const SearchBar = ({
                           if (setAvailabilityResult !== null) {
                               if (results.length !== 0) {
                               setAvailabilityResult(results);
-                              } else {
-                                toast.success("No Data Found.");
-                              }
+                                break;
+                              } 
                             } 
 
                         })
                         
                         
-                      } else {
-                        toast.success("No Data Found.");
-                      }
+                      } 
                      
                         
                     }    
