@@ -44,12 +44,13 @@ const SearchBar = ({
                     for( var i = 0; i < jobs.length; i++) {
                     
                     
-                       JobsServiceAPI.getByTypes(job[i].id).then(({ results }) => {
+                       JobsServiceAPI.getByTypes(jobs[i].id).then(({ results }) => {
                         setJobTypes(results);
                       })
                       
                       jobType = jobTypes.filter(function(jobTypes){ return jobTypes.title.toLowerCase() === userName.toLowerCase() });
-                      
+                        
+                           
                       if(jobType.length !== 0 ) {
                           
                           jobType = jobType[0].id;
@@ -71,7 +72,6 @@ const SearchBar = ({
                         toast.success("No Data Found.");
                       }
                      
-                    
                         
                     }    
                        
