@@ -10,8 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ScheduledBooking = () => {
   const STATUS_ATTR = {
-    pending: {color: 'text-warning', msg: "Pending"},
+    pending: {color: 'text-primary', msg: "Pending"},
     done: {color: 'text-success', msg: "Done"},
+    paid: {color: 'text-warning', msg: "Paid"},
     cancelled: {color: 'text-danger', msg: "Cancelled"},
     in_progress: {color: 'text-info', msg: "In Progress"},
   }
@@ -74,7 +75,7 @@ const ScheduledBooking = () => {
                   <th>Schedule</th>
                   <th>Description</th>
                   <th>Action</th>
-                  <th>Payment</th>
+                   <th>Payment</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,13 +85,13 @@ const ScheduledBooking = () => {
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
-                      <td><span className={STATUS_ATTR[status].color}>{STATUS_ATTR[status].msg}</span></td>
+                      <td><span className={STATUS_ATTR[status].color}>{STATUS_ATTR[status].msg}</span></td> 
                       <td>{dayjs(eta).format('MMMM DD, YYYY HH:mm')}</td>
                       <td>{additional_info}</td>
                       <td>{amount}</td>
                       <td>
                         <div className="btn-group">
-                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" ><i className="fas fa-times"></i></Button>
+                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
                         </div>
                       </td>
                     </tr>)
