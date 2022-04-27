@@ -44,7 +44,7 @@ const SearchBar = ({
                     for( var i = 0; i < jobs.length; i++) {
                     
                     
-                        JobsServiceAPI.getByTypes(e.target.value).then(({ results }) => {
+                        JobsServiceAPI.getByTypes(jobs[i].id).then(({ results }) => {
                         setJobTypes(results);
                       })
                       
