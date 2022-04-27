@@ -59,9 +59,9 @@ const BookingManagement = () => {
     doc.setFontSize(15);
 
     const title = "Booking Summary Report";
-    const headers = [["Booking ID", "First Name", "Last Name", "Status", "Schedule" , "Other Details"]];
+    const headers = [["Booking ID", "First Name", "Last Name", "Status", "Schedule" , "Amount", "Other Details"]];
 
-    const data = scheduledBookings.map(elt=> [elt.bookingid, elt.first_name, elt.last_name,elt.status, elt.eta, elt.additional_info]);
+    const data = scheduledBookings.map(elt=> [elt.bookingid, elt.first_name, elt.last_name,elt.status, elt.eta, elt.amount, elt.additional_info]);
 
     let content = {
       startY: 50,
@@ -109,18 +109,20 @@ const BookingManagement = () => {
                   <th>Schedule</th>
                   <th>Description</th>
                   <th>Action</th>
+                  <th>Payment</th>
                 </tr>
               </thead>
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    bookingid, first_name, last_name, status, eta, additional_info
+                    bookingid, first_name, last_name, status, eta, additional_info, amount
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
                       <td><span className={STATUS_ATTR[status].color}>{STATUS_ATTR[status].msg}</span></td>
                       <td>{dayjs(eta).format('MMMM DD, YYYY HH:mm')}</td>
                       <td>{additional_info}</td>
+                       <td>{amount}</td>
                       <td>
                         <div className="btn-group">
                             <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "pending"})} variant="Primary" >Pending<i className="fas fa-check"></i></Button>
