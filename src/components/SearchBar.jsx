@@ -48,23 +48,28 @@ const SearchBar = ({
                         setJobTypes(results);
                       })
                       
-                      jobType = jobTypes.filter(function(jobTypes){ return jobTypes.title.toLowerCase() === userName.toLowerCase() });
+                      
+                      if(jobTypes.jobType.length !== 0) {
+                         jobType = jobTypes.filter(function(jobTypes){ return jobTypes.title.toLowerCase() === userName.toLowerCase() });
                         
                            
-                      if(jobType.length !== 0 ) {
-                          
-                          jobType = jobType[0].id;
-                         job = "";
-                      userName = "";
-                       AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
-                          if (setAvailabilityResult !== null) {
-                              if (results.length !== 0) {
-                              setAvailabilityResult(results);
-                                break;
-                              } 
-                            } 
+                        if(jobType.length !== 0 ) {
 
-                        })
+                            jobType = jobType[0].id;
+                           job = "";
+                        userName = "";
+                         AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
+                            if (setAvailabilityResult !== null) {
+                                if (results.length !== 0) {
+                                setAvailabilityResult(results);
+                                  break;
+                                } 
+                              } 
+
+                          })
+                      }
+                      
+                     
                         
                         
                       } 
