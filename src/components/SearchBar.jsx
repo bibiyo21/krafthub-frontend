@@ -23,19 +23,62 @@ const SearchBar = ({
               setAvailabilityResult(results);
             } else {
 
-                  job = jobs.filter(function(jobs){ return jobs.title.toLowerCase() === userName.toLowerCase() })[0].id;
-                   
-                  userName = "";
-                 AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
-                    if (setAvailabilityResult !== null) {
-                        if (results.length !== 0) {
-                        setAvailabilityResult(results);
-                        } else {
-                          toast.success("No Data Found.");
-                        }
-                      } 
+                  job = jobs.filter(function(jobs){ return jobs.title.toLowerCase() === userName.toLowerCase() });
+                  if(job.length !== 0) {
+                    
+                      job = job[0].id;
+                      userName = "";
+                       AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
+                          if (setAvailabilityResult !== null) {
+                              if (results.length !== 0) {
+                              setAvailabilityResult(results);
+                              } else {
+                                toast.success("No Data Found.");
+                              }
+                            } 
 
-                  })
+                        })
+                    
+                  } else { 
+                    
+                    for( var i = 0; i < jobs.length; i++) {
+                    
+                    
+                       JobsServiceAPI.getByTypes(job[i].id).then(({ results }) => {
+                        setJobTypes(results);
+                      })
+                      
+                      jobType = jobTypes.filter(function(jobTypes){ return jobTypes.title.toLowerCase() === userName.toLowerCase() });
+                      
+                      if(jobType.length !== 0 ) {
+                          
+                          jobType = jobType[0].id;
+                         job = "";
+                      userName = "";
+                       AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
+                          if (setAvailabilityResult !== null) {
+                              if (results.length !== 0) {
+                              setAvailabilityResult(results);
+                              } else {
+                                toast.success("No Data Found.");
+                              }
+                            } 
+
+                        })
+                        
+                        
+                      } else {
+                        toast.success("No Data Found.");
+                      }
+                     
+                    
+                        
+                    }    
+                       
+                  } 
+              
+              
+                
             }
 
       } 
