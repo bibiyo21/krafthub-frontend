@@ -232,7 +232,8 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
              BookingsServiceAPI.bookJob({
             maker_id: makerId,
             eta: `${form.current['date'].value} ${form.current['time'].value}`,
-            additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
+            additional_info: form.current['additional_info'].value +'|'+ radioValue,
+            amount: amountS
           }).then((data) => {
             toast.success(data.message);
             handleClose();
