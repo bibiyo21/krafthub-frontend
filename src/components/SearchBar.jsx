@@ -49,7 +49,7 @@ const SearchBar = ({
                       })
                       
                       
-                      if(jobTypes.jobType.length !== 0) {
+                      if(jobTypes.length !== 0) {
                          jobType = jobTypes.filter(function(jobTypes){ return jobTypes.title.toLowerCase() === userName.toLowerCase() });
                         
                            
