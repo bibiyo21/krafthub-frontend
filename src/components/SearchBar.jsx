@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import JobsServiceAPI from "../api/services/Jobs/JobsService";
 import { useForm } from "react-hook-form";
 import AvailabilitiesServiceAPI from "../api/services/Availabilities/AvailabilitiesService";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SearchBar = ({
   setAvailabilityResult = null
@@ -16,29 +18,34 @@ const SearchBar = ({
     
     AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {
       if (setAvailabilityResult !== null) {
-        setAvailabilityResult(results);
-      }  else {
-        jobs && jobs.map(({
-                    id, title
-                  }) => {
-                     if (title.toLowerCase() === userName.toLowerCase()){
-                       setJobID(id);
-                     }
-                  })
-        
-        userName = "";
-       AvailabilitiesServiceAPI.get({ userName, jobID, jobType }).then(({ results }) => {    
-          if (setAvailabilityResult !== null) {
-              setAvailabilityResult(results);
-            } 
-         
-        })
 
-        
-      }
+            if (results.length !== 0) {
+              setAvailabilityResult(results);
+            } else {
+                          jobs && jobs.map(({
+                              id, title
+                            }) => {
+                               if (title.toLowerCase() === userName.toLowerCase()){
+                                 setJobID(id);
+                               }
+                            })
+
+                  userName = "";
+                 AvailabilitiesServiceAPI.get({ userName, jobID, jobType }).then(({ results }) => {    
+                    if (setAvailabilityResult !== null) {
+                        if (results.length !== 0) {
+                        setAvailabilityResult(results);
+                        } else {
+                          toast.success("No Data Found.");
+                        }
+                      } 
+
+                  })
+            }
+
+      } 
       
-      
-      
+
       
     })
   };
