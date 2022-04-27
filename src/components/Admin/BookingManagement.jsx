@@ -59,9 +59,9 @@ const BookingManagement = () => {
     doc.setFontSize(15);
 
     const title = "Booking Summary Report";
-    const headers = [["Booking ID", "First Name", "Last Name", "Status", "Schedule" , "Other Details"]];
+    const headers = [["Booking ID", "First Name", "Last Name", "Status", "Schedule" , "Amount", "Other Details"]];
 
-    const data = scheduledBookings.map(elt=> [elt.bookingid, elt.first_name, elt.last_name,elt.status, elt.eta, elt.additional_info]);
+    const data = scheduledBookings.map(elt=> [elt.bookingid, elt.first_name, elt.last_name,elt.status, elt.eta, elt.amount, elt.additional_info]);
 
     let content = {
       startY: 50,
