@@ -77,18 +77,20 @@ const BookingManagement = () => {
                   <th>Schedule</th>
                   <th>Description</th>
                   <th>Action</th>
+                  <th>Payment</th>
                 </tr>
               </thead>
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    booking_id, first_name, last_name, status, eta, additional_info
+                    booking_id, first_name, last_name, status, eta, additional_info, amount
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
                       <td><span className={STATUS_ATTR[status].color}>{STATUS_ATTR[status].msg}</span></td>
                       <td>{dayjs(eta).format('MMMM DD, YYYY HH:mm')}</td>
                       <td>{additional_info}</td>
+                      <td>{amount}</td>
                       <td>
                         <div className="btn-group">
                             <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "pending"})} variant="primary" >Pending<i className="fas fa-check"></i></Button>
