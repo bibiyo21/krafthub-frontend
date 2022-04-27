@@ -20,9 +20,9 @@ const MyJob = () => {
     })
   }
 
-  const onSubmit = ({ jobType: job_id, time_in, time_out }) => {
+  const onSubmit = ({ jobType: job_id, time_in, time_out, amount }) => {
     setLoading(true);
-    JobsServiceAPI.saveAvailability({ job_id, time_in, time_out })
+    JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount})
       .then((response) => {
         setSavingMessage({responseType: "success",  message: response.message})
         AvailabilitiesServiceAPI.getMyJobs().then(({ results }) => {
@@ -91,6 +91,10 @@ const MyJob = () => {
 
               <Form.Group className="mb-3">
                 <input type="text" className="form-control" placeholder="Time out - HH:MM AM/PM" {...register("time_out")} />
+              </Form.Group>
+              
+               <Form.Group className="mb-3">
+                <input type="text" className="form-control" placeholder="Payment (0.00)" {...register("amount")} />
               </Form.Group>
 
               <Button variant="primary" type="submit" disabled={loading}>
