@@ -105,6 +105,10 @@ const SearchBar = ({
         setAvailabilityResult(results);
       }
     })
+    
+    JobsServiceAPI.getJobTypes().then(({ results }) => {
+      setJobTypes(results);
+    })
 
     JobsServiceAPI.get().then(({ results }) => {
       setJobs(results);
