@@ -100,6 +100,11 @@ const SearchBar = ({
       }
     })
 
+    
+    JobsServiceAPI.getAllJobTypes().then(({ results }) => {
+      setJobTypes(results);
+    })
+    
     JobsServiceAPI.get().then(({ results }) => {
       setJobs(results);
     })
