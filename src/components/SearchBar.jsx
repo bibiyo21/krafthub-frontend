@@ -55,10 +55,10 @@ const SearchBar = ({
                         userName = "";
                          AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
                             if (setAvailabilityResult !== null) {
-                                if (results.length !== 0) {
+                            
                                 setAvailabilityResult(results);
                                  return;
-                                } 
+                                
                               } 
 
                           })
