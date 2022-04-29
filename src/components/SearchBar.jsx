@@ -2,19 +2,84 @@ import React, { useState, useEffect } from "react";
 import JobsServiceAPI from "../api/services/Jobs/JobsService";
 import { useForm } from "react-hook-form";
 import AvailabilitiesServiceAPI from "../api/services/Availabilities/AvailabilitiesService";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SearchBar = ({
   setAvailabilityResult = null
 }) => {
   const [jobs, setJobs] = useState(null);
   const [jobTypes, setJobTypes] = useState(null);
-
+  const [jobID, setJobID] = useState(null);
+  
   const { register, handleSubmit } = useForm();
   const onSearch = ({ userName, job, jobType }) => {
+    
+    
     AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {
       if (setAvailabilityResult !== null) {
-        setAvailabilityResult(results);
-      }
+
+            if (results.length !== 0) {
+              setAvailabilityResult(results);
+            } else {
+
+                  job = jobs.filter(function(jobs){ return jobs.title.toLowerCase() === userName.toLowerCase() });
+                  if(job.length !== 0) {
+                    
+                      job = job[0].id;
+                      userName = "";
+                       AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
+                          if (setAvailabilityResult !== null) {
+                              if (results.length !== 0) {
+                              setAvailabilityResult(results);
+                              } else {
+                                toast.success("No Data Found.");
+                              }
+                            } 
+
+                        })
+                    
+                  } else { 
+                    
+           
+                      if(jobTypes !== null) {
+                         jobType = jobTypes.filter(function(jobTypes){ return jobTypes.title.toLowerCase() === userName.toLowerCase() });
+                        
+                           
+                        if(jobType.length !== 0 ) {
+
+                            jobType = jobType[0].id;
+                           job = "";
+                        userName = "";
+                         AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
+                            if (setAvailabilityResult !== null) {
+                            
+                                 if (results.length !== 0) {
+                                    setAvailabilityResult(results);
+                                   } 
+                                
+                              } 
+
+                          })
+                      } else {
+                                     toast.warning("No Data Found.");
+                                     return;
+                       }
+                      
+   
+                        
+                    }    
+                       
+                  } 
+              
+              
+                
+            }
+
+      } 
+      
+
+      
     })
   };
 
@@ -24,7 +89,7 @@ const SearchBar = ({
       setJobTypes(results);
     })
   }
-  
+ 
 
   useEffect(() => {
     AvailabilitiesServiceAPI.get({}).then(({ results }) => {
@@ -33,6 +98,11 @@ const SearchBar = ({
       }
     })
 
+    
+    JobsServiceAPI.getAllJobTypes().then(({ results }) => {
+      setJobTypes(results);
+    })
+    
     JobsServiceAPI.get().then(({ results }) => {
       setJobs(results);
     })
@@ -52,30 +122,7 @@ const SearchBar = ({
                         <input type="text" className="form-control" placeholder="Search Maker" {...register("userName")} />
                       </fieldset>
                     </div>
-                    <div class="col-lg-3">
-                      <fieldset>
-                        <select defaultValue="" className="form-select" {...register("job")} onChange={onJobSearch}>
-                          <option value="" disabled >Choose a Profession</option>
-                          {
-                            jobs && jobs.map((job, index) => {
-                              return <option key={`job-${index}`} value={job.id}>{job.title}</option>
-                            })
-                          }
-                        </select>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-3">
-                      <fieldset>
-                      <select defaultValue="" className="form-select" {...register("jobType")}>
-                        <option value="" disabled >Choose a Specialist</option>
-                        {
-                          jobTypes && jobTypes.map((job, index) => {
-                            return <option key={`jobtype-${index}`} value={job.id}>{job.title}</option>
-                          })
-                        }
-                      </select>
-                      </fieldset>
-                    </div>
+                   
                     <div class="col-lg-3">
                       <fieldset className="text-center">
                         <button type="submit" id="form-submit" class="button">
