@@ -43,12 +43,8 @@ const SearchBar = ({
                     
                     for( var i = 0; i < jobs.length; i++) {
                     
-                    
-                        JobsServiceAPI.getByTypes(jobs[i].id).then(({ results }) => {
-                        setJobTypes(results);
-                      });
-                      
-                      
+                    onJobSearchF({jobId: jobs[i].id});
+           
                       if(jobTypes !== null) {
                          jobType = jobTypes.filter(function(jobTypes){ return jobTypes.title.toLowerCase() === userName.toLowerCase() });
                         
@@ -97,6 +93,11 @@ const SearchBar = ({
     })
   }
   
+   const onJobSearchF = ({ jobId }) => {
+    JobsServiceAPI.getByTypes(jobId).then(({ results }) => {
+      setJobTypes(results);
+    })
+  }
 
   useEffect(() => {
     AvailabilitiesServiceAPI.get({}).then(({ results }) => {
