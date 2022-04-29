@@ -41,8 +41,6 @@ const SearchBar = ({
                     
                   } else { 
                     
-                    for( var i = 0; i < jobs.length; i++) {
-                    
            
                       if(jobTypes !== null) {
                          jobType = jobTypes.filter(function(jobTypes){ return jobTypes.title.toLowerCase() === userName.toLowerCase() });
@@ -58,22 +56,17 @@ const SearchBar = ({
                             
                                  if (results.length !== 0) {
                                     setAvailabilityResult(results);
-                                   return;
-                                   } else {
-                                      toast.warning("No Data Found.");
-                                     return;
-                                  }
+                                   } 
                                 
                               } 
 
                           })
-                      }
+                      } else {
+                                     toast.warning("No Data Found.");
+                                     return;
+                       }
                       
-                     
-                        
-                        
-                      } 
-                     
+   
                         
                     }    
                        
