@@ -56,8 +56,13 @@ const SearchBar = ({
                          AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {    
                             if (setAvailabilityResult !== null) {
                             
-                                setAvailabilityResult(results);
-                                 return;
+                                 if (results.length !== 0) {
+                                    setAvailabilityResult(results);
+                                   return;
+                                   } else {
+                                      toast.warning("No Data Found.");
+                                     return;
+                                  }
                                 
                               } 
 
