@@ -11,6 +11,7 @@ const MyJob = () => {
   const [jobs, setJobs] = useState(null);
   const [jobTypes, setJobTypes] = useState(null);
   const [savingMessage, setSavingMessage] = useState(null);
+  const [state, setState] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const onJobSearch = (e) => {
@@ -20,15 +21,18 @@ const MyJob = () => {
     })
   }
   
+  const onFileChange = (e) => {
+    
+      // Update the state
+      setState({ selectedFile: e.target.files[0]});
+    
+    };
  
 
   const onSubmit = ({ jobType: job_id, time_in, time_out, amount, file_path }) => {
     const image = file_path;
     console.log(image);
 
-    const data = new FormData();
-    data.append('images', image);
-    
     
     setLoading(true);
     JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount})
@@ -37,13 +41,21 @@ const MyJob = () => {
         AvailabilitiesServiceAPI.getMyJobs().then(({ results }) => {
           setMyJobs(results);
         });
-             
-           AvailabilitiesServiceAPI.storeImage({ data, job_id }).then(({ results }) => {
-            console.log(results);
-          });
+           
+      
+        const data = new FormData();
+        data.append('images', state.selectedFile);
+        data.append('job_id', job_id);
+      
+        // Details of the uploaded file
+        console.log(state.selectedFile);
+    
+        // Request made to the backend api
+        // Send formData object
+        axios.post("api/images", formData).then(({ results }) => {
+          setMyJobs(results);
+        });
 
-      
-      
       
       })
       .catch(({ response }) => {
@@ -115,7 +127,7 @@ const MyJob = () => {
               </Form.Group>
               
               <Form.Group className="mb-3">
-                <input type="file" class="form-control" required name="image" placeholder="Add QR Code..." {...register("file_path")} />
+                <input type="file" class="form-control"  onChange={onFileChange} required name="image" placeholder="Add QR Code..." {...register("file_path")} />
               </Form.Group>
               
           
