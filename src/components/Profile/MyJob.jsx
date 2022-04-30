@@ -20,7 +20,7 @@ const MyJob = () => {
 	const [url,setUrl] = useState("");
 	const APP_KEY="mycwz1t6b507gic";
 	
-const handleSuccess(files){
+const handleSuccess = (files) => {
     setUrl(files[0].thumbnailLink)
     console.log(url)
   }
