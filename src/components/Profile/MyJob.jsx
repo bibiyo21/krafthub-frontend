@@ -21,6 +21,11 @@ const MyJob = () => {
     })
   }
   
+  
+    const onChangeFile = (e) => {
+      console.log(e.target.file[0]);
+  }
+  
   const onSubmit = ({ jobType: job_id, time_in, time_out, amount, file_path }) => {
     const image = file_path;
     console.log(image);
@@ -118,10 +123,7 @@ const MyJob = () => {
               </Form.Group>
               
               <Form.Group className="mb-3">
-                <input type="file" class="form-control"   onChange={(event) => {
-                                  console.log(event.target.files[0]);
-                                  setSelectedImage(event.target.files[0]);
-                                }} required name="image" placeholder="Add QR Code..." {...register("file_path")} />
+                <input type="file" class="form-control" onChange={onChangeFile} required name="image" placeholder="Add QR Code..." {...register("file_path")} />
               </Form.Group>
               
           
