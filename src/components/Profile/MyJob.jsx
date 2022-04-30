@@ -5,6 +5,8 @@ import JobsServiceAPI from "../../api/services/Jobs/JobsService";
 import AvailabilitiesServiceAPI from "../../api/services/Availabilities/AvailabilitiesService";
 import Wrapper from "./Wrapper";
 
+import DropboxChooser from 'react-dropbox-chooser'
+
 const MyJob = () => {
   const { register, handleSubmit } = useForm();
   const [myJobs, setMyJobs] = useState(null);
@@ -15,6 +17,13 @@ const MyJob = () => {
   const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
 	
+	const [url,setUrl] = useState("");
+	const APP_KEY="mycwz1t6b507gic";
+	
+const handleSuccess(files){
+    setUrl(files[0].thumbnailLink)
+    console.log(url)
+  }
 	
 const onJobSearch = (e) => {
     e.preventDefault();
@@ -35,10 +44,10 @@ const onJobSearch = (e) => {
 
 		formData.append('File', selectedFile);
 
-	  	fetch('https://freeimage.host/api/1/upload', {
-		  key: '6d207e02198a847aa98d0a2a901485a5',
+	  	fetch('https://freeimage.host/api/1/upload?key=6d207e02198a847aa98d0a2a901485a5', 
+		{
 		  method: 'POST',
-			mode: 'no-cors',
+		  mode: 'no-cors',
 		  headers: {
 		    'Content-Type': 'application/json',
 		     'Access-Control-Allow-Origin':'*'
@@ -143,6 +152,17 @@ const onJobSearch = (e) => {
                                                                     <button onClick={handleSubmission}>Submit</button>
                                                                   </div>
                                                                 </div>
+		<div className="container">
+      <DropboxChooser appKey={APP_KEY}
+                      success={handleSuccess}
+                      cancel={() => console.log('closed')}
+                      multiselect={true}
+                      >
+        <button>Upload or Choose Files</button>
+        <div className="dropbox"></div>
+        <br/><br/>
+        <img src={url} width="200" height="200" alt=""/>
+      </DropboxChooser>
                                 
                </Form.Group>
               
