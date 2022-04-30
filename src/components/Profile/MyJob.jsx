@@ -99,7 +99,7 @@ const MyJob = () => {
               </Form.Group>
               
               <Form.Group className="mb-3">
-                <input type="file" class="form-control" required name="image" placeholder="Add QR Code..." {...register("file_path")} >
+                <input type="file" class="form-control" required name="image" placeholder="Add QR Code..." {...register("file_path")} />
               </Form.Group>
               
           
