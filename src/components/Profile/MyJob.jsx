@@ -25,10 +25,7 @@ const MyJob = () => {
   const onSubmit = ({ jobType: job_id, time_in, time_out, amount, file_path }) => {
     const image = file_path;
     console.log(image);
-     
-     AvailabilitiesServiceAPI.storeImage({ images: image[0] }).then(({ results }) => {
-      console.log(results);
-    });
+
     
     
     setLoading(true);
@@ -38,6 +35,14 @@ const MyJob = () => {
         AvailabilitiesServiceAPI.getMyJobs().then(({ results }) => {
           setMyJobs(results);
         });
+             
+           AvailabilitiesServiceAPI.storeImage({ images: image[0], job_id }).then(({ results }) => {
+            console.log(results);
+          });
+
+      
+      
+      
       })
       .catch(({ response }) => {
         if (response?.data?.message !== undefined) {
