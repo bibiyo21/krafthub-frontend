@@ -11,7 +11,7 @@ const MyJob = () => {
   const [jobs, setJobs] = useState(null);
   const [jobTypes, setJobTypes] = useState(null);
   const [savingMessage, setSavingMessage] = useState(null);
-  const [state, setState] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const onJobSearch = (e) => {
@@ -44,10 +44,10 @@ const MyJob = () => {
            
       
                     const data = new FormData();
-                    data.append('images', state.selectedFile);
+                    data.append('images', selectedImage);
 
                     // Details of the uploaded file
-                    console.log(state.selectedFile);
+                    console.log(selectedImage);
 
                     // Request made to the backend api
                     // Send formData object
@@ -126,7 +126,10 @@ const MyJob = () => {
               </Form.Group>
               
               <Form.Group className="mb-3">
-                <input type="file" class="form-control"  onChange={onFileChange} required name="image" placeholder="Add QR Code..." {...register("file_path")} />
+                <input type="file" class="form-control"   onChange={(event) => {
+                                  console.log(event.target.files[0]);
+                                  setSelectedImage(event.target.files[0]);
+                                }} required name="image" placeholder="Add QR Code..." {...register("file_path")} />
               </Form.Group>
               
           
