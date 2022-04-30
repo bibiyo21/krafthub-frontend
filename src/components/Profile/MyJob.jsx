@@ -43,18 +43,17 @@ const MyJob = () => {
         });
            
       
-        const data = new FormData();
-        data.append('images', state.selectedFile);
-        data.append('job_id', job_id);
-      
-        // Details of the uploaded file
-        console.log(state.selectedFile);
-    
-        // Request made to the backend api
-        // Send formData object
-        axios.post("api/images", formData).then(({ results }) => {
-          setMyJobs(results);
-        });
+                    const data = new FormData();
+                    data.append('images', state.selectedFile);
+
+                    // Details of the uploaded file
+                    console.log(state.selectedFile);
+
+                    // Request made to the backend api
+                    // Send formData object
+                    AvailabilitiesServiceAPI.storeImage({data , job_id}).then(({ results }) => {
+                      console.log(results);
+                    });
 
       
       })
