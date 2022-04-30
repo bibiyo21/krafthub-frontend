@@ -21,14 +21,6 @@ const MyJob = () => {
     })
   }
   
-  const onFileChange = (e) => {
-    
-      // Update the state
-      setState({ selectedFile: e.target.files[0]});
-    
-    };
- 
-
   const onSubmit = ({ jobType: job_id, time_in, time_out, amount, file_path }) => {
     const image = file_path;
     console.log(image);
