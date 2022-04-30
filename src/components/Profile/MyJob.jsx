@@ -13,12 +13,20 @@ const MyJob = () => {
   const [savingMessage, setSavingMessage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
- 	const [selectedFile, setSelectedFile] = useState();
-	const [isFilePicked, setIsFilePicked] = useState(false);
+  const [selectedFile, setSelectedFile] = useState();
+	
+	
+const onJobSearch = (e) => {
+    e.preventDefault();
+    JobsServiceAPI.getByTypes(e.target.value).then(({ results }) => {
+      setJobTypes(results);
+    })
+  }
+
   
   const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
-		setIsSelected(true);
+		
 	};
   
   
@@ -128,19 +136,6 @@ const MyJob = () => {
               <Form.Group className="mb-3">
                                   <div>
                                                                   <input type="file" name="file" onChange={changeHandler} />
-                                                                  {isSelected ? (
-                                                                    <div>
-                                                                      <p>Filename: {selectedFile.name}</p>
-                                                                      <p>Filetype: {selectedFile.type}</p>
-                                                                      <p>Size in bytes: {selectedFile.size}</p>
-                                                                      <p>
-                                                                        lastModifiedDate:{' '}
-                                                                        {selectedFile.lastModifiedDate.toLocaleDateString()}
-                                                                      </p>
-                                                                    </div>
-                                                                  ) : (
-                                                                    <p>Select a file to show details</p>
-                                                                  )}
                                                                   <div>
                                                                     <button onClick={handleSubmission}>Submit</button>
                                                                   </div>
