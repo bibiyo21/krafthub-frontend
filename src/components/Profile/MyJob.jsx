@@ -20,7 +20,8 @@ const MyJob = () => {
     })
   }
 
-  const onSubmit = ({ jobType: job_id, time_in, time_out, amount }) => {
+  const onSubmit = ({ jobType: job_id, time_in, time_out, amount, file_path }) => {
+    console.log(file_path);
     setLoading(true);
     JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount})
       .then((response) => {
@@ -96,6 +97,12 @@ const MyJob = () => {
                <Form.Group className="mb-3">
                 <input type="text" className="form-control" placeholder="Payment (0.00)" {...register("amount")} />
               </Form.Group>
+              
+              <Form.Group className="mb-3">
+                <input type="file" class="form-control" required name="image" placeholder="Add QR Code..." {...register("file_path")} >
+              </Form.Group>
+              
+          
 
               <Button variant="primary" type="submit" disabled={loading}>
                 Save
