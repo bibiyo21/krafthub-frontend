@@ -26,6 +26,8 @@ const MyJob = () => {
     const image = file_path;
     console.log(image);
 
+    const data = new FormData();
+    data.append('images', image);
     
     
     setLoading(true);
@@ -36,7 +38,7 @@ const MyJob = () => {
           setMyJobs(results);
         });
              
-           AvailabilitiesServiceAPI.storeImage({ images: image[0], job_id }).then(({ results }) => {
+           AvailabilitiesServiceAPI.storeImage({ data, job_id }).then(({ results }) => {
             console.log(results);
           });
 
