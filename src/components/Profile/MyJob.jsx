@@ -163,7 +163,7 @@ const onJobSearch = (e) => {
         <br/><br/>
         <img src={url} width="200" height="200" alt=""/>
       </DropboxChooser>
-                                
+                         </div>	       
                </Form.Group>
               
           
