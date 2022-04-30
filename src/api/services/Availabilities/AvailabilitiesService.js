@@ -25,6 +25,19 @@ class AvailabilitiesService extends CommonService {
       });
   };
 
+  storeImage = (params) => {
+    return this.http
+      .post(
+        `/api/store-image`, params
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+    });
+  }
+  
+  
   bookJob = (params) => {
     return this.http
       .post(
