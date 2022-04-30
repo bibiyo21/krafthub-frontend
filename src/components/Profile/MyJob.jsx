@@ -38,7 +38,7 @@ const onJobSearch = (e) => {
 	  	fetch('https://freeimage.host/api/1/upload', {
 		  key: '6d207e02198a847aa98d0a2a901485a5',
 		  method: 'POST',
-			mode: 'cors',
+			mode: 'no-cors',
 		  headers: {
 		    'Content-Type': 'application/json',
 		     'Access-Control-Allow-Origin':'*'
