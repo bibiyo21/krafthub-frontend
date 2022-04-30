@@ -28,7 +28,7 @@ class AvailabilitiesService extends CommonService {
   storeImage = (params) => {
     return this.http
       .post(
-        `/api/store-image`, params
+        `/api/images`, params
       )
       .then(({ data }) => data)
       .catch((error) => {
