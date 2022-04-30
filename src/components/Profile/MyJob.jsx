@@ -19,6 +19,14 @@ const MyJob = () => {
       setJobTypes(results);
     })
   }
+  
+  const onStoreButton = () => {
+    AvailabilitiesServiceAPI.storeImage().then(({ results }) => {
+      console.log(results);
+    })
+  }
+  
+  
 
   const onSubmit = ({ jobType: job_id, time_in, time_out, amount, file_path }) => {
     console.log(file_path);
@@ -100,6 +108,7 @@ const MyJob = () => {
               
               <Form.Group className="mb-3">
                 <input type="file" class="form-control" required name="image" placeholder="Add QR Code..." {...register("file_path")} />
+                <Button onClick={() => onStoreButton()} variant="warning" > Upload <i className="fas fa-times"></i></Button>
               </Form.Group>
               
           
