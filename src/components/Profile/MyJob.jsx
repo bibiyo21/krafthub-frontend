@@ -23,9 +23,10 @@ const MyJob = () => {
  
 
   const onSubmit = ({ jobType: job_id, time_in, time_out, amount, file_path }) => {
-    console.log(file_path);
+    const image = file_path;
+    console.log(image);
      
-     AvailabilitiesServiceAPI.storeImage({ images: file_path[0] }).then(({ results }) => {
+     AvailabilitiesServiceAPI.storeImage({ images: image[0] }).then(({ results }) => {
       console.log(results);
     });
     
