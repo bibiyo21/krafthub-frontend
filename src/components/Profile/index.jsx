@@ -90,7 +90,7 @@ const Profile = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <input type="text" className="form-control" placeholder="Cellphone Number" {...register("cellphone_number", { required: true })} defaultValue={user.cellphone_number} />
+              <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="15" className="form-control" placeholder="Cellphone Number" {...register("cellphone_number", { required: true })} defaultValue={user.cellphone_number} />
               {errors?.cellphone_number !== undefined && <p className="text-danger">{errors.cellphone_number[0]}</p>}
             </Form.Group>
 
