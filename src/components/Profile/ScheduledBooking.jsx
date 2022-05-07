@@ -80,7 +80,7 @@ const ScheduledBooking = () => {
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    booking_id, first_name, last_name, status, eta, additional_info
+                    bookingid, first_name, last_name, status, eta, additional_info
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -89,7 +89,7 @@ const ScheduledBooking = () => {
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
-                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: booking_id, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
+                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
                         </div>
                       </td>
                     </tr>)
