@@ -4,6 +4,7 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 
 import Login from "./components/AuthComponents/Login";
+import Confirm from "./components/AuthComponents/Confirm";
 import SignUp from "./components/AuthComponents/Signup";
 import Home from "./components/Pages/Home";
 import MyJob from './components/Profile/MyJob';
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/confirm" element={<Confirm />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
