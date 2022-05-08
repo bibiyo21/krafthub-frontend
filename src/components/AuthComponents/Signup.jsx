@@ -27,7 +27,7 @@ const  Signup = () => {
   }) => {
      var templateParams = {
         to_name: first_name + ' ' + last_name,
-        message: 'test URL',
+        message: '<a href="https://drfayot.herokuapp.com/confirm">https://drfayot.herokuapp.com/confirm</a>',
          to_add: email
         };
  
