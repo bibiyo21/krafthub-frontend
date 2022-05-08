@@ -164,19 +164,8 @@ const AvailabilityList = ({ list = null }) => {
     const getProfession = ({ selectedProf }) => {
       
        
-                if(selectedProf === 'Carpentry') {
-                    setAmount('Php300.00');
-                } else if (selectedProf === 'Plumbing') {
-                    setAmount('Php400.00');
-                } else if (selectedProf ==='Cleaning') {
-                    setAmount('Php450.00');
-                } else if (selectedProf ==='Electrician') {
-                    setAmount('Php550.00');
-                } else {
-                   setAmount('Php500.00');
-                }
-      
-   
+
+                   setAmount(selectedProf);
  
     };
 
@@ -195,7 +184,7 @@ const AvailabilityList = ({ list = null }) => {
           <div class="row">
           {
             list.map((availability, index) => {
-              const { first_name, last_name, profession, specialty, time_in, time_out, id , status} = availability
+              const { first_name, last_name, profession, specialty, time_in, time_out, id , status, amount} = availability
           
               return (
                 <Col md="3" className="mb-3" key={`availability_${index}`}>
@@ -207,8 +196,9 @@ const AvailabilityList = ({ list = null }) => {
                       <h3>{`${first_name} ${last_name}`}</h3>
                       <p><b>{profession}</b> : {specialty} </p>
                       <p><b>Time Availability:</b> {time_in} to {time_out}</p>
+                      <p><b>Payment:</b> {amount} </p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id, timeout: time_out, timein: time_in}, getProfession({selectedProf: profession}) )} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id, timeout: time_out, timein: time_in}, getProfession({selectedProf: amount}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
@@ -242,7 +232,8 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
              BookingsServiceAPI.bookJob({
             maker_id: makerId,
             eta: `${form.current['date'].value} ${form.current['time'].value}`,
-            additional_info: form.current['additional_info'].value +'|'+ amountS + '|' + radioValue
+            additional_info: form.current['additional_info'].value +'|'+ radioValue,
+            amount: amountS
           }).then((data) => {
             toast.success(data.message);
             handleClose();

@@ -30,9 +30,13 @@ const Navigations = () => {
                         <a href="/admin/user-management">Admin</a>
                       </li>
                     )}
-                    <li>
+
+                     {user.access_level === 1 && (
+                       <li>
                       <a href="/profile">My Profile</a>
-                    </li>
+                      </li>
+                      )}
+
                     <li>
                       <a
                         href="javascript:void(0);"

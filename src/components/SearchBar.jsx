@@ -121,7 +121,29 @@ const SearchBar = ({
                       <fieldset>
                         <input type="text" className="form-control" placeholder="Search Maker" {...register("userName")} />
                       </fieldset>
+                      
                     </div>
+                   <div class="col-lg-3">
+                        <fieldset>
+                           <select id="TimePicker" name="TimePicker">
+                                                <option value="8:00 AM">8:00 AM</option>
+                                                <option value="9:00 AM">9:00 AM</option>
+                                              <option value="10:00 AM">10:00 AM</option>
+                                              <option value="11:00 AM">11:00 AM</option>
+                                              <option value="12:00 NN">12:00 NN</option>
+                                              <option value="01:00 PM">01:00 PM</option>
+                                              <option value="02:00 PM">02:00 PM</option>
+                                              <option value="03:00 PM">03:00 PM</option>
+                                              <option value="04:00 PM">04:00 PM</option>
+                                              <option value="05:00 PM">05:00 PM</option>
+                                              <option value="06:00 PM">06:00 PM</option>
+                                              <option value="07:00 PM">07:00 PM</option>
+                                              <option value="08:00 PM">08:00 PM</option>
+                                              <option value="09:00 PM">09:00 PM</option>
+                                              <option value="10:00 PM">10:00 PM</option>
+                                              </select>
+                             </fieldset>
+                        </div>
                    
                     <div class="col-lg-3">
                       <fieldset className="text-center">
