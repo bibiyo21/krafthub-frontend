@@ -5,8 +5,6 @@ import JobsServiceAPI from "../../api/services/Jobs/JobsService";
 import AvailabilitiesServiceAPI from "../../api/services/Availabilities/AvailabilitiesService";
 import Wrapper from "./Wrapper";
 
-import DropboxChooser from 'react-dropbox-chooser'
-
 const MyJob = () => {
   const { register, handleSubmit } = useForm();
   const [myJobs, setMyJobs] = useState(null);
@@ -144,29 +142,7 @@ const onJobSearch = (e) => {
                <Form.Group className="mb-3">
                 <input type="text" className="form-control" placeholder="Payment (0.00)" {...register("amount")} />
               </Form.Group>
-              
-              <Form.Group className="mb-3">
-                                  <div>
-                                                                  <input type="file" name="file" onChange={changeHandler} />
-                                                                  <div>
-                                                                    <button onClick={handleSubmission}>Submit</button>
-                                                                  </div>
-                                                                </div>
-		<div className="container">
-      <DropboxChooser appKey={APP_KEY}
-                      success={handleSuccess}
-                      cancel={() => console.log('closed')}
-                      multiselect={true}
-                      >
-        <button>Upload or Choose Files</button>
-        <div className="dropbox"></div>
-        <br/><br/>
-        <img src={url} width="200" height="200" alt=""/>
-      </DropboxChooser>
-                         </div>	       
-               </Form.Group>
-              
-          
+
 
               <Button variant="primary" type="submit" disabled={loading}>
                 Save
