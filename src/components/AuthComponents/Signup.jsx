@@ -27,11 +27,6 @@ const  Signup = () => {
     zipcode, 
     agreement
   }) => {
-     var templateParams = {
-        to_name: first_name + ' ' + last_name,
-        message: '<a href="https://drfayot.herokuapp.com/confirm">https://drfayot.herokuapp.com/confirm</a>',
-         to_add: email
-        };
  
       emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
       .then((result) => {
