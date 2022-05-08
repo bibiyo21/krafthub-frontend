@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AuthenticationAPI from '../../api/services/Authentication/AuthenticationService';
 import Wrapper from './Wrapper';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const  Login = () => {
   const { register, handleSubmit } = useForm();
