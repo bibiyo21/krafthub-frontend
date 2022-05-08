@@ -31,7 +31,7 @@ const  Signup = () => {
          to_add: email
         };
  
-      emailjs.sendForm('service_euagklb', 'template_18vqiwi', templateParams, 'fxc3WK0V8sajaoSq5')
+      emailjs.sendForm('service_euagklb', 'template_18vqiwi', form.current, 'fxc3WK0V8sajaoSq5')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
@@ -63,23 +63,25 @@ const  Signup = () => {
   
   return (
     <Wrapper >
-      <Form onSubmit={handleSubmit(onRegister)}>
+      <Form ref={form} onSubmit={handleSubmit(onRegister)}>
         <h3>Sign Up</h3>
         <Form.Group className="mb-3">
-          <input type="text" className="form-control" placeholder="First Name" {...register("first_name", { required: true })} />
+          <input type="text" className="form-control" name= "f_name" placeholder="First Name" {...register("first_name", { required: true })} />
           {errors?.first_name !== undefined && <p className="text-danger">{errors.first_name[0]}</p>}
 
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <input type="text" className="form-control" placeholder="Last Name" {...register("last_name", { required: true })} />
+          <input type="text" className="form-control" name="l_name" placeholder="Last Name" {...register("last_name", { required: true })} />
           {errors?.last_name !== undefined && <p className="text-danger">{errors.last_name[0]}</p>}
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <input type="text" className="form-control" placeholder="Email" {...register("email", { required: true })} />
+          <input type="email" className="form-control" name = "to_add" placeholder="Email" {...register("email", { required: true })} />
           {errors?.email !== undefined && <p className="text-danger">{errors.email[0]}</p>}
         </Form.Group>
+
+          <a name ="message" href="https://drfayot.herokuapp.com/confirm">https://drfayot.herokuapp.com/confirm </a>
 
         <Form.Group className="mb-3">
           <input type="text"  maxlength="15" className="form-control" defaultCountry="PH" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
