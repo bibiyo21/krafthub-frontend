@@ -49,7 +49,7 @@ const  Signup = () => {
       zipcode,
       agreement
     }).then((response) => {
-      window.location.replace("/home");
+      window.location.replace("/login");
     }).catch(({ response }) => {
       if (response?.data?.errors !== undefined) {
         setErrors(response?.data?.errors)
