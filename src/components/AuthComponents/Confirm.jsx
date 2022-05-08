@@ -51,4 +51,4 @@ const  Confirm = () => {
   );
 }
 
-export default Login;
+export default Confirm;
