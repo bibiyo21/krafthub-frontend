@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from "react-router-dom";
 import AuthenticationAPI from '../../api/services/Authentication/AuthenticationService';
 import Wrapper from './Wrapper';
-import emailjs, { init } from "@emailjs/browser";
+import emailjs from '@emailjs/browser';
 
 const  Signup = () => {
   const { 
@@ -27,15 +27,16 @@ const  Signup = () => {
   }) => {
      var templateParams = {
         to_name: first_name + ' ' + last_name,
-        message: 'test URL'
+        message: 'test URL',
+         to_add: email
         };
  
-      emailjs.send('service_euagklb', 'template_18vqiwi', templateParams,'fxc3WK0V8sajaoSq5')
-          .then(function(response) {
-             console.log('SUCCESS!', response.status, response.text);
-          }, function(error) {
-             console.log('FAILED...', error);
-          });
+      emailjs.sendForm('service_euagklb', 'template_18vqiwi', templateParams, 'fxc3WK0V8sajaoSq5')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
     
     
     
