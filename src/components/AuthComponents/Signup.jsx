@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import { Form, Button } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { Link } from "react-router-dom";
@@ -12,6 +12,8 @@ const  Signup = () => {
     handleSubmit, 
   } = useForm();
 
+  const uform = useRef();
+  
   const [errors, setErrors] = useState(null);
 
   const onRegister = ({ 
@@ -31,7 +33,7 @@ const  Signup = () => {
          to_add: email
         };
  
-      emailjs.sendForm('service_euagklb', 'template_18vqiwi', form.current, 'fxc3WK0V8sajaoSq5')
+      emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
@@ -63,7 +65,7 @@ const  Signup = () => {
   
   return (
     <Wrapper >
-      <Form ref={form} onSubmit={handleSubmit(onRegister)}>
+      <Form ref={uform} onSubmit={handleSubmit(onRegister)}>
         <h3>Sign Up</h3>
         <Form.Group className="mb-3">
           <input type="text" className="form-control" name= "f_name" placeholder="First Name" {...register("first_name", { required: true })} />
