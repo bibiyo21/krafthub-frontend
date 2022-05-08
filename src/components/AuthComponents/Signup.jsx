@@ -78,8 +78,6 @@ const  Signup = () => {
           {errors?.email !== undefined && <p className="text-danger">{errors.email[0]}</p>}
         </Form.Group>
 
-          <a hidden name ="message" href="https://drfayot.herokuapp.com/confirm">https://drfayot.herokuapp.com/confirm </a>
-
         <Form.Group className="mb-3">
           <input type="text"  maxlength="15" className="form-control" defaultCountry="PH" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
           {errors?.cellphone_number !== undefined && <p className="text-danger">{errors.cellphone_number[0]}</p>}
