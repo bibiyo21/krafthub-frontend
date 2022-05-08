@@ -11,6 +11,17 @@ class JobsService extends CommonService {
         throw error;
       });
   };
+  
+  getAllJobTypes = () => {
+    return this.http
+      .get(`/api/job-Subtypes`)
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+
+        throw error;
+      });
+  };
 
   getByTypes = (jobId) => {
     return this.http

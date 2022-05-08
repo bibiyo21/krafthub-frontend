@@ -20,9 +20,9 @@ const MyJob = () => {
     })
   }
 
-  const onSubmit = ({ jobType: job_id, time_in, time_out }) => {
+  const onSubmit = ({ jobType: job_id, time_in, time_out, amount }) => {
     setLoading(true);
-    JobsServiceAPI.saveAvailability({ job_id, time_in, time_out })
+    JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount})
       .then((response) => {
         setSavingMessage({responseType: "success",  message: response.message})
         AvailabilitiesServiceAPI.getMyJobs().then(({ results }) => {
@@ -92,6 +92,14 @@ const MyJob = () => {
               <Form.Group className="mb-3">
                 <input type="text" className="form-control" placeholder="Time out - HH:MM AM/PM" {...register("time_out")} />
               </Form.Group>
+              
+               <Form.Group className="mb-3">
+                <input type="text" className="form-control" placeholder="Payment (0.00)" {...register("amount")} />
+              </Form.Group>
+              
+              <Form.Group className="mb-3">
+                <input type="file" className="form-control" placeholder="choose a file" {...register("file_path")} />
+              </Form.Group>
 
               <Button variant="primary" type="submit" disabled={loading}>
                 Save
@@ -109,6 +117,7 @@ const MyJob = () => {
                   <th>Job Type</th>
                   <th>Job</th>
                   <th>Availability</th>
+                  <th>Payment</th>
                 </tr>
               </thead>
               <tbody>
@@ -120,6 +129,7 @@ const MyJob = () => {
                           <td>{job.profession}</td>
                           <td>{job.specialty}</td>
                           <td>{job.time_in} to {job.time_out}</td>
+                          <td>{job.amount}</td>
                           {/* <td><Button variant="danger"><i className="fas fa-trash"></i></Button></td> */}
                         </tr>
                       )
