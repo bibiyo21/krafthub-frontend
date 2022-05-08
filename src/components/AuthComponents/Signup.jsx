@@ -33,7 +33,8 @@ const  Signup = () => {
     
         var templateParams = {
         to_name: first_name + ' ' + last_name,
-        message: 'test URL'
+        message: 'test URL',
+        to_add: email
         };
  
       emailjs.send('service_euagklb', 'template_18vqiwi', templateParams)
