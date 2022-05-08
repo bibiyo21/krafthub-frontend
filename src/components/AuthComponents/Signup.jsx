@@ -4,8 +4,14 @@ import { useForm } from 'react-hook-form';
 import { Link } from "react-router-dom";
 import AuthenticationAPI from '../../api/services/Authentication/AuthenticationService';
 import Wrapper from './Wrapper';
+import emailjs, { init } from "@emailjs/browser";
 
 const  Signup = () => {
+  
+  init("fxc3WK0V8sajaoSq5");
+  
+  
+  
   const { 
     register, 
     handleSubmit, 
@@ -24,6 +30,22 @@ const  Signup = () => {
     zipcode, 
     agreement
   }) => {
+    
+        var templateParams = {
+        to_name: first_name + ' ' + last_name,
+        message: 'test URL'
+        };
+ 
+      emailjs.send('service_euagklb', 'template_18vqiwi', templateParams)
+          .then(function(response) {
+             console.log('SUCCESS!', response.status, response.text);
+          }, function(error) {
+             console.log('FAILED...', error);
+          });
+    
+    
+    
+    
     AuthenticationAPI.register({ 
       first_name, 
       last_name, 
