@@ -64,6 +64,14 @@ const  Signup = () => {
       
       
     });
+   
+       
+    AuthenticationAPI.logout().then(() => {
+                console.log("logout");
+    });
+            
+   
+   
   };
   
   const [errors, setErrors] = useState(null);
@@ -135,12 +143,7 @@ const  Signup = () => {
       
 
     }
-    
-    AuthenticationAPI.logout().then(() => {
-                console.log("logout");
-              window.location.replace("/register");
-    });
-            
+
  
 
   };
