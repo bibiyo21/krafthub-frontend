@@ -3,6 +3,9 @@ import { Form, Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import UsersServiceAPI from "../../api/services/Users/UsersService";
 import Wrapper from "./Wrapper";
+import validator from 'validator'
+
+
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem('user'))
 
@@ -12,6 +15,17 @@ const Profile = () => {
   } = useForm();
 
   const [errors, setErrors] = useState(null);
+  
+   const [isEmail, setIsEmail] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  
+  const validatePhoneNumber = ({number}) => {
+     const isValidPhoneNumber = validator.isMobilePhone(number);
+     setIsMobile(isValidPhoneNumber);
+    
+    
+    }
 
   const onUpdate = ({ 
     first_name, 
@@ -34,6 +48,13 @@ const Profile = () => {
       city,
       zipcode
     });
+    
+        
+    validatePhoneNumber({number: cellphone_number});
+ 
+    if( isMobile){
+        
+    
     UsersServiceAPI.saveUser({
       id: user.id,
       first_name, 
@@ -65,6 +86,12 @@ const Profile = () => {
         setErrors(response?.data?.errors)
       }
     })
+      
+    }else {
+      
+      toast.warning('Invalid Mobile Number/Email Address entered. ');
+    }
+  
   };
 
   useEffect(() => {
@@ -90,7 +117,7 @@ const Profile = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="15"  className="form-control" placeholder="Cellphone Number" {...register("cellphone_number", { required: true })} defaultValue={user.cellphone_number} />
+              <input type="text" maxLength="15"   className="form-control" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} defaultValue={user.cellphone_number} />
               {errors?.cellphone_number !== undefined && <p className="text-danger">{errors.cellphone_number[0]}</p>}
             </Form.Group>
 
