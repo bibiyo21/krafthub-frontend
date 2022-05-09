@@ -15,6 +15,13 @@ const Admin = () => {
     4: {color: 'text-warning', msg: "Admin"},
     0: {color: 'text-danger', msg: "Inactive"},
   }
+ 
+  const VALID_ATTR = {
+    1: {color: 'text-info', msg: "Validated"},
+    0: {color: 'text-danger', msg: "Not Validated"},
+  }
+ 
+ 
   const [show, setShow] = useState(false);
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
@@ -114,7 +121,7 @@ const Admin = () => {
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    id, first_name, last_name, access_level, email, cellphone_number, created_at, street_name, barangay, city, 
+                    id, first_name, last_name, access_level, email, cellphone_number, created_at, street_name, barangay, city, isValidated
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -123,6 +130,7 @@ const Admin = () => {
                       <td>{street_name} {barangay} {city}</td>
                       <td>{email}</td>
                       <td>{cellphone_number}</td>
+                      <td><span className={VALID_ATTR[isValidated].color}>{VALID_ATTR[isValidated].msg}</span></td>
                       <td>
                         <div className="btn-group">
                             <Button disabled={access_level === '1' ? true : false} onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" >Inactive<i className="fas fa-times"></i></Button>
