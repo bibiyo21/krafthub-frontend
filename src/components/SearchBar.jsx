@@ -16,7 +16,7 @@ const SearchBar = ({
   const [timeSearchVal, setTimeSearchVal] = useState(null);
   
   const { register, handleSubmit } = useForm();
-  const onSearch = ({ userName, job, jobType, timeSearch }) => {
+  const onSearch = ({ userName, job, jobType, timeSearchIn, timeSearchOut }) => {
     
     if(timeSearchIn !== "Select time:" && timeSearchOut !== "Select time:") {
       
