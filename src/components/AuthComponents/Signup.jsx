@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { Link } from "react-router-dom";
 import AuthenticationAPI from '../../api/services/Authentication/AuthenticationService';
+import UsersServiceAPI from "../../api/services/Users/UsersService";
 import Wrapper from './Wrapper';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
