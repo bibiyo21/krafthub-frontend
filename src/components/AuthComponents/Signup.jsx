@@ -49,8 +49,8 @@ const  Signup = () => {
   }) => {
     
     
-    validatePhoneNumber(cellphone_number);
-    validateEmailAddr(email);
+    validatePhoneNumber({number: cellphone_number});
+    validateEmailAddr({email: email});
  
     if( isMobile && isEmail){
            emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
