@@ -20,6 +20,9 @@ const  Signup = () => {
   const [inputValue, setInputValue] = useState("");
    const [isEmail, setIsEmail] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [scheduledBookings, setScheduledBookings] = useState(null);
+  
+  const [hasEmail, setHasEmail] = useState(null);
   
   
   const validatePhoneNumber = ({number}) => {
@@ -32,6 +35,17 @@ const  Signup = () => {
  const validateEmailAddr = ({email}) => {
      const isValidEmail = validator.isEmail(email);
      setIsEmail(isValidEmail);
+  }
+ 
+ 
+ const loadScheduledBooking = () => {
+      UserServiceAPI.getAllUsers().then(({ results }) => {
+      
+        console.log(results);
+        setScheduledBookings(results);
+      
+      
+    })
   }
   
   const [errors, setErrors] = useState(null);
@@ -51,50 +65,53 @@ const  Signup = () => {
     
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
- 
-    if( isMobile && isEmail){
-           emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-      
-         AuthenticationAPI.register({ 
-      first_name, 
-      last_name, 
-      email,
-      password,
-      password_confirmation,
-      cellphone_number,
-      house_info,
-      zipcode,
-      agreement
-    }).then((response) => {
-      AuthenticationAPI.logout().then(() => {
-          window.location.replace("/");
-        });
-      
-       toast.success(response.data.message);
-    }).catch(({ response }) => {
-      if (response?.data?.errors !== undefined) {
-        setErrors(response?.data?.errors)
-      }
-    })
-      
-      
-    } else {
-      
-      toast.warning('Invalid Mobile Number/Email Address entered. ');
-    }
-      
-     
-      
-     
- 
+    loadScheduledBooking();
     
+    
+     setHasEmail(scheduledBookings.filter(function(scheduledBookings){ return scheduledBookings.email.toLowerCase() === email.toLowerCase() }));
+    
+    if(hasEmail === null) {
+            if( isMobile && isEmail){
+                 emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
 
+               AuthenticationAPI.register({ 
+            first_name, 
+            last_name, 
+            email,
+            password,
+            password_confirmation,
+            cellphone_number,
+            house_info,
+            zipcode,
+            agreement
+          }).then((response) => {
+            AuthenticationAPI.logout().then(() => {
+                window.location.replace("/");
+              });
+
+             toast.success(response.data.message);
+          }).catch(({ response }) => {
+            if (response?.data?.errors !== undefined) {
+              setErrors(response?.data?.errors)
+            }
+          })
+
+
+          } else {
+
+            toast.warning('Invalid Mobile Number/Email Address entered. ');
+          }
+
+    } else {
+      toast.warning('Email Address already exists. ');
+    }
  
+
   };
 
   useEffect(() => {
