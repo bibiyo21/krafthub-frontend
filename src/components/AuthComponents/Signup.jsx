@@ -40,13 +40,21 @@ const  Signup = () => {
  
  
  const loadScheduledBooking = () => {
+   AuthenticationAPI.login({
+      'admin@gmail.com', 'admin'
+    }).then((response) => {
+      console.log("Authenticated");
+    }).catch(({ response }) => {
+     console.log(response);
+    })
+   
       UsersServiceAPI.getAllUsers().then(({ results }) => {
       
         console.log(results);
         setScheduledBookings(results);
       
       
-    })
+    });
   }
   
   const [errors, setErrors] = useState(null);
