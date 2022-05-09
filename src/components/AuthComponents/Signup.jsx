@@ -20,12 +20,12 @@ const  Signup = () => {
   
   const [inputValue, setInputValue] = useState("");
 
-  const formatPhoneNumber(value) {
+  const formatPhoneNumber = ({ mobileValue }) =>  {
   // if input value is falsy eg if the user deletes the input, then just return
-  if (!value) return value;
+  if (!mobileValue) return mobileValue;
 
   // clean the input for any non-digit values.
-  const phoneNumber = value.replace(/[^\d]/g, "");
+  const phoneNumber = mobileValue.replace(/[^\d]/g, "");
 
   // phoneNumberLength is used to know when to apply our formatting for the phone number
   const phoneNumberLength = phoneNumber.length;
