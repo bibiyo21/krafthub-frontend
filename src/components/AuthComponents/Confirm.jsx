@@ -31,8 +31,6 @@ const  Confirm = () => {
       logout();
     })
     
-    window.location.replace("/confirm");
-    
     
   };
     
@@ -51,24 +49,11 @@ const  Confirm = () => {
     
   };
 
-  useEffect(() => {
-    AdminLogin()
-  }, []);
-  
   
   return (
     <Wrapper >
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(AdminLogin, onSubmit)}>
           <h3>Confirm your email address</h3>
-
-          {
-            show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-              <p>
-                Login Failed! Email Address and Password does not match
-              </p>
-            </Alert>
-          }
-          
 
           <Form.Group className="mb-3">
             <input type="text" className="form-control" placeholder="Email" {...register("email")} />
