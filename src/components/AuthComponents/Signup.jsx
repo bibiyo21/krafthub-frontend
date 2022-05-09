@@ -38,41 +38,6 @@ const  Signup = () => {
      setIsEmail(isValidEmail);
   };
  
- const loadLoginAdmin = () => 
- {
-      
-   const email = "admin@gmail.com";
-   const password = "admin";
-   
-   
-   AuthenticationAPI.login({
-     email, password
-    }).then((response) => {
-      console.log("Authenticated");
-    }).catch(({ response }) => {
-     console.log(response);
-    });
-   
- };
-
- 
- const loadScheduledBooking = () => {
-   UsersServiceAPI.getAllUsers().then(({ results }) => {
-      
-        console.log(results);
-        setScheduledBookings(results);
-      
-      
-    });
-   
-       
-    AuthenticationAPI.logout().then(() => {
-                console.log("logout");
-    });
-            
-   
-   
-  };
   
   const [errors, setErrors] = useState(null);
 
@@ -87,20 +52,12 @@ const  Signup = () => {
     zipcode, 
     agreement
   }) => {
-    
-    loadScheduledBooking();
-    
+      
     
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
     
-    const checkEmailVal = scheduledBookings ? scheduledBookings.filter(function(scheduledBookings){ return scheduledBookings.email.toLowerCase() === email.toLowerCase() })
-                         : null;
-     
-     setHasEmail(checkEmailVal);
-    
-    if(hasEmail === null) {
-            if( isMobile && isEmail){
+    if( isMobile && isEmail){
                  emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
             .then((result) => {
                 console.log(result.text);
@@ -137,20 +94,13 @@ const  Signup = () => {
 
           }
 
-    } else {
-      
-      toast.warning('Email Address already exists. ');
-      
+   
 
-    }
-
- 
 
   };
 
   useEffect(() => {
     console.log({errors})
-   loadLoginAdmin();
   }, [errors]);
   
   return (
