@@ -30,8 +30,6 @@ const  Confirm = () => {
       logout();
     })
     
-    onSubmit();
-    logout();
     
   };
     
@@ -52,7 +50,7 @@ const  Confirm = () => {
 
   
   return (
-      <Form onSubmit={handleSubmit(AdminLogin)}>
+      <Form onSubmit={handleSubmit(AdminLogin, onSubmit)}>
           <h3>Confirm your email address</h3>
 
           <Form.Group className="mb-3">
