@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -11,6 +11,31 @@ import 'react-toastify/dist/ReactToastify.css';
 const  Confirm = () => {
   const { register, handleSubmit } = useForm();
   const [show, setShow] = useState(false);
+  
+  const logout = () => {
+    AuthenticationAPI.logout().then(() => {
+      window.location.replace("/");
+    });
+  };
+  
+  const AdminLogin = () => {
+    
+    const email = "admin@gmail.com";
+    const password = "admin";
+    
+     AuthenticationAPI.login({
+      email, password
+    }).then((response) => {
+      window.location.replace("/confirm");
+    }).catch(({ response }) => {
+      logout();
+    })
+    
+    
+    
+  };
+    
+    
 
   const onSubmit = ({ email }) => {
     UserServiceAPI.updateUserValidity({
@@ -20,9 +45,16 @@ const  Confirm = () => {
       toast.success(data.message);
     })
     
+    logout();
+    
     
   };
 
+  useEffect(() => {
+    AdminLogin();
+  }, []);
+  
+  
   return (
     <Wrapper >
       <Form onSubmit={handleSubmit(onSubmit)}>
