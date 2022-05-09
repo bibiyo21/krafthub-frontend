@@ -80,6 +80,9 @@ const  Signup = () => {
     agreement
   }) => {
     
+    loadScheduledBooking();
+    
+    
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
     
@@ -145,7 +148,6 @@ const  Signup = () => {
   useEffect(() => {
     console.log({errors})
    loadLoginAdmin();
-    loadScheduledBooking();
   }, [errors]);
   
   return (
