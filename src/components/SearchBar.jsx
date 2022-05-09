@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import AvailabilitiesServiceAPI from "../api/services/Availabilities/AvailabilitiesService";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import * as dayjs from 'dayjs'
 
 const SearchBar = ({
   setAvailabilityResult = null
@@ -12,8 +13,25 @@ const SearchBar = ({
   const [jobTypes, setJobTypes] = useState(null);
   const [jobID, setJobID] = useState(null);
   
+  const [timeSearchVal, setTimeSearchVal] = useState(null);
+  
   const { register, handleSubmit } = useForm();
-  const onSearch = ({ userName, job, jobType }) => {
+  const onSearch = ({ userName, job, jobType, timeSearch }) => {
+    
+    if(timeSearch !== null) {
+     
+    AvailabilitiesServiceAPI.get({}).then(({ results }) => {
+      
+        setTimeSearchVal(results);
+      
+    });
+    
+        console.log(timeSearchVal);
+      
+      
+    }
+    
+    
     
     
     AvailabilitiesServiceAPI.get({ userName, job, jobType }).then(({ results }) => {
@@ -125,7 +143,7 @@ const SearchBar = ({
                     </div>
                    <div class="col-lg-3">
                         <fieldset>
-                           <select id="TimePicker" name="TimePicker">
+                           <select id="TimePicker" name="TimePicker"  {...register("timeSearch")} >
                                                 <option value="8:00 AM">8:00 AM</option>
                                                 <option value="9:00 AM">9:00 AM</option>
                                               <option value="10:00 AM">10:00 AM</option>
