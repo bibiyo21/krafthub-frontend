@@ -139,7 +139,7 @@ const Admin = () => {
                       <td><span className={VALID_ATTR[isValidated].color}>{VALID_ATTR[isValidated].msg}</span></td>
                       <td>
                         <div className="btn-group">
-                            <Button disabled={access_level === '1' ? true : false} onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" >Inactive<i className="fas fa-times"></i></Button>
+                            <Button disabled={access_level === '0' ? false : true} onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" >Inactive<i className="fas fa-times"></i></Button>
                             <Button disabled={access_level === '1' ? false : true} onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" >Active<i className="fas fa-check"></i></Button>
                             <Button disabled={isValidated === '0' ? true : false} onClick={() => handleShowValidate({emailID: id, status: "1"})} variant="primary" >Validate Email<i className="fas fa-check"></i></Button>
                             
