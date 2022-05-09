@@ -24,6 +24,11 @@ const  Signup = () => {
      return (isValidPhoneNumber)
     }
   
+ const validateEmailAddr = ({email}) => {
+     const isValidEmail = validator.isEmail(email)
+     return (isValidEmail)
+    }
+  
   const [errors, setErrors] = useState(null);
 
   const onRegister = ({ 
@@ -38,7 +43,7 @@ const  Signup = () => {
     agreement
   }) => {
  
-    if(validatePhoneNumber(cellphone_number)){
+    if( validatePhoneNumber(cellphone_number) && validateEmailAddr(email) ){
            emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
       .then((result) => {
           console.log(result.text);
@@ -71,7 +76,7 @@ const  Signup = () => {
       
     } else {
       
-      toast.success('Invalid Mobile Number);
+      toast.warning('Invalid Mobile Number/Email Address entered. ');
     }
       
      
