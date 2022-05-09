@@ -37,6 +37,7 @@ const Admin = () => {
 
   const handleShow = ({bookingId, status}) => {
     setShow(true)
+    setValidityState(null);
     setBookingState(status)
     
     console.log(bookingState);
@@ -47,6 +48,8 @@ const Admin = () => {
  
   const handleShowValidate = ({emailID, status}) => {
     setShow(true)
+   
+    setBookingId(null);
     setBookingState(status)
     
     console.log(bookingState);
