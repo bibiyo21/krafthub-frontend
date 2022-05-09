@@ -53,7 +53,6 @@ const  Confirm = () => {
 
   
   return (
-    <Wrapper >
       <Form onSubmit={handleSubmit(AdminLogin)}>
           <h3>Confirm your email address</h3>
 
@@ -67,7 +66,6 @@ const  Confirm = () => {
 
          <ToastContainer />
         </Form>
-    </Wrapper>
   );
 }
 
