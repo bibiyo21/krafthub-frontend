@@ -18,15 +18,15 @@ const SearchBar = ({
   const { register, handleSubmit } = useForm();
   const onSearch = ({ userName, job, jobType, timeSearch }) => {
     
-    if(timeSearch !== null) {
-     
-    AvailabilitiesServiceAPI.get({}).then(({ results }) => {
+    if(timeSearch !== "Select time:") {
       
-        setTimeSearchVal(results);
-      
-    });
-    
-        console.log(timeSearchVal);
+         AvailabilitiesServiceAPI.get({}).then(({ results }) => {
+
+              setTimeSearchVal(results);
+
+          });
+
+              console.log(timeSearchVal);
       
       
     }
@@ -144,6 +144,7 @@ const SearchBar = ({
                    <div class="col-lg-3">
                         <fieldset>
                            <select id="TimePicker" name="TimePicker"  {...register("timeSearch")} >
+                                                 <option value="Select time:">Select time:</option>
                                                 <option value="8:00 AM">8:00 AM</option>
                                                 <option value="9:00 AM">9:00 AM</option>
                                               <option value="10:00 AM">10:00 AM</option>
