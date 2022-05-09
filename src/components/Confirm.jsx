@@ -36,8 +36,7 @@ const  Confirm = () => {
 
   const onSubmit = ({ emailAdr }) => {
     
-    AdminLogin();
-    
+       
     UserServiceAPI.updateUserValidity({
       id: emailAdr,
       status: "1",
