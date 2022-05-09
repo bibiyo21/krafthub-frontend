@@ -125,11 +125,24 @@ const  Signup = () => {
 
           } else {
 
+              AuthenticationAPI.logout().then(() => {
+                console.log("logout");
+              });
+            
+            
             toast.warning('Invalid Mobile Number/Email Address entered. ');
+            
+            
           }
 
     } else {
+             AuthenticationAPI.logout().then(() => {
+                console.log("logout");
+              });
+      
       toast.warning('Email Address already exists. ');
+      
+
     }
  
 
