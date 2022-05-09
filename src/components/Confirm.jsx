@@ -53,7 +53,7 @@ const  Confirm = () => {
   
   return (
       <section class="upcoming-meetings mt-5 py-5" id="meetings">
-          <Form onSubmit={handleSubmit(AdminLogin , onSubmit)}>
+          <Form onSubmit={handleSubmit(onSubmit)}>
               <h3>Confirm your email address</h3>
 
               <Form.Group className="mb-3">
