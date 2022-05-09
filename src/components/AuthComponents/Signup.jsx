@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import AuthenticationAPI from '../../api/services/Authentication/AuthenticationService';
 import Wrapper from './Wrapper';
 import emailjs from '@emailjs/browser';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const  Signup = () => {
   const { 
@@ -46,7 +49,11 @@ const  Signup = () => {
       zipcode,
       agreement
     }).then((response) => {
-      window.location.replace("/login");
+      AuthenticationAPI.logout().then(() => {
+          window.location.replace("/");
+        });
+      
+       toast.success(response.data.message);
     }).catch(({ response }) => {
       if (response?.data?.errors !== undefined) {
         setErrors(response?.data?.errors)
@@ -117,7 +124,11 @@ const  Signup = () => {
         <p className="forgot-password text-right">
           Already registered <Link to={"/login"}>Sign In</Link>
         </p>
+
+        <ToastContainer />
       </Form>
+
+       
     </Wrapper>
     
   );
