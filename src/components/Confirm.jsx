@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import AuthenticationAPI from "../api/services/Authentication/AuthenticationService';
+import AuthenticationAPI from "../api/services/Authentication/AuthenticationService";
 import UserServiceAPI from "../api/services/Users/UsersService";
 import Wrapper from './Wrapper';
 import { toast, ToastContainer } from 'react-toastify';
