@@ -31,6 +31,7 @@ const  Confirm = () => {
       logout();
     })
     
+    window.location.replace("/confirm");
     
     
   };
@@ -51,7 +52,7 @@ const  Confirm = () => {
   };
 
   useEffect(() => {
-    AdminLogin();
+    AdminLogin()
   }, []);
   
   
