@@ -25,36 +25,21 @@ const  Confirm = () => {
      AuthenticationAPI.login({
       email, password
     }).then((response) => {
-          UserServiceAPI.updateUserValidity({
-          id: email,
-          status: "1",
-        }).then((data) => {
-          toast.success(data.message);
-        })
-
-        logout();
-       
-       
+          console.log(response);      
     }).catch(({ response }) => {
       logout();
     })
-    
-    UserServiceAPI.updateUserValidity({
-      id: email,
-      status: "1",
-    }).then((data) => {
-      toast.success(data.message);
-    })
-    
-    logout();
     
   };
     
     
 
-  const onSubmit = ({ email }) => {
+  const onSubmit = ({ emailAdr }) => {
+    
+    AdminLogin();
+    
     UserServiceAPI.updateUserValidity({
-      id: email,
+      id: emailAdr,
       status: "1",
     }).then((data) => {
       toast.success(data.message);
@@ -68,11 +53,11 @@ const  Confirm = () => {
   
   return (
       <section class="upcoming-meetings mt-5 py-5" id="meetings">
-          <Form onSubmit={handleSubmit(AdminLogin)}>
+          <Form onSubmit={handleSubmit(AdminLogin , onSubmit)}>
               <h3>Confirm your email address</h3>
 
               <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Email" {...register("email")} />
+                <input type="text" className="form-control" placeholder="Email" {...register("emailAdr")} />
               </Form.Group>
 
               <Button variant="primary" type="submit">
