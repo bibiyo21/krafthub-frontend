@@ -33,13 +33,7 @@ const  Signup = () => {
   }) => {
  
       
-      const phoneValidation() {
-        const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
-        return !(!cellphone_number || regex.test(cellphone_number) === false);
-      }
-    
-    if(phoneValidation()) {
-      
+     
       
       emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
       .then((result) => {
@@ -70,11 +64,7 @@ const  Signup = () => {
       }
     })
       
-      
-    } else {
-       toast.warning('Invalid mobile number entered.');
-    }
-    
+ 
     
 
  
@@ -105,7 +95,7 @@ const  Signup = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <input type="text"  maxLength="15" className="form-control" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
+          <input type="tel" maxLength="15" pattern="63[7-9]{2}-[0-9]{3}-[0-9]{4}" className="form-control" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
           {errors?.cellphone_number !== undefined && <p className="text-danger">{errors.cellphone_number[0]}</p>}
 
         </Form.Group>
