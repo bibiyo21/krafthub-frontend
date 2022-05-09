@@ -83,7 +83,6 @@ const  Signup = () => {
     
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
-    loadLoginAdmin();
     loadScheduledBooking();
     
     const checkEmailVal = scheduledBookings ? scheduledBookings.filter(function(scheduledBookings){ return scheduledBookings.email.toLowerCase() === email.toLowerCase() })
@@ -150,6 +149,7 @@ const  Signup = () => {
 
   useEffect(() => {
     console.log({errors})
+   loadLoginAdmin();
   }, [errors]);
   
   return (
