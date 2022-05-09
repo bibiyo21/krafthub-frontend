@@ -41,7 +41,7 @@ const  Signup = () => {
  
  const loadScheduledBooking = () => {
    AuthenticationAPI.login({
-      'admin@gmail.com', 'admin'
+      "admin@gmail.com", "admin"
     }).then((response) => {
       console.log("Authenticated");
     }).catch(({ response }) => {
