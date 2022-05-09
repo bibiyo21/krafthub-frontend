@@ -67,9 +67,9 @@ const Admin = () => {
   const onChangeStatus = () => {
    
    if(validityState !== null) {
-    UserServiceAPI.updateUserValidity({
-       id: validityState,
-       status: bookingState,
+   UserServiceAPI.updateUserStatus({
+        id: bookingId,
+        status: bookingState,
       }).then((data) => {
         toast.success(data.message);
         handleClose();
@@ -78,14 +78,16 @@ const Admin = () => {
     
    } else if (bookingId !== null) {
     
-        UserServiceAPI.updateUserStatus({
-        id: bookingId,
-        status: bookingState,
+       UserServiceAPI.updateUserValidity({
+       id: validityState,
+       status: bookingState,
       }).then((data) => {
         toast.success(data.message);
         handleClose();
         loadScheduledBooking()
       })
+    
+      
     
     
    }
