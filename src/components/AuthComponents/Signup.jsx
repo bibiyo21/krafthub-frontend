@@ -40,7 +40,7 @@ const  Signup = () => {
  
  
  const loadScheduledBooking = () => {
-      UserServiceAPI.getAllUsers().then(({ results }) => {
+      UsersServiceAPI.getAllUsers().then(({ results }) => {
       
         console.log(results);
         setScheduledBookings(results);
