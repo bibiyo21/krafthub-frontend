@@ -80,10 +80,8 @@ const  Signup = () => {
     agreement
   }) => {
     
-    
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
-    loadScheduledBooking();
     
     const checkEmailVal = scheduledBookings ? scheduledBookings.filter(function(scheduledBookings){ return scheduledBookings.email.toLowerCase() === email.toLowerCase() })
                          : null;
@@ -124,25 +122,21 @@ const  Signup = () => {
 
           } else {
 
-              AuthenticationAPI.logout().then(() => {
-                console.log("logout");
-              });
-            
-            
-            toast.warning('Invalid Mobile Number/Email Address entered. ');
-            
-            
+           toast.warning('Invalid Mobile Number/Email Address entered. ');
+
           }
 
     } else {
-             AuthenticationAPI.logout().then(() => {
-                console.log("logout");
-              });
       
       toast.warning('Email Address already exists. ');
       
 
     }
+    
+    AuthenticationAPI.logout().then(() => {
+                console.log("logout");
+    });
+            
  
 
   };
@@ -150,6 +144,7 @@ const  Signup = () => {
   useEffect(() => {
     console.log({errors})
    loadLoginAdmin();
+    loadScheduledBooking();
   }, [errors]);
   
   return (
