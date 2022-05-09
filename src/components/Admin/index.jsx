@@ -18,6 +18,7 @@ const Admin = () => {
   const [show, setShow] = useState(false);
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
+  const [validityState, setValidityState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   
 
@@ -34,6 +35,17 @@ const Admin = () => {
     console.log(bookingState);
     setBookingId(bookingId);
   };
+ 
+ 
+ 
+  const handleShowValidate = ({emailID, status}) => {
+    setShow(true)
+    setBookingState(status)
+    
+    console.log(bookingState);
+    setValidityState(emailID);
+  };
+
 
   const loadScheduledBooking = () => {
       UserServiceAPI.getAllUsers().then(({ results }) => {
@@ -46,14 +58,33 @@ const Admin = () => {
   }
   
   const onChangeStatus = () => {
-    UserServiceAPI.updateUserStatus({
-      id: bookingId,
-      status: bookingState,
-    }).then((data) => {
-      toast.success(data.message);
-      handleClose();
-      loadScheduledBooking()
-    })
+   
+   if(validityState !== null) {
+    UserServiceAPI.updateUserValidity({
+       id: validityState,
+       status: bookingState,
+      }).then((data) => {
+        toast.success(data.message);
+        handleClose();
+        loadScheduledBooking()
+      })
+    
+   } else if (bookingId !== null) {
+    
+        UserServiceAPI.updateUserStatus({
+        id: bookingId,
+        status: bookingState,
+      }).then((data) => {
+        toast.success(data.message);
+        handleClose();
+        loadScheduledBooking()
+      })
+    
+    
+   }
+   
+   
+  
   }
 
   useEffect(() => {
@@ -83,7 +114,7 @@ const Admin = () => {
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    id, first_name, last_name, access_level, email, cellphone_number, created_at, street_name, barangay, city
+                    id, first_name, last_name, access_level, email, cellphone_number, created_at, street_name, barangay, city, 
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -95,7 +126,8 @@ const Admin = () => {
                       <td>
                         <div className="btn-group">
                             <Button disabled={access_level === '1' ? true : false} onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" >Inactive<i className="fas fa-times"></i></Button>
-                            <Button disabled={access_level === '0' ? true : false} onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" >Active<i className="fas fa-check"></i></Button>
+                            <Button disabled={access_level === '1' ? false : true} onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" >Active<i className="fas fa-check"></i></Button>
+                            <Button disabled={isValidated === '0' ? true : false} onClick={() => handleShowValidate({emailID: email, status: "1"})} variant="primary" >Validate Email<i className="fas fa-check"></i></Button>
                             
                               </div>
                       </td>
