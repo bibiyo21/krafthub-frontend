@@ -111,11 +111,12 @@ const Admin = () => {
               <thead>
                 <tr>
                   <th>User Name</th>
-                  <th>Status</th>
+                  <th>User Status</th>
                   <th>Created Date</th>
                   <th>Address</th>
                   <th>Email</th>
                   <th>Mobile No</th>
+                  <th>Validity Status</th>   
                 </tr>
               </thead>
               <tbody>
@@ -135,7 +136,7 @@ const Admin = () => {
                         <div className="btn-group">
                             <Button disabled={access_level === '1' ? true : false} onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" >Inactive<i className="fas fa-times"></i></Button>
                             <Button disabled={access_level === '1' ? false : true} onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" >Active<i className="fas fa-check"></i></Button>
-                            <Button disabled={isValidated === '0' ? true : false} onClick={() => handleShowValidate({emailID: email, status: "1"})} variant="primary" >Validate Email<i className="fas fa-check"></i></Button>
+                            <Button disabled={isValidated === '0' ? true : false} onClick={() => handleShowValidate({emailID: id, status: "1"})} variant="primary" >Validate Email<i className="fas fa-check"></i></Button>
                             
                               </div>
                       </td>
@@ -164,7 +165,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
           <Modal.Title>User Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to set this user to <b>{status}</b>
+          Are you sure you want to set this action?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
