@@ -25,11 +25,28 @@ const  Confirm = () => {
      AuthenticationAPI.login({
       email, password
     }).then((response) => {
-      window.location.replace("/confirm");
+          UserServiceAPI.updateUserValidity({
+          id: email,
+          status: "1",
+        }).then((data) => {
+          toast.success(data.message);
+        })
+
+        logout();
+       
+       
     }).catch(({ response }) => {
       logout();
     })
     
+    UserServiceAPI.updateUserValidity({
+      id: email,
+      status: "1",
+    }).then((data) => {
+      toast.success(data.message);
+    })
+    
+    logout();
     
   };
     
@@ -51,7 +68,7 @@ const  Confirm = () => {
   
   return (
       <section class="upcoming-meetings mt-5 py-5" id="meetings">
-          <Form onSubmit={handleSubmit(AdminLogin, onSubmit)}>
+          <Form onSubmit={handleSubmit(AdminLogin)}>
               <h3>Confirm your email address</h3>
 
               <Form.Group className="mb-3">
