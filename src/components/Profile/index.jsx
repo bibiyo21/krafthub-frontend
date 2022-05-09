@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import UsersServiceAPI from "../../api/services/Users/UsersService";
 import Wrapper from "./Wrapper";
 import validator from 'validator'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Profile = () => {
@@ -149,6 +151,8 @@ const Profile = () => {
             <Button size="lg" variant="primary" type="submit" className="mt-3">
               Save
             </Button>
+
+          <ToastContainer />
           </Form>
           </Card.Body>
         </Card>
