@@ -71,7 +71,7 @@ const Admin = () => {
    
    if(validityState !== null) {
    UserServiceAPI.updateUserStatus({
-        id: bookingId,
+        id: validityState,
         status: bookingState,
       }).then((data) => {
         toast.success(data.message);
@@ -82,7 +82,7 @@ const Admin = () => {
    } else if (bookingId !== null) {
     
        UserServiceAPI.updateUserValidity({
-       id: validityState,
+       id: bookingId,
        status: bookingState,
       }).then((data) => {
         toast.success(data.message);
