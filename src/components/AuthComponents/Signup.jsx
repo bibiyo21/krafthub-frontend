@@ -91,10 +91,7 @@ const  Signup = () => {
           {errors?.cellphone_number !== undefined && <p className="text-danger">{errors.cellphone_number[0]}</p>}
 
             <MobileNo
-            country="PH"
-            value={value}
-            onChange={setValue}
-            {...register("cellphone_number", { required: true })}
+            country="PH" {...register("cellphone_number", { required: true })} maxlength="15" className="form-control" 
             />
         
         </Form.Group>
