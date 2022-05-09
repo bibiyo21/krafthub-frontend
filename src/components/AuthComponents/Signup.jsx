@@ -76,7 +76,7 @@ const  Signup = () => {
     validateEmailAddr({email: email});
     loadScheduledBooking();
     
-    
+     
      setHasEmail(scheduledBookings.filter(function(scheduledBookings){ return scheduledBookings.email.toLowerCase() === email.toLowerCase() }));
     
     if(hasEmail === null) {
