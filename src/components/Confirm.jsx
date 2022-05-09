@@ -50,19 +50,21 @@ const  Confirm = () => {
 
   
   return (
-      <Form onSubmit={handleSubmit(AdminLogin, onSubmit)}>
-          <h3>Confirm your email address</h3>
+      <section class="upcoming-meetings mt-5 py-5" id="meetings">
+          <Form onSubmit={handleSubmit(AdminLogin, onSubmit)}>
+              <h3>Confirm your email address</h3>
 
-          <Form.Group className="mb-3">
-            <input type="text" className="form-control" placeholder="Email" {...register("email")} />
-          </Form.Group>
+              <Form.Group className="mb-3">
+                <input type="text" className="form-control" placeholder="Email" {...register("email")} />
+              </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
 
-         <ToastContainer />
-        </Form>
+             <ToastContainer />
+            </Form>
+      </section>
   );
 }
 
