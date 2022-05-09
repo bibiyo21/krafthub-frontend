@@ -21,9 +21,7 @@ const  Confirm = () => {
     }).then((data) => {
       toast.success(data.message);
     })
-    
-    logout();
-    
+        
     
   };
 
