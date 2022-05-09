@@ -4,7 +4,7 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 
 import Login from "./components/AuthComponents/Login";
-import Confirm from "./components/AuthComponents/Confirm";
+import Confirm from "./components/Confirm";
 import SignUp from "./components/AuthComponents/Signup";
 import Home from "./components/Pages/Home";
 import MyJob from './components/Profile/MyJob';
