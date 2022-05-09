@@ -38,9 +38,9 @@ const  Signup = () => {
      setIsEmail(isValidEmail);
   }
  
- 
- const loadScheduledBooking = () => {
-   
+ const loadLoginAdmin = () => 
+ {
+      
    const email = "admin@gmail.com";
    const password = "admin";
    
@@ -51,16 +51,20 @@ const  Signup = () => {
       console.log("Authenticated");
     }).catch(({ response }) => {
      console.log(response);
-    })
+    });
    
-      UsersServiceAPI.getAllUsers().then(({ results }) => {
+ };
+
+ 
+ const loadScheduledBooking = () => {
+   UsersServiceAPI.getAllUsers().then(({ results }) => {
       
         console.log(results);
         setScheduledBookings(results);
       
       
     });
-  }
+  };
   
   const [errors, setErrors] = useState(null);
 
@@ -79,6 +83,7 @@ const  Signup = () => {
     
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
+    loadLoginAdmin();
     loadScheduledBooking();
     
      
