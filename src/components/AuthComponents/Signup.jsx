@@ -7,7 +7,6 @@ import Wrapper from './Wrapper';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PhoneInput from 'react-phone-number-input'
 
 
 const  Signup = () => {
@@ -17,6 +16,7 @@ const  Signup = () => {
   } = useForm();
 
   const uform = useRef();
+
   
   const [errors, setErrors] = useState(null);
 
@@ -32,14 +32,23 @@ const  Signup = () => {
     agreement
   }) => {
  
+      
+      const phoneValidation() {
+        const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
+        return !(!cellphone_number || regex.test(cellphone_number) === false);
+      }
+    
+    if(phoneValidation()) {
+      
+      
       emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
           console.log(error.text);
       });
-
-    AuthenticationAPI.register({ 
+      
+         AuthenticationAPI.register({ 
       first_name, 
       last_name, 
       email,
@@ -60,6 +69,15 @@ const  Signup = () => {
         setErrors(response?.data?.errors)
       }
     })
+      
+      
+    } else {
+       toast.warning('Invalid mobile number entered.');
+    }
+    
+    
+
+ 
   };
 
   useEffect(() => {
@@ -87,15 +105,9 @@ const  Signup = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <input type="text"  maxlength="15" className="form-control" defaultCountry="PH" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
+          <input type="text"  maxLength="15" className="form-control" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
           {errors?.cellphone_number !== undefined && <p className="text-danger">{errors.cellphone_number[0]}</p>}
 
-           <PhoneInput
-            country={'ph'}
-             {...register("cellphone_number", { required: true })}
-            placeholder="Enter mobile number"
-           />
-        
         </Form.Group>
 
         <Form.Group className="mb-3">
