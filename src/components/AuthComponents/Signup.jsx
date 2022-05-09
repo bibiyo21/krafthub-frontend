@@ -18,16 +18,21 @@ const  Signup = () => {
   const uform = useRef();
   
   const [inputValue, setInputValue] = useState("");
+   const [isEmail, setIsEmail] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
   
   const validatePhoneNumber = ({number}) => {
-     const isValidPhoneNumber = validator.isMobilePhone(number)
-     return (isValidPhoneNumber)
+     const isValidPhoneNumber = validator.isMobilePhone(number);
+     setIsMobile(isValidPhoneNumber);
+    
+    
     }
   
  const validateEmailAddr = ({email}) => {
-     const isValidEmail = validator.isEmail(email)
-     return (isValidEmail)
-    }
+     const isValidEmail = validator.isEmail(email);
+     setIsEmail(isValidEmail);
+  }
   
   const [errors, setErrors] = useState(null);
 
@@ -43,7 +48,7 @@ const  Signup = () => {
     agreement
   }) => {
  
-    if( validatePhoneNumber(cellphone_number) && validateEmailAddr(email) ){
+    if( isMobile && isEmail){
            emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
       .then((result) => {
           console.log(result.text);
