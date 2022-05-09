@@ -86,8 +86,10 @@ const  Signup = () => {
     loadLoginAdmin();
     loadScheduledBooking();
     
+    const checkEmailVal = scheduledBookings ? scheduledBookings.filter(function(scheduledBookings){ return scheduledBookings.email.toLowerCase() === email.toLowerCase() })
+                         : null;
      
-     setHasEmail(scheduledBookings.filter(function(scheduledBookings){ return scheduledBookings.email.toLowerCase() === email.toLowerCase() }));
+     setHasEmail(checkEmailVal);
     
     if(hasEmail === null) {
             if( isMobile && isEmail){
