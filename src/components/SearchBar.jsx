@@ -28,9 +28,15 @@ const SearchBar = ({
 
               console.log(timeSearchVal);
       
-         setAvailabilityResult(timeSearchVal.filter(function(timeSearchVal){ return (timeSearchVal.time_in.toLowerCase() === timeSearchIn.toLowerCase()) && 
+         const timeResult = timeSearchVal ?
+               
+               timeSearchVal.filter(function(timeSearchVal){ return (timeSearchVal.time_in.toLowerCase() === timeSearchIn.toLowerCase()) && 
                                                                                     (timeSearchVal.time_out.toLowerCase() === timeSearchOut.toLowerCase())
-                                                                            }));
+                                                            })
+                : [];
+      
+      
+         setAvailabilityResult(timeResult);
       
       
     } else if (timeSearchIn !== "Select time:") {
