@@ -135,6 +135,7 @@ const  Signup = () => {
     
     AuthenticationAPI.logout().then(() => {
                 console.log("logout");
+              window.location.replace("/register");
     });
             
  
