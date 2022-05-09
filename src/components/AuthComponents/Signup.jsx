@@ -7,7 +7,7 @@ import Wrapper from './Wrapper';
 import emailjs from '@emailjs/browser';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import MobileNo from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input'
 
 
 const  Signup = () => {
@@ -90,9 +90,11 @@ const  Signup = () => {
           <input type="text"  maxlength="15" className="form-control" defaultCountry="PH" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
           {errors?.cellphone_number !== undefined && <p className="text-danger">{errors.cellphone_number[0]}</p>}
 
-            <MobileNo
-            country="PH" {...register("cellphone_number", { required: true })} maxlength="15" className="form-control" 
-            />
+           <PhoneInput
+            country={'ph'}
+             {...register("cellphone_number", { required: true })}
+            placeholder="Enter mobile number"
+           />
         
         </Form.Group>
 
