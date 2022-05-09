@@ -31,12 +31,12 @@ const  Signup = () => {
      setIsMobile(isValidPhoneNumber);
     
     
-    }
+  };
   
  const validateEmailAddr = ({email}) => {
      const isValidEmail = validator.isEmail(email);
      setIsEmail(isValidEmail);
-  }
+  };
  
  const loadLoginAdmin = () => 
  {
