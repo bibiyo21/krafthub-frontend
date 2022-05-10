@@ -91,7 +91,7 @@ const Profile = () => {
       
     }else {
       
-      toast.warning('Invalid Mobile Number/Email Address entered. ');
+      toast.warning('Invalid Mobile Number entered. ');
     }
   
   };
