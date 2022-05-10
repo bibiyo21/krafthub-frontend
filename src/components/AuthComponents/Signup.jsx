@@ -53,8 +53,7 @@ const  Signup = () => {
     agreement
   }) => {
       
-    messaResponse = "";
-    
+   
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
     
