@@ -57,8 +57,15 @@ const  Signup = () => {
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
     
-    if( isMobile && isEmail){
-                 emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
+    if(!isMobile && isEmail) {
+             toast.warning('Invalid Mobile Number entered. ');
+    } else if (isMobile && !isEmail) 
+    {
+       toast.warning('Invalid Email Address entered. ');
+    } else if (!isMobile && !isEmail) {
+        toast.warning('Invalid Mobile Number/Email Address entered. '); 
+    } else if ( isMobile && isEmail ) {
+       emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
@@ -87,14 +94,13 @@ const  Signup = () => {
             }
           })
 
+    }else {
 
-          } else {
+           toast.warning('System error: ');
 
-           toast.warning('Invalid Mobile Number/Email Address entered. ');
-
-          }
-
-   
+     }
+    
+       
 
 
   };
