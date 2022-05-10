@@ -24,7 +24,7 @@ const  Signup = () => {
   const [scheduledBookings, setScheduledBookings] = useState(null);
   
   const [hasEmail, setHasEmail] = useState(null);
-  
+  const [messaResponse, setMessaResponse] = useState("");
   
   const validatePhoneNumber = ({number}) => {
      const isValidPhoneNumber = validator.isMobilePhone(number);
@@ -53,17 +53,22 @@ const  Signup = () => {
     agreement
   }) => {
       
+    const messageResponse = "";
     
     validatePhoneNumber({number: cellphone_number});
     validateEmailAddr({email: email});
     
     if(!isMobile && isEmail) {
-             toast.warning('Invalid Mobile Number entered. ');
+              setMessaResponse("Invalid Mobile Number entered. ");
+             toast.warning(messageResponse);
     } else if (isMobile && !isEmail) 
     {
-       toast.warning('Invalid Email Address entered. ');
+       setMessaResponse("Invalid Email Address entered. ");
+             toast.warning(messageResponse);
+      
     } else if (!isMobile && !isEmail) {
-        toast.warning('Invalid Mobile Number/Email Address entered. '); 
+      setMessaResponse("Invalid Mobile Number/Email Address entered. ");
+             toast.warning(messageResponse);
     } else if ( isMobile && isEmail ) {
        emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
             .then((result) => {
