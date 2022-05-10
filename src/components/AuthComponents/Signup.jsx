@@ -54,21 +54,21 @@ const  Signup = () => {
   }) => {
       
    
-    validatePhoneNumber({number: cellphone_number});
-    validateEmailAddr({email: email});
+     const isValidPhoneNumber = validator.isMobilePhone(cellphone_number);
+     const isValidEmail = validator.isEmail(email);
     
-    if(!isMobile && isEmail) {
+    if(!isValidPhoneNumber && isValidEmail) {
               
              toast.warning("Invalid Mobile Number entered. ");
-    } else if (isMobile && !isEmail) 
+    } else if (isValidPhoneNumber && !isValidEmail) 
     {
 
              toast.warning("Invalid Email Address entered.");
       
-    } else if (!isMobile && !isEmail) {
+    } else if (!isValidPhoneNumber && !isValidEmail) {
 
              toast.warning("Invalid Mobile Number/Email Address entered. ");
-    } else if ( isMobile && isEmail ) {
+    } else if ( isValidPhoneNumber && isValidEmail ) {
        emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
             .then((result) => {
                 console.log(result.text);
