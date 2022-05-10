@@ -52,9 +52,9 @@ const Profile = () => {
     });
     
         
-    validatePhoneNumber({number: cellphone_number});
+    const isValidPhoneNumber = validator.isMobilePhone(number);
  
-    if( isMobile){
+    if( isValidPhoneNumber){
         
     
     UsersServiceAPI.saveUser({
