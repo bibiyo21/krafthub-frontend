@@ -60,15 +60,15 @@ const  Signup = () => {
     
     if(!isMobile && isEmail) {
               setMessaResponse("Invalid Mobile Number entered. ");
-             toast.warning(messageResponse);
+             toast.warning(messaResponse);
     } else if (isMobile && !isEmail) 
     {
        setMessaResponse("Invalid Email Address entered. ");
-             toast.warning(messageResponse);
+             toast.warning(messaResponse);
       
     } else if (!isMobile && !isEmail) {
       setMessaResponse("Invalid Mobile Number/Email Address entered. ");
-             toast.warning(messageResponse);
+             toast.warning(messaResponse);
     } else if ( isMobile && isEmail ) {
        emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
             .then((result) => {
