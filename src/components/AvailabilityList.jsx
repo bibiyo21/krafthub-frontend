@@ -75,13 +75,13 @@ const AvailabilityList = ({ list = null }) => {
             const splitTimeout = timein.split(':');
            
             if(splitTimeout[0] == '12') {
-               timein = timein.replace("PM","");
+               timein = timein.replace("PM","").replace("pm","");
                console.log(timein);
             } else {
               
               const parseTime = parseInt(splitTimeout[0]) + 12;
               timein = parseTime.toString() + ':' + splitTimeout[1];
-              timein = timein.replace("PM","");
+              timein = timein.replace("PM","").replace("pm","");
               
    
               console.log(timein);
@@ -91,10 +91,10 @@ const AvailabilityList = ({ list = null }) => {
          } else {
             const splitTimeout = timein.split(':');
              if(splitTimeout[0] == '12') {
-               timein = timein.replace("AM", "").replace("12:", "00:");
+               timein = timein.replace("AM", "").replace("12:", "00:").replace("am","");
                console.log(timein);
              } else {
-                timein = timein.replace("AM", "");
+                timein = timein.replace("AM", "").replace("am","");
                
                   if(splitTimeout[0].length === 1) {
                       timein = '0'+timein;
@@ -110,13 +110,13 @@ const AvailabilityList = ({ list = null }) => {
             const splitTimeout = timeout.split(':');
            
             if(splitTimeout[0] == '12') {
-               timeout = timeout.replace("PM","");
+               timeout = timeout.replace("PM","").replace("pm","");
                console.log(timeout);
             } else {
                 
               const parseTime = parseInt(splitTimeout[0]) + 12;
               timeout = parseTime.toString() + ':' + splitTimeout[1];
-              timeout = timeout.replace("PM","");
+              timeout = timeout.replace("PM","").replace("pm","");
              
               
               console.log(timeout);
@@ -126,10 +126,10 @@ const AvailabilityList = ({ list = null }) => {
          } else {
             const splitTimeout = timeout.split(':');
              if(splitTimeout[0] == '12') {
-                timeout = timeout.replace("AM", "").replace("12:", "00:");
+                timeout = timeout.replace("AM", "").replace("12:", "00:").replace("am","");
                 console.log(timeout);
              } else {
-                 timeout = timeout.replace("AM", "");
+                 timeout = timeout.replace("AM", "").replace("am","");
                
                    if(splitTimeout[0].length === 1) {
                         timeout = '0'+timeout;
