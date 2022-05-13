@@ -27,7 +27,7 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 .auth-wrapper {
-  background-image: url(./images/kh_bg.jpg);
+  background-image: url(./images/kh_bg2.jpg);
   display: flex;
   justify-content: center;
   flex-direction: column;
