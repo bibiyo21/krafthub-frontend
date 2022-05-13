@@ -155,9 +155,7 @@ body {
   }
 }
 
-.card-body-upd {
-    flex: 1 1 auto;
-    padding: 1rem;
+.overflowAuto  {
     overflow: auto;
 }
 
