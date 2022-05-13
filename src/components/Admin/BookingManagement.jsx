@@ -101,6 +101,7 @@ const BookingManagement = () => {
             <Card.Title> Booking Summary Report </Card.Title>
             <Button onClick={() => printToPdf({})} variant="success" >
                Export to PDF</Button>
+             <div class="overflow-auto">
             <table className="table table-responsive table-condensed table-striped table-hover" id = "simple_table">
               <thead>
                 <tr>
@@ -139,6 +140,7 @@ const BookingManagement = () => {
                 
               </tbody>
             </table>
+         </div>
           </Card.Body>
          </div>
         </Card>
