@@ -109,8 +109,8 @@ const BookingManagement = () => {
                   <th>Status</th>
                   <th>Schedule</th>
                   <th>Description</th>
-                  <th>Action</th>
                   <th>Payment</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
