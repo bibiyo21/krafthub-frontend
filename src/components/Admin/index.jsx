@@ -110,7 +110,7 @@ const Admin = () => {
 
         <Card className="mb-4">
          <div id="divToPrint">
-          <Card.Body>
+          <Card.Body overflowAuto>
             <Card.Title> User Summary Page </Card.Title>
             <table className="table table-responsive table-condensed table-striped table-hover">
               <thead>
