@@ -112,6 +112,7 @@ const Admin = () => {
          <div id="divToPrint">
           <Card.Body overflowAuto>
             <Card.Title> User Summary Page </Card.Title>
+            <div class="overflow-auto">
             <table className="table table-responsive table-condensed table-striped table-hover">
               <thead>
                 <tr>
@@ -151,6 +152,7 @@ const Admin = () => {
                 
               </tbody>
             </table>
+             </div>
           </Card.Body>
          </div>
         </Card>
