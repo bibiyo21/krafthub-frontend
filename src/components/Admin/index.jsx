@@ -122,7 +122,8 @@ const Admin = () => {
                   <th>Address</th>
                   <th>Email</th>
                   <th>Mobile No</th>
-                  <th>Validity Status</th>   
+                  <th>Validity</th>
+                  <th>Action</th>   
                 </tr>
               </thead>
               <tbody>
