@@ -222,7 +222,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   const form = useRef(null);
   const onBookMaker = () => {
       
-    if ((form.current['time'].min < form.current['time'].value) && (form.current['time'].max > form.current['time'].value)) {
+    if ((form.current['time'].min <= form.current['time'].value) && (form.current['time'].max >= form.current['time'].value)) {
         
         if (radioValue === null) {
           
