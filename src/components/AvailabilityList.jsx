@@ -69,79 +69,6 @@ const AvailabilityList = ({ list = null }) => {
       setChecked(true);
       setMinDate(today(new Date()));
         
-        if (timein.includes('PM'))
-         {
-           
-            const splitTimeout = timein.split(':');
-           
-            if(splitTimeout[0] == '12') {
-               timein = timein.replace("PM","").replace("pm","");
-               console.log(timein);
-            } else {
-              
-              const parseTime = parseInt(splitTimeout[0]) + 12;
-              timein = parseTime.toString() + ':' + splitTimeout[1];
-              timein = timein.replace("PM","").replace("pm","");
-              
-   
-              console.log(timein);
-            }
-           
-           
-         } else {
-            const splitTimeout = timein.split(':');
-             if(splitTimeout[0] == '12') {
-               timein = timein.replace("AM", "").replace("12:", "00:").replace("am","");
-               console.log(timein);
-             } else {
-                timein = timein.replace("AM", "").replace("am","");
-               
-                  if(splitTimeout[0].length === 1) {
-                      timein = '0'+timein;
-                  } 
-                console.log(timein);
-             }
-           
-         }
-    
-        if (timeout.includes('PM'))
-         {
-           
-            const splitTimeout = timeout.split(':');
-           
-            if(splitTimeout[0] == '12') {
-               timeout = timeout.replace("PM","").replace("pm","");
-               console.log(timeout);
-            } else {
-                
-              const parseTime = parseInt(splitTimeout[0]) + 12;
-              timeout = parseTime.toString() + ':' + splitTimeout[1];
-              timeout = timeout.replace("PM","").replace("pm","");
-             
-              
-              console.log(timeout);
-            }
-           
-           
-         } else {
-            const splitTimeout = timeout.split(':');
-             if(splitTimeout[0] == '12') {
-                timeout = timeout.replace("AM", "").replace("12:", "00:").replace("am","");
-                console.log(timeout);
-             } else {
-                 timeout = timeout.replace("AM", "").replace("am","");
-               
-                   if(splitTimeout[0].length === 1) {
-                        timeout = '0'+timeout;
-                    } 
-                console.log(timeout);
-             }
-           
-         }
-    
-        
-        setMinTime(timein);
-        setMaxTime(timeout);
         BookingsServiceAPI.getScheduled({maker_id: selectedId}).then(({ results }) => {
               
               console.log (results);
@@ -195,7 +122,6 @@ const AvailabilityList = ({ list = null }) => {
                     <div className="down-content">
                       <h3>{`${first_name} ${last_name}`}</h3>
                       <p><b>{profession}</b> : {specialty} </p>
-                      <p><b>Time Availability:</b> {time_in} to {time_out}</p>
                       <p><b>Payment:</b> {amount} </p>
                       <div class="d-grid gap-2">
                         <Button onClick={() => handleShow({selectedId: id, timeout: time_out, timein: time_in}, getProfession({selectedProf: amount}) )} className="btn block btn-success">Book Now</Button>
@@ -222,27 +148,21 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   const form = useRef(null);
   const onBookMaker = () => {
       
-    if ((form.current['time'].min <= form.current['time'].value) && (form.current['time'].max > form.current['time'].value)) {
-        
-        if (radioValue === null) {
+         if (radioValue === null) {
           
           toast.warning('Please choose payment mode.')
           
         } else {
-             BookingsServiceAPI.bookJob({
-            maker_id: makerId,
-            eta: `${form.current['date'].value} ${form.current['time'].value}`,
-            additional_info: form.current['additional_info'].value +'|'+ radioValue,
-            amount: amountS
-          }).then((data) => {
-            toast.success(data.message);
-            handleClose();
-          })
+                     BookingsServiceAPI.bookJob({
+                    maker_id: makerId,
+                    eta: `${form.current['date'].value} ${form.current['time'].value}`,
+                    additional_info: form.current['additional_info'].value +'|'+ radioValue,
+                    amount: amountS
+                  }).then((data) => {
+                    toast.success(data.message);
+                    handleClose();
+                  })
           }
-    
-    } else {
-       toast.warning('Selected time is not within worker availability.')
-    }
      
     
    
