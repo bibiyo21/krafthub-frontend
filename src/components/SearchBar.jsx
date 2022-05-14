@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import JobsServiceAPI from "../api/services/Jobs/JobsService";
 import { useForm } from "react-hook-form";
 import AvailabilitiesServiceAPI from "../api/services/Availabilities/AvailabilitiesService";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const SearchBar = ({
   setAvailabilityResult = null
@@ -49,7 +47,12 @@ const SearchBar = ({
               <div class="col-lg-12">
                 <form className="p-3" id="contact" onSubmit={handleSubmit(onSearch)}>
                   <div class="row">
-                   <div class="col-lg-3">
+                    <div class="col-lg-3">
+                      <fieldset>
+                        <input type="text" className="form-control" placeholder="Search Maker" {...register("userName")} />
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-3">
                       <fieldset>
                         <select defaultValue="" className="form-select" {...register("job")} onChange={onJobSearch}>
                           <option value="" disabled >Choose a Profession</option>
