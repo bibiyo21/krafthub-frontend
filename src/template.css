@@ -72,6 +72,19 @@ html[xmlns] .clearfix {
     vertical-align: middle
 }
 
+._9gip ._8v9m ._6aje ._6b6a {
+    margin: 0 auto;
+}
+._8v9m ._6aje ._6b6a {
+    display: flex;
+    margin: 20px auto 0;
+}
+
+._6b6a {
+    height: auto;
+    max-width: 100%;
+}
+
 ._4vo5 {
     color: rgba(0,0,0,.55);
     font-family: Calibre,Helvetica Neue,Segoe UI,Helvetica,Arial,Lucida Grande,sans-serif;
