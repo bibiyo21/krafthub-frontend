@@ -65,6 +65,27 @@ html[xmlns] .clearfix {
   height: 1%;
 }
 
+._1-kh {
+    height: 40px;
+    width: 40px
+}
+
+._1-kj {
+    height: 70px;
+    width: 70px
+}
+
+._4qfn {
+    display: inline-block;
+    vertical-align: middle
+}
+
+._2fux {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
 ul, li {
   padding: 0;
   margin: 0;
@@ -1829,44 +1850,3 @@ responsive
   }
 
 }
-
-
-._4qfn {
-    display: inline-block;
-    vertical-align: middle
-}
-
-._4vo5 {
-    color: rgba(0,0,0,.55);
-    font-family: Calibre,Helvetica Neue,Segoe UI,Helvetica,Arial,Lucida Grande,sans-serif;
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 50px;
-    margin: 0 15px;
-    transition: opacity .2s ease-in
-}
-
-
-._2fux {
-    list-style-type: none;
-    margin: 0;
-    padding: 0
-}
-
-._6a8a {
-    display: inline-block;
-    font-size: 0;
-    vertical-align: middle
-}
-
-._1-kh {
-    height: 40px;
-    width: 40px
-}
-
-
-._1-kj {
-    height: 70px;
-    width: 70px
-}
-
