@@ -7,9 +7,14 @@ const Wrapper = ({ children }) => {
 
   return (
     <div className="auth-wrapper">
+      <h2 className="text-center mb-3">KraftHub</h2>
       <div className="auth-inner">
-        <h2 className="text-center mb-3">KraftHub</h2>
         {children}
+      </div>
+       <div className="auth-inner">
+        <form> 
+          <img src="../../images/Bg2.webp" alt="kraftHub" width="300" height="400">
+         </form>
       </div>
     </div>
   );
