@@ -12,14 +12,19 @@ const  Privacy = () => {
   
   return (
     <Wrapper >
-      <Form >
-    
-          <p className="forgot-password text-right">
+       <section class="upcoming-meetings mt-5 py-5" id="meetings">
+        <div class="container">
+           <p className="forgot-password text-right">
               <Link to={"/login"}>Go Back to Login page ... </Link>
           </p>
-           <iframe src={privPdf}>
-        </iframe>      
+          <iframe src={privPdf}>
+          </iframe>      
 
+          
+        </div>
+      </section>
+    
+        
          <ToastContainer />
         </Form>
     </Wrapper>
