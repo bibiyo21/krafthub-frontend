@@ -65,6 +65,25 @@ html[xmlns] .clearfix {
   height: 1%;
 }
 
+._4qfn {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+ ._4vo5 {
+    color: rgba(0, 0, 0, .55);
+    font-family: Calibre, Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida Grande, sans-serif;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 500;
+    line-height: 50px;
+    margin: 0 15px;
+    transition: opacity .2s ease-in;
+}
+
+
+
 ._2fux {
     list-style-type: none;
     margin: 0;
