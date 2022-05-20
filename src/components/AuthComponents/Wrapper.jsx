@@ -2,6 +2,7 @@ import React from "react";
 import logoImg from '../../images/logo.jpg';
 import tagLineImg from '../../images/TagLine.jpg';
 import nameImg from '../../images/NameTag.jpg';
+import bg2Img from '../../images/Bg2.jpg';
 
 const Wrapper = ({ children }) => {
   if (localStorage.getItem('token')) {
@@ -30,7 +31,7 @@ const Wrapper = ({ children }) => {
 
                <div className="auth-image">
                 <form> 
-                  <img src="../../images/Bg2.jpg" alt="kraftHub" width="300" height="400" />
+                  <img src={bg2Img} alt="kraftHub" width="300" height="400" />
                  </form>
               </div>
 
