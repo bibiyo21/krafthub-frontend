@@ -11,7 +11,7 @@ const Wrapper = ({ children }) => {
       <div className="auth-inner">
         {children}
       </div>
-       <div className="auth-inner">
+       <div className="auth-image">
         <form> 
           <img src="../../images/Bg2.webp" alt="kraftHub" width="300" height="400">
          </form>
