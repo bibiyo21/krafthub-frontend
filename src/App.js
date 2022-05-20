@@ -4,8 +4,6 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 
 import Login from "./components/AuthComponents/Login";
-import Terms from "./components/AuthComponents/Terms";
-import Privacy from "./components/AuthComponents/Privacy";
 import Confirm from "./components/AuthComponents/Confirm";
 import SignUp from "./components/AuthComponents/Signup";
 import Home from "./components/Pages/Home";
@@ -25,8 +23,6 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/confirm" element={<Confirm />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/privacy" element={<Privacy />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
