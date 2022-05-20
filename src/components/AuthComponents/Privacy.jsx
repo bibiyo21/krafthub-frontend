@@ -6,7 +6,7 @@ import Wrapper from './Wrapper';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const  Terms = () => {
+const  Privacy = () => {
  
   
   return (
@@ -129,4 +129,4 @@ const  Terms = () => {
   );
 }
 
-export default Terms;
+export default Privacy;
