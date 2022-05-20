@@ -8,12 +8,12 @@ const Wrapper = ({ children }) => {
   return (
     
     <h2 class="text-left mb-3">KraftHub 
-    <ul class="_2fux">
-    <li class="_4qfn"><a href="https://krafthub-live.web.app/AboutUs" class="_4vo5">About Us  </a>                                                           
-    </li><li class="_4qfn"><a href="https://krafthub-live.web.app/Privacy" class="_4vo5">Privacy Policy  </a>  
-    </li><li class="_4qfn"><a href="https://krafthub-live.web.app/Terms" class="_4vo5">Terms of use  
-    </a> </li>
-    </ul>
+        <ul class="_2fux">
+        <li class="_4qfn"><a href="https://krafthub-live.web.app/AboutUs" class="_4vo5">About Us  </a>                                                           
+        </li><li class="_4qfn"><a href="https://krafthub-live.web.app/Privacy" class="_4vo5">Privacy Policy  </a>  
+        </li><li class="_4qfn"><a href="https://krafthub-live.web.app/Terms" class="_4vo5">Terms of use  
+        </a> </li>
+        </ul>
     </h2>
     
     <div className="auth-wrapper">
@@ -23,7 +23,7 @@ const Wrapper = ({ children }) => {
       </div>
        <div className="auth-image">
         <form> 
-          <img src="../../images/Bg2.webp" alt="kraftHub" width="300" height="400">
+          <img src="../../images/Bg2.webp" alt="kraftHub" width="300" height="400" />
          </form>
       </div>
     </div>
