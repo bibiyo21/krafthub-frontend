@@ -63,6 +63,71 @@ html[xmlns] .clearfix {
 
 * html .clearfix {
   height: 1%;
+	
+}
+
+
+._4qfn {
+    display: inline-block;
+    vertical-align: middle
+}
+
+._4vo5 {
+    color: rgba(0,0,0,.55);
+    font-family: Calibre,Helvetica Neue,Segoe UI,Helvetica,Arial,Lucida Grande,sans-serif;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 500;
+    line-height: 50px;
+    margin: 0 15px;
+    transition: opacity .2s ease-in
+}
+
+._4sze {
+    font-family: Calibre,Helvetica Neue,Segoe UI,Helvetica,Arial,Lucida Grande,sans-serif
+}
+
+._8on8 {
+    position: relative
+}
+
+._8v9m ._4tdp {
+    font-size: 12px
+}
+
+._4tdp {
+    color: rgba(0,0,0,.4);
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    padding: 20px 30px;
+    text-align: center
+}
+
+._4sze ._6ajd ._6aje::after,._4sze ._6ajl::after {
+    content: ' '
+}
+
+._2fux {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
+._6a8a {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: middle
+}
+
+._1-kh {
+    height: 40px;
+    width: 40px
+}
+
+._1-kj {
+    height: 70px;
+    width: 70px
 }
 
 ul, li {
