@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Wrapper from './Wrapper';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import privPdf from '../../images/KraftHub-Privacy-Policy_CHECKED-CJM-EJC.pdf';
 
 const  Privacy = () => {
  
@@ -16,7 +17,8 @@ const  Privacy = () => {
           <p className="forgot-password text-right">
               <Link to={"/login"}>Go Back to Login page ... </Link>
           </p>
-                 
+           <iframe src={privPdf}>
+        </iframe>      
 
          <ToastContainer />
         </Form>
