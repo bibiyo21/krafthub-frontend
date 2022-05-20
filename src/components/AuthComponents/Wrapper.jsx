@@ -15,11 +15,11 @@ const Wrapper = ({ children }) => {
         <h2 class="text-left mb-3">
           <img class="_1-kh _93s6 img" src={logoImg} alt="LogoKH" />
             <ul class="_2fux">
-                <li class="_4qfn"><a href="https://krafthub-live.web.app/AboutUs" class="_4vo5">About Us  </a>                                                           
+                <li class="_4qfn"><Link to={"/about"} class="_4vo5">About Us </Link>                                                     
                 </li>
-                <li class="_4qfn"><a href="https://krafthub-live.web.app/Privacy" class="_4vo5">Privacy Policy  </a>  
+                <li class="_4qfn"><Link to={"/privacy"} class="_4vo5">Privacy Policy </Link>  
                 </li>
-                <li class="_4qfn"><a href="https://krafthub-live.web.app/Terms" class="_4vo5">Terms of use  </a> 
+                <li class="_4qfn"><Link to={"/terms"} class="_4vo5">Terms of use  </Link> 
               </li>
             </ul>
         </h2>
