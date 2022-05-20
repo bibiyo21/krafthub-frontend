@@ -98,9 +98,26 @@ a:hover {
 	color: #FC3;
 }
 
+h2 {
+	
+	  background-clip: padding-box;
+	top: 0;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+    clear: both;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1020px;
+    overflow: auto;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0px;
   margin-bottom: 0px;
+
 }
 
 ul {
