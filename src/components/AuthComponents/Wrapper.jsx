@@ -3,6 +3,7 @@ import logoImg from '../../images/logo.jpg';
 import tagLineImg from '../../images/TagLine.jpg';
 import nameImg from '../../images/NameTag.jpg';
 import bg2Img from '../../images/Bg2.jpg';
+import { Link } from "react-router-dom";
 
 const Wrapper = ({ children }) => {
   if (localStorage.getItem('token')) {
