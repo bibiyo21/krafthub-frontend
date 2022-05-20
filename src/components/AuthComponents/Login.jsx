@@ -31,7 +31,7 @@ const  Login = () => {
     <Wrapper >
       <Form onSubmit={handleSubmit(onSubmit)}>
           <img class="_1-kj _93s6 img" src={tagLineImg} alt="TagLineKH" />
-          <h3>Sign In</h3>
+         
 
           {
             show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
