@@ -52,7 +52,7 @@ const Profile = () => {
     });
     
         
-    const isValidPhoneNumber = validator.isMobilePhone(number);
+    const isValidPhoneNumber = validator.isMobilePhone(cellphone_number);
  
     if( isValidPhoneNumber){
         
