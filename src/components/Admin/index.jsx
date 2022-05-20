@@ -15,9 +15,17 @@ const Admin = () => {
     4: {color: 'text-warning', msg: "Admin"},
     0: {color: 'text-danger', msg: "Inactive"},
   }
+ 
+  const VALID_ATTR = {
+    1: {color: 'text-info', msg: "Validated"},
+    0: {color: 'text-danger', msg: "Not Validated"},
+  }
+ 
+ 
   const [show, setShow] = useState(false);
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
+  const [validityState, setValidityState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   
 
@@ -29,11 +37,25 @@ const Admin = () => {
 
   const handleShow = ({bookingId, status}) => {
     setShow(true)
+    setValidityState(null);
     setBookingState(status)
     
     console.log(bookingState);
     setBookingId(bookingId);
   };
+ 
+ 
+ 
+  const handleShowValidate = ({emailID, status}) => {
+    setShow(true)
+   
+    setBookingId(null);
+    setBookingState(status)
+    
+    console.log(bookingState);
+    setValidityState(emailID);
+  };
+
 
   const loadScheduledBooking = () => {
       UserServiceAPI.getAllUsers().then(({ results }) => {
@@ -46,14 +68,35 @@ const Admin = () => {
   }
   
   const onChangeStatus = () => {
-    UserServiceAPI.updateUserStatus({
-      id: bookingId,
-      status: bookingState,
-    }).then((data) => {
-      toast.success(data.message);
-      handleClose();
-      loadScheduledBooking()
-    })
+   
+   if(validityState !== null) {
+   UserServiceAPI.updateUserStatus({
+        id: validityState,
+        status: bookingState,
+      }).then((data) => {
+        toast.success(data.message);
+        handleClose();
+        loadScheduledBooking()
+      })
+    
+   } else if (bookingId !== null) {
+    
+       UserServiceAPI.updateUserValidity({
+       id: bookingId,
+       status: bookingState,
+      }).then((data) => {
+        toast.success(data.message);
+        handleClose();
+        loadScheduledBooking()
+      })
+    
+      
+    
+    
+   }
+   
+   
+  
   }
 
   useEffect(() => {
@@ -67,23 +110,26 @@ const Admin = () => {
 
         <Card className="mb-4">
          <div id="divToPrint">
-          <Card.Body>
+          <Card.Body overflowAuto>
             <Card.Title> User Summary Page </Card.Title>
+            <div class="overflow-auto">
             <table className="table table-responsive table-condensed table-striped table-hover">
               <thead>
                 <tr>
                   <th>User Name</th>
-                  <th>Status</th>
+                  <th>User Status</th>
                   <th>Created Date</th>
                   <th>Address</th>
                   <th>Email</th>
                   <th>Mobile No</th>
+                  <th>Validity</th>
+                  <th>Action</th>   
                 </tr>
               </thead>
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    id, first_name, last_name, access_level, email, cellphone_number, created_at, street_name, barangay, city
+                    id, first_name, last_name, access_level, email, cellphone_number, created_at, street_name, barangay, city, isValidated
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -92,10 +138,12 @@ const Admin = () => {
                       <td>{street_name} {barangay} {city}</td>
                       <td>{email}</td>
                       <td>{cellphone_number}</td>
+                      <td><span className={VALID_ATTR[isValidated].color}>{VALID_ATTR[isValidated].msg}</span></td>
                       <td>
                         <div className="btn-group">
-                            <Button disabled={access_level === '1' ? true : false} onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" >Inactive<i className="fas fa-times"></i></Button>
-                            <Button disabled={access_level === '0' ? true : false} onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" >Active<i className="fas fa-check"></i></Button>
+                            <Button  onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" >Inactive<i className="fas fa-times"></i></Button>
+                            <Button  onClick={() => handleShow({bookingId: id, status: "1"})} variant="warning" >Active<i className="fas fa-check"></i></Button>
+                            <Button  onClick={() => handleShowValidate({emailID: id, status: "1"})} variant="primary" >Validate Email<i className="fas fa-check"></i></Button>
                             
                               </div>
                       </td>
@@ -105,6 +153,7 @@ const Admin = () => {
                 
               </tbody>
             </table>
+             </div>
           </Card.Body>
          </div>
         </Card>
@@ -124,7 +173,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
           <Modal.Title>User Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to set this user to <b>{status}</b>
+          Are you sure you want to set this action?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

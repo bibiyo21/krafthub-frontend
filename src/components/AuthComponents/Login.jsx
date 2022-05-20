@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import AuthenticationAPI from '../../api/services/Authentication/AuthenticationService';
 import Wrapper from './Wrapper';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import tagLineImg from '../../images/TagLine.jpg';
 
 const  Login = () => {
   const { register, handleSubmit } = useForm();
@@ -17,14 +20,18 @@ const  Login = () => {
     }).catch(({ response }) => {
       if (response?.data?.errors !== undefined) {
         setShow(true);
+        
       }
+      
+      toast.warning(response.data.message);
     })
   };
 
   return (
     <Wrapper >
       <Form onSubmit={handleSubmit(onSubmit)}>
-          <h3>Sign In</h3>
+          <img class="_1-kj _93s6 img" src={tagLineImg} alt="TagLineKH" />
+         
 
           {
             show && <Alert variant="danger" onClose={() => setShow(false)} dismissible>
@@ -49,6 +56,9 @@ const  Login = () => {
           <p className="forgot-password text-right">
             Don't have an account yet? <Link to={"/register"}>Register here</Link>
           </p>
+
+
+         <ToastContainer />
         </Form>
     </Wrapper>
   );

@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import { Form, Button } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { Link } from "react-router-dom";
 import AuthenticationAPI from '../../api/services/Authentication/AuthenticationService';
+import UsersServiceAPI from "../../api/services/Users/UsersService";
 import Wrapper from './Wrapper';
+import emailjs from '@emailjs/browser';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import validator from 'validator'
 
 const  Signup = () => {
   const { 
@@ -11,6 +16,29 @@ const  Signup = () => {
     handleSubmit, 
   } = useForm();
 
+  const uform = useRef();
+  
+  const [inputValue, setInputValue] = useState("");
+   const [isEmail, setIsEmail] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [scheduledBookings, setScheduledBookings] = useState(null);
+  
+  const [hasEmail, setHasEmail] = useState(null);
+  const [messaResponse, setMessaResponse] = useState("");
+  
+  const validatePhoneNumber = ({number}) => {
+     const isValidPhoneNumber = validator.isMobilePhone(number);
+     setIsMobile(isValidPhoneNumber);
+    
+    
+  };
+  
+ const validateEmailAddr = ({email}) => {
+     const isValidEmail = validator.isEmail(email);
+     setIsEmail(isValidEmail);
+  };
+ 
+  
   const [errors, setErrors] = useState(null);
 
   const onRegister = ({ 
@@ -24,23 +52,61 @@ const  Signup = () => {
     zipcode, 
     agreement
   }) => {
-    AuthenticationAPI.register({ 
-      first_name, 
-      last_name, 
-      email,
-      password,
-      password_confirmation,
-      cellphone_number,
-      house_info,
-      zipcode,
-      agreement
-    }).then((response) => {
-      window.location.replace("/home");
-    }).catch(({ response }) => {
-      if (response?.data?.errors !== undefined) {
-        setErrors(response?.data?.errors)
-      }
-    })
+      
+   
+     const isValidPhoneNumber = validator.isMobilePhone(cellphone_number);
+     const isValidEmail = validator.isEmail(email);
+    
+    if(!isValidPhoneNumber && isValidEmail) {
+              
+             toast.warning("Invalid Mobile Number entered. ");
+    } else if (isValidPhoneNumber && !isValidEmail) 
+    {
+
+             toast.warning("Invalid Email Address entered.");
+      
+    } else if (!isValidPhoneNumber && !isValidEmail) {
+
+             toast.warning("Invalid Mobile Number/Email Address entered. ");
+    } else if ( isValidPhoneNumber && isValidEmail ) {
+       emailjs.sendForm('service_euagklb', 'template_18vqiwi', uform.current, 'fxc3WK0V8sajaoSq5')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+
+               AuthenticationAPI.register({ 
+            first_name, 
+            last_name, 
+            email,
+            password,
+            password_confirmation,
+            cellphone_number,
+            house_info,
+            zipcode,
+            agreement
+          }).then((response) => {
+            AuthenticationAPI.logout().then(() => {
+                window.location.replace("/");
+              });
+
+             toast.success(response.data.message);
+          }).catch(({ response }) => {
+            if (response?.data?.errors !== undefined) {
+              setErrors(response?.data?.errors)
+            }
+          })
+
+    }else {
+
+           toast.warning('System error: ');
+
+     }
+    
+       
+
+
   };
 
   useEffect(() => {
@@ -49,27 +115,28 @@ const  Signup = () => {
   
   return (
     <Wrapper >
-      <Form onSubmit={handleSubmit(onRegister)}>
+      <Form ref={uform} onSubmit={handleSubmit(onRegister)}>
         <h3>Sign Up</h3>
         <Form.Group className="mb-3">
-          <input type="text" className="form-control" placeholder="First Name" {...register("first_name", { required: true })} />
+          <input type="text" className="form-control" name= "f_name" placeholder="First Name" {...register("first_name", { required: true })} />
           {errors?.first_name !== undefined && <p className="text-danger">{errors.first_name[0]}</p>}
 
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <input type="text" className="form-control" placeholder="Last Name" {...register("last_name", { required: true })} />
+          <input type="text" className="form-control" name="l_name" placeholder="Last Name" {...register("last_name", { required: true })} />
           {errors?.last_name !== undefined && <p className="text-danger">{errors.last_name[0]}</p>}
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <input type="text" className="form-control" placeholder="Email" {...register("email", { required: true })} />
+          <input type="email" className="form-control" name = "to_add" placeholder="Email" {...register("email", { required: true })} />
           {errors?.email !== undefined && <p className="text-danger">{errors.email[0]}</p>}
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <input type="text" onInput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')" maxlength="15" className="form-control" defaultCountry="PH" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
+          <input type="tel" maxLength="15" className="form-control" placeholder="Mobile Number - 639XX-XXXX-XXX" {...register("cellphone_number", { required: true })} />
           {errors?.cellphone_number !== undefined && <p className="text-danger">{errors.cellphone_number[0]}</p>}
+
         </Form.Group>
 
         <Form.Group className="mb-3">
@@ -106,7 +173,11 @@ const  Signup = () => {
         <p className="forgot-password text-right">
           Already registered <Link to={"/login"}>Sign In</Link>
         </p>
+
+        <ToastContainer />
       </Form>
+
+       
     </Wrapper>
     
   );

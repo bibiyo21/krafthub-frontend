@@ -97,9 +97,6 @@ const MyJob = () => {
                 <input type="text" className="form-control" placeholder="Payment (0.00)" {...register("amount")} />
               </Form.Group>
               
-              <Form.Group className="mb-3">
-                <input type="file" className="form-control" placeholder="choose a file" {...register("file_path")} />
-              </Form.Group>
 
               <Button variant="primary" type="submit" disabled={loading}>
                 Save

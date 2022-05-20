@@ -23,6 +23,30 @@ class UsersService extends CommonService {
         throw error;
     });
   }; 
+  
+   updateUserValidity = (params) => {
+    return this.http
+      .post(
+        `/api/user/updatevalidity`, params
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+    });
+  }; 
+  
+   updateUserValidityCon = (params) => {
+    return this.http
+      .post(
+        `/api/user/updateValidConfirm`, params
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+    });
+  }; 
     
    getAllUsers = (params) => {
     return this.http
