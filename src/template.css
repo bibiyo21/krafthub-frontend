@@ -83,7 +83,30 @@ html[xmlns] .clearfix {
 }
 
 
+._4sze {
+    font-family: Calibre, Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida Grande, sans-serif;
+}
 
+._8on8 {
+    position: relative;
+}
+
+._8v9m ._4tdp {
+    font-size: 12px;
+}
+
+._4tdp {
+    color: rgba(0, 0, 0, .4);
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    padding: 20px 30px;
+    text-align: center;
+}
+
+._4sze ._6ajd ._6aje::after, ._4sze ._6ajl::after {
+    content: ' ';
+}
 ._2fux {
     list-style-type: none;
     margin: 0;
