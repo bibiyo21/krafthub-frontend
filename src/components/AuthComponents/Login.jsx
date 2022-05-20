@@ -6,6 +6,7 @@ import AuthenticationAPI from '../../api/services/Authentication/AuthenticationS
 import Wrapper from './Wrapper';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import tagLineImg from '../../images/TagLine.jpg';
 
 const  Login = () => {
   const { register, handleSubmit } = useForm();
@@ -29,6 +30,7 @@ const  Login = () => {
   return (
     <Wrapper >
       <Form onSubmit={handleSubmit(onSubmit)}>
+          <img class="_1-kj _93s6 img" src={tagLineImg} alt="TagLineKH" />
           <h3>Sign In</h3>
 
           {
