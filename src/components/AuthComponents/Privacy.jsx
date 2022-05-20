@@ -17,7 +17,7 @@ const  Privacy = () => {
            <p className="forgot-password text-right">
               <Link to={"/login"}>Go Back to Login page ... </Link>
           </p>
-          <iframe src={privPdf}>
+          <iframe src={privPdf} width={1000} height={500}>
           </iframe>      
 
           
