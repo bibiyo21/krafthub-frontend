@@ -6,8 +6,10 @@ const Wrapper = ({ children }) => {
   }
 
   return (
+    
+     <h2 className="text-center mb-3">KraftHub</h2>
     <div className="auth-wrapper">
-      <h2 className="text-center mb-3">KraftHub</h2>
+    
       <div className="auth-inner">
         {children}
       </div>
