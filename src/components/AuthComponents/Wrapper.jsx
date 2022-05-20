@@ -24,7 +24,6 @@ const Wrapper = ({ children }) => {
             </ul>
         </h2>
     <div className="auth-wrapper">
-              <img class="_1-kj _93s6 img" src={tagLineImg} alt="TagLineKH" />
               <div className="auth-inner">
                 {children}
               </div>
@@ -38,11 +37,11 @@ const Wrapper = ({ children }) => {
         </div>
 
       <footer aria-label="Footer">
-                    <span > © KraftHub&nbsp;2022. </span>
-                    <span > Krafthub is your one-stop booking hub for home improvement and maintenance services </span>
-                    <span>
+                    <span class="_8vbg"> © KraftHub&nbsp;2022. </span>
+                    <span class="_6aje"> Krafthub is your one-stop booking hub for home improvement and maintenance services </span>
+                    <span class="_6aje">
                        <div>
-                          <img class="_1-kh _93s6 img" alt="Krafthub" src={nameImg} width="161" alt="NameTagKH" />
+                          <img class="_6b6a img" alt="Krafthub" src={nameImg} width="161" alt="NameTagKH" />
                        </div>
                     </span>
   
