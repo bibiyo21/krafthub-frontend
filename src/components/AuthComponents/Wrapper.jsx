@@ -19,9 +19,7 @@ const Wrapper = ({ children }) => {
               </li>
             </ul>
         </h2>
-    </div>
-    
-        <div className="auth-wrapper">
+<div className="auth-wrapper">
 
               <div className="auth-inner">
                 {children}
@@ -34,6 +32,10 @@ const Wrapper = ({ children }) => {
               </div>
 
         </div>
+
+    </div>
+    
+        
   );
 };
 
