@@ -39,7 +39,7 @@ const Wrapper = ({ children }) => {
       <footer aria-label="Footer">
                     <span > © KraftHub&nbsp;2022. </span>
                     <span > Krafthub is your one-stop booking hub for home improvement and maintenance services </span>
-                    <span ">
+                    <span>
                        <div style="max-width: 150px; margin: 0 auto;">
                           <img class="_1-kh _93s6 img" alt="Krafthub" src={nameImg} width="161" alt="NameTagKH" />
                        </div>
