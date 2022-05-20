@@ -33,12 +33,7 @@ const Wrapper = ({ children }) => {
 
         </div>
 
-      <footer class="_4sze" role="contentinfo" aria-label="Footer">
-          <div class="_6ajd">
-            <div class="_8v9m" style="max-width:1500px;">
-              <div class="_8on8">
-                <div class="_4tdp">
-                  <div class="_8vbh">
+      <footer aria-label="Footer">
                     <span class="_8vbg"> © KraftHub&nbsp;2022. </span>
                     <span class="_6aje"> Krafthub is your one-stop booking hub for home improvement and maintenance services </span>
                     <span class="_6aje">
@@ -46,12 +41,7 @@ const Wrapper = ({ children }) => {
                           <img class="_6b6a img" alt="Krafthub" src="../../images/NameTag.jpg" width="161" alt="NameTagKH" />
                        </div>
                     </span>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-
+  
     </footer>
 
 
