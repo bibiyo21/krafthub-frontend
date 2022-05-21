@@ -115,7 +115,6 @@ const MyJob = () => {
                 <tr>
                   <th>Job Type</th>
                   <th>Job</th>
-                  <th>Availability</th>
                   <th>Payment</th>
                 </tr>
               </thead>
@@ -127,7 +126,6 @@ const MyJob = () => {
                         <tr>
                           <td>{job.profession}</td>
                           <td>{job.specialty}</td>
-                          <td>{job.time_in} to {job.time_out}</td>
                           <td>{job.amount}</td>
                           {/* <td><Button variant="danger"><i className="fas fa-trash"></i></Button></td> */}
                         </tr>
