@@ -20,6 +20,7 @@ const ScheduledBooking = () => {
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
+  const [additionalInfo, setadditionalInfo] = useState(null);
   
 
   const handleClose = () => {
@@ -28,10 +29,10 @@ const ScheduledBooking = () => {
     setBookingId(null);
   };
 
-  const handleShow = ({bookingId, status}) => {
-    setShow(true)
-    setBookingState(status)
-    
+  const handleShow = ({bookingId, status, additional_info}) => {
+    setShow(true);
+    setBookingState(status);
+    setadditionalInfo(additional_info);
     console.log(bookingState);
     setBookingId(bookingId);
   };
@@ -46,10 +47,11 @@ const ScheduledBooking = () => {
     })
   }
 
-  const onChangeStatus = () => {
+  const onChangeStatus = ({reasonCancel}) => {
     BookingsServiceAPI.updateBookingStatus({
       id: bookingId,
       status: bookingState,
+      additional_info: additionalInfo + "|" + reasonCancel
     }).then((data) => {
       toast.success(data.message);
       handleClose();
@@ -89,7 +91,7 @@ const ScheduledBooking = () => {
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
-                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
+                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled", additional_info: additional_info})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
                         </div>
                       </td>
                     </tr>)
@@ -115,6 +117,9 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
         </Modal.Header>
         <Modal.Body>
           Are you sure you want to set this booking to <b>{status}</b>
+             <Form.Group className="mb-3">
+                <input type="text" className="form-control" placeholder="Reason" {...register("reasonCancel")} />
+              </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
