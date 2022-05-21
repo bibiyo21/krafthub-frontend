@@ -22,6 +22,8 @@ const MyJob = () => {
 
   const onSubmit = ({ jobType: job_id, time_in, time_out, amount }) => {
     setLoading(true);
+    time_in = "8:30am";
+    time_out = "6:00pm";
     JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount})
       .then((response) => {
         setSavingMessage({responseType: "success",  message: response.message})
@@ -86,11 +88,11 @@ const MyJob = () => {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Time In - HH:MM AM/PM" {...register("time_in")} />
+                <input type="text" className="form-control" hidden placeholder="Time In - HH:MM AM/PM" {...register("time_in")} />
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Time out - HH:MM AM/PM" {...register("time_out")} />
+                <input type="text" className="form-control" hidden placeholder="Time out - HH:MM AM/PM" {...register("time_out")} />
               </Form.Group>
               
                <Form.Group className="mb-3">
