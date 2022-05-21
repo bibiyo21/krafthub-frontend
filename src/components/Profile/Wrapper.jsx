@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Row, Col, Nav, Card.,  Col, Button, Modal, Form  } from "react-bootstrap";
+import { Row, Col, Nav, Card,  Col, Button, Modal, Form  } from "react-bootstrap";
 import Navigations from "../Navigations";
 
 
