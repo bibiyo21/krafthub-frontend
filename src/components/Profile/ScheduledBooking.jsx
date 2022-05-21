@@ -17,7 +17,6 @@ const ScheduledBooking = () => {
     in_progress: {color: 'text-info', msg: "In Progress"},
   }
   
-  const { register, handleSubmit } = useForm();
   const [show, setShow] = useState(false);
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
@@ -49,11 +48,10 @@ const ScheduledBooking = () => {
     })
   }
 
-  const onChangeStatus = ({reasonCancel}) => {
+  const onChangeStatus = () => {
     BookingsServiceAPI.updateBookingStatus({
       id: bookingId,
-      status: bookingState,
-      additional_info: additionalInfo + "|" + reasonCancel
+      status: bookingState
     }).then((data) => {
       toast.success(data.message);
       handleClose();
