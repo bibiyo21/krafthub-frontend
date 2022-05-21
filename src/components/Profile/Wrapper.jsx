@@ -3,6 +3,24 @@ import { Row, Col, Nav, Card } from "react-bootstrap";
 import Navigations from "../Navigations";
 
 const Wrapper = ({ children }) => {
+  
+  const [showSP, setShowSP] = useState(false);
+   const [showClient, setShowClient] = useState(true);
+  const [buttonName, setbuttonName] = "as Client";
+  
+   const handleSP = () => {
+        setShowSP(true);
+     setShowClient(false);
+        setbuttonName("
+
+    };
+  
+    const handleC = () => {
+        setShowSP(false);
+     setShowClient(true);
+
+    };
+  
   return (
     <>
       <Navigations />
@@ -12,10 +30,14 @@ const Wrapper = ({ children }) => {
           <Col md={3}>
             <Card>
               <Nav className="flex-column">
+                <div>
+                        <Button onClick={() => handleC() )} className="btn block btn-warning">Client</Button> | 
+                        <Button onClick={() => handleSP() )} className="btn block btn-primary">Service Provider</Button>
+                </div>
                 <Nav.Link href={`/profile`} className="text-dark">Profile</Nav.Link>
                 <Nav.Link href={`/profile/job`} className="text-dark">Jobs</Nav.Link>
-                <Nav.Link href="/bookings/scheduled" className="text-dark">Scheduled Booking</Nav.Link>
-                <Nav.Link href="/bookings/jobs" className="text-dark">Scheduled Jobs</Nav.Link>
+                <Nav.Link href="/bookings/scheduled" className="text-dark" hidden = {showClient}>Scheduled Booking</Nav.Link>
+                <Nav.Link href="/bookings/jobs" className="text-dark" hidden = {showSP} >Scheduled Jobs</Nav.Link>
               </Nav>
             </Card>
           
