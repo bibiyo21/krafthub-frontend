@@ -11,8 +11,6 @@ const Wrapper = ({ children }) => {
    const handleSP = () => {
         setShowSP(true);
      setShowClient(false);
-        setbuttonName("
-
     };
   
     const handleC = () => {
