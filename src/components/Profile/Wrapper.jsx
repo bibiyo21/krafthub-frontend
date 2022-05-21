@@ -6,7 +6,7 @@ import Navigations from "../Navigations";
 const Wrapper = ({ children }) => {
   
   const [showSP, setShowSP] = useState(false);
-   const [showClient, setShowClient] = useState(true);
+   const [showClient, setShowClient] = useState(false);
   const [buttonName, setbuttonName] = "as Client";
   
    const handleSP = () => {
@@ -35,8 +35,8 @@ const Wrapper = ({ children }) => {
                 </div>
                 <Nav.Link href={`/profile`} className="text-dark">Profile</Nav.Link>
                 <Nav.Link href={`/profile/job`} className="text-dark">Jobs</Nav.Link>
-                <Nav.Link href="/bookings/scheduled" className="text-dark" hidden = {showClient}>Scheduled Booking</Nav.Link>
-                <Nav.Link href="/bookings/jobs" className="text-dark" hidden = {showSP} >Scheduled Jobs</Nav.Link>
+                <Nav.Link href="/bookings/scheduled" className="text-dark" hidden = {showSP}>Scheduled Booking</Nav.Link>
+                <Nav.Link href="/bookings/jobs" className="text-dark" hidden = {showClient} >Scheduled Jobs</Nav.Link>
               </Nav>
             </Card>
           
