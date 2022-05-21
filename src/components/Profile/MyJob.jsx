@@ -106,6 +106,10 @@ const MyJob = () => {
                <Form.Group className="mb-3">
                 <input type="text" className="form-control" placeholder="Payment (0.00) Per Day" {...register("amountPerDay")} />
               </Form.Group>
+              
+              <Form.Group className="mb-3">
+                <input type="file" className="form-control" placeholder="choose a file" {...register("file_path")} />
+              </Form.Group>
 
               <Button variant="primary" type="submit" disabled={loading}>
                 Save
