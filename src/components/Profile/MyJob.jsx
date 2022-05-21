@@ -20,11 +20,11 @@ const MyJob = () => {
     })
   }
 
-  const onSubmit = ({ jobType: job_id, time_in, time_out, amount }) => {
+  const onSubmit = ({ jobType: job_id, time_in, time_out, amount, amountPerHour , amountPerDay}) => {
     setLoading(true);
     time_in = "8:30am";
     time_out = "6:00pm";
-    JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount})
+    JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount, amountPerHour, amountPerDay})
       .then((response) => {
         setSavingMessage({responseType: "success",  message: response.message})
         AvailabilitiesServiceAPI.getMyJobs().then(({ results }) => {
@@ -96,9 +96,16 @@ const MyJob = () => {
               </Form.Group>
               
                <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Payment (0.00)" {...register("amount")} />
+                <input type="text" className="form-control" placeholder="Payment (0.00) Per Contract" {...register("amount")} />
               </Form.Group>
               
+               <Form.Group className="mb-3">
+                <input type="text" className="form-control" placeholder="Payment (0.00) Per Hour" {...register("amountPerHour")} />
+              </Form.Group>
+              
+               <Form.Group className="mb-3">
+                <input type="text" className="form-control" placeholder="Payment (0.00) Per Day" {...register("amountPerDay")} />
+              </Form.Group>
 
               <Button variant="primary" type="submit" disabled={loading}>
                 Save
@@ -115,7 +122,9 @@ const MyJob = () => {
                 <tr>
                   <th>Job Type</th>
                   <th>Job</th>
-                  <th>Payment</th>
+                  <th>Payment Per Contract</th>
+                  <th>Payment Per Hour</th>
+                  <th>Payment Per Day</th>
                 </tr>
               </thead>
               <tbody>
@@ -127,6 +136,8 @@ const MyJob = () => {
                           <td>{job.profession}</td>
                           <td>{job.specialty}</td>
                           <td>{job.amount}</td>
+                          <td>{job.amountPerHour}</td>
+                          <td>{job.amountPerDay}</td>
                           {/* <td><Button variant="danger"><i className="fas fa-trash"></i></Button></td> */}
                         </tr>
                       )
