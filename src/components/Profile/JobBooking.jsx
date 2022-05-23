@@ -44,13 +44,34 @@ const [loading, setLoading] = useState(false);
     }
     
   };
+  
+  const showFilter = ({status}) => {
+    
+    
+    const table = document.getElementById("bookings");
+    const tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          const txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase() === status.toUpperCase()) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+     }
+    
+    
+    
+  };
 
   const loadScheduledBooking = () => {
     BookingsServiceAPI.getJobs().then(({ results }) => {
       setScheduledBookings(results);
       console.log(results);
     })
-  }
+  };
 
   const onChangeStatus = () => {
     
@@ -83,7 +104,14 @@ const [loading, setLoading] = useState(false);
         <Card className="mb-4">
           <Card.Body>
             <Card.Title>Job Bookings</Card.Title>
-            <table className="table table-responsive table-condensed table-striped table-hover">
+            <div>
+              <Button onClick={() => showFilter({ status: "Pending for Acceptance"})} variant="primary" >Pending Status<i className="fas fa-spinner"></i></Button>
+              <Button  onClick={() => showFilter({ status: "Done"})} variant="primary" >Done Status<i className="fas fa-spinner"></i></Button>
+              <Button onClick={() => showFilter({ status: "Paid"})} variant="primary" >Paid Status<i className="fas fa-spinner"></i></Button>
+              <Button onClick={() => showFilter({ status: "Cancelled"})} variant="primary" >Cancelled Status<i className="fas fa-spinner"></i></Button>
+              <Button onClick={() => showFilter({ status: "Accepted"})} variant="primary" >Accepted Status<i className="fas fa-spinner"></i></Button>  
+             </div>
+            <table id = "bookings" className="table table-responsive table-condensed table-striped table-hover">
               <thead>
                 <tr>
                   <th>Requestor</th>
