@@ -15,6 +15,8 @@ const AvailabilityList = ({ list = null }) => {
   const [checked, setChecked] = useState({ cash: true, gcash: false });
   const [radioValue, setRadioValue] = useState(null);
   const [amountS, setAmount] = useState(null);
+  const [amountD, setAmountD] = useState(null);
+  const [amountH, setAmountH] = useState(null);
   
   const [showModal, setShowModal] = useState(false);
   const [minDate, setMinDate] = useState(null);
@@ -49,6 +51,14 @@ const AvailabilityList = ({ list = null }) => {
  
     
   };
+  
+  
+   const changeSelect = (e) => {
+    console.log([e.target.value].toString());
+     
+    
+  };
+  
   
     
   const handleOnClose = () => {
@@ -88,11 +98,13 @@ const AvailabilityList = ({ list = null }) => {
 
     };
   
-    const getProfession = ({ selectedProf }) => {
+    const getProfession = ({ selectedProf, selectedPD, selectedPH }) => {
       
        
 
                    setAmount(selectedProf);
+                   setAmountD(selectedPD);
+                   setAmountH(selectedPH);
  
     };
 
@@ -111,7 +123,7 @@ const AvailabilityList = ({ list = null }) => {
           <div class="row">
           {
             list.map((availability, index) => {
-              const { first_name, last_name, profession, specialty, time_in, time_out, id , status, amount} = availability
+              const { first_name, last_name, profession, specialty, time_in, time_out, id , status, amount, amount_per_day, amount_per_hour, ratings} = availability
           
               return (
                 <Col md="3" className="mb-3" key={`availability_${index}`}>
@@ -122,9 +134,12 @@ const AvailabilityList = ({ list = null }) => {
                     <div className="down-content">
                       <h3>{`${first_name} ${last_name}`}</h3>
                       <p><b>{profession}</b> : {specialty} </p>
-                      <p><b>Payment:</b> {amount} </p>
+                      <p><b>Payment Per Contract:</b> {amount} </p>
+                      <p><b>Payment Per Day:</b> {amount_per_day} </p>
+                      <p><b>Payment Per hour:</b> {amount_per_hour} </p>
+                      <p><b>User Ratings:</b> {ratings} </p>
                       <div class="d-grid gap-2">
-                        <Button onClick={() => handleShow({selectedId: id, timeout: time_out, timein: time_in}, getProfession({selectedProf: amount}) )} className="btn block btn-success">Book Now</Button>
+                        <Button onClick={() => handleShow({selectedId: id, timeout: time_out, timein: time_in}, getProfession({selectedProf: amount, selectedPD: amount_per_day, selectedPH: amount_per_hour}) )} className="btn block btn-success">Book Now</Button>
                       </div>
                     </div>
                   </div>
@@ -135,7 +150,7 @@ const AvailabilityList = ({ list = null }) => {
           </div>
         </div>
       </section>
-      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} status={status} minTime={minTime} maxTime={maxTime}/>
+      <BookingModal show={show} handleClose={handleClose} makerId={makerId} changeRadio={changeRadio} checked={checked} amountS={amountS} amountD={amountD} amountH={amountH} showModal={showModal} handleOnClose={handleOnClose} image={image} minDate={minDate} radioValue={radioValue} status={status} minTime={minTime} maxTime={maxTime}/>
     </>
     
   );
@@ -144,7 +159,7 @@ const AvailabilityList = ({ list = null }) => {
 
 
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, showModal, handleOnClose, image, minDate, radioValue, status, minTime, maxTime}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, amountD, amountH showModal, handleOnClose, image, minDate, radioValue, status, minTime, maxTime}) => {
   const form = useRef(null);
   const onBookMaker = () => {
       
@@ -189,7 +204,15 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
               <textarea className="form-control" name="additional_info"></textarea>
             </Form.Group>
             
-            <label> Amount </label> <p> {amountS} </p>
+            <label> Amount </label> 
+            
+            <select id="comboA" onChange={changeSelect}>
+                <option value="" disabled>Select combo</option>
+                <option value={amountS}>{amountS}</option>
+                <option value={amountD}>{amountD}</option>
+                <option value={amountH}>{amountH}</option>
+              </select>
+            
                   
             <label>Mode of Payment</label>
             <Form.Group className="mb-3">
