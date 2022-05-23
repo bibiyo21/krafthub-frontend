@@ -49,6 +49,19 @@ class BookingsService extends CommonService {
     });
   }
 
+  
+   updateBookingReason = (params) => {
+    return this.http
+      .post(
+        `/api/bookings/updateReason`, params
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+    });
+  }
+  
   updateBookingStatus = (params) => {
     return this.http
       .post(
