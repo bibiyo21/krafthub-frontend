@@ -23,7 +23,7 @@ const JobBooking = () => {
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   const [statusCancel , setStatusCancel] = useState(true);
-  const [statusDone , setStatusDone] = useState(true);
+
 const [loading, setLoading] = useState(false);
   
   const handleClose = () => {
@@ -100,11 +100,7 @@ const [loading, setLoading] = useState(false);
    
    };
   
-  const onSubmitDone = ({ rate }) => { 
-    setLoading(true);
-     console.log(rate);
-   
-   };
+
   
   useEffect(() => {
     loadScheduledBooking()
@@ -162,12 +158,12 @@ const [loading, setLoading] = useState(false);
           </Card.Body>
         </Card>
       </Wrapper>
-      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} statusCancel={statusCancel} handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} loading={loading} onSubmitDone={onSubmitDone} statusDone={statusDone} />
+      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} statusCancel={statusCancel} handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} loading={loading} />
     </>
   );
 };
 
-const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel, handleSubmit, register, onSubmit, loading, onSubmitDone, statusDone}) => {
+const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel, handleSubmit, register, onSubmit, loading}) => {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
@@ -186,14 +182,6 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel,
                         </Button>
                   </Form>
 
-                  <Form onSubmit={handleSubmit(onSubmitDone)}>
-                       <Form.Group className="mb-3">
-                          <input type="text" className="form-control" hidden ={statusDone} placeholder="Rate the Service" {...register("rate")}/>
-                        </Form.Group>
-                        <Button variant="primary" hidden ={statusDone} type="submit" disabled={loading}>
-                          Post a Rating
-                        </Button>
-                  </Form>
 
         </Modal.Body>
         <Modal.Footer>
