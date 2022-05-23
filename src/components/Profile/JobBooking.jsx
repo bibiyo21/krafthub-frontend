@@ -128,7 +128,7 @@ const [loading, setLoading] = useState(false);
   );
 };
 
-const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel handleSubmit, register, onSubmit, loading}) => {
+const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel, handleSubmit, register, onSubmit, loading}) => {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
