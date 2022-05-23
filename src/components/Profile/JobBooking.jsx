@@ -23,6 +23,8 @@ const JobBooking = () => {
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   const [statusCancel , setStatusCancel] = useState(true);
+  const [table] = useState(null);
+  const [tr] = useState(null);
 
 const [loading, setLoading] = useState(false);
   
@@ -50,10 +52,10 @@ const [loading, setLoading] = useState(false);
   const showFilter = ({status}) => {
     
     
-    const table = document.getElementById("bookings");
-    const tr = table.getElementsByTagName("tr");
-      for (const i = 0; i < tr.length; i++) {
-        const td = tr[i].getElementsByTagName("td")[1];
+     var  table = document.getElementById("bookings");
+     var  tr = table.getElementsByTagName("tr");
+      for (var  i = 0; i < tr.length; i++) {
+        var td = tr[i].getElementsByTagName("td")[1];
         if (td) {
           const txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase() === status.toUpperCase()) {
@@ -108,11 +110,11 @@ const [loading, setLoading] = useState(false);
           <Card.Body>
             <Card.Title>Job Bookings</Card.Title>
             <div>
-              <Button onClick={() => showFilter({ status: "Pending for Acceptance"})} variant="primary" >Pending Status<i className="fas fa-spinner"></i></Button>
-              <Button  onClick={() => showFilter({ status: "Done"})} variant="primary" >Done Status<i className="fas fa-spinner"></i></Button>
-              <Button onClick={() => showFilter({ status: "Paid"})} variant="primary" >Paid Status<i className="fas fa-spinner"></i></Button>
-              <Button onClick={() => showFilter({ status: "Cancelled"})} variant="primary" >Cancelled Status<i className="fas fa-spinner"></i></Button>
-              <Button onClick={() => showFilter({ status: "Accepted"})} variant="primary" >Accepted Status<i className="fas fa-spinner"></i></Button>  
+              <Button onClick={() => showFilter({ status: "Pending for Acceptance"})} variant="primary" >Pending Status</Button>
+              <Button  onClick={() => showFilter({ status: "Done"})} variant="primary" >Done Status</Button>
+              <Button onClick={() => showFilter({ status: "Paid"})} variant="primary" >Paid Status</Button>
+              <Button onClick={() => showFilter({ status: "Cancelled"})} variant="primary" >Cancelled Status</i></Button>
+              <Button onClick={() => showFilter({ status: "Accepted"})} variant="primary" >Accepted Status</i></Button>  
              </div>
             <table id = "bookings" className="table table-responsive table-condensed table-striped table-hover">
               <thead>
