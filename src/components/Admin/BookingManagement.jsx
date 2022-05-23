@@ -61,7 +61,7 @@ const BookingManagement = () => {
     const title = "Booking Summary Report";
     const headers = [["Booking ID", "First Name", "Last Name", "Status", "Schedule" , "Amount", "Other Details", "Reason for Cancellation"]];
 
-    const data = scheduledBookings.map(elt=> [elt.bookingid, elt.first_name, elt.last_name,elt.status, elt.eta, elt.amount, elt.additional_info, elt.cancellation_reason]);
+    const data = scheduledBookings.map(elt=> [elt.bookingid, elt.first_name, elt.last_name,elt.status, elt.eta, elt.amount, elt.additional_info, elt.reason]);
 
     let content = {
       startY: 50,
@@ -117,7 +117,7 @@ const BookingManagement = () => {
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    bookingid, first_name, last_name, status, eta, additional_info, amount, cancellation_reason
+                    bookingid, first_name, last_name, status, eta, additional_info, amount, reason
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -125,7 +125,7 @@ const BookingManagement = () => {
                       <td>{dayjs(eta).format('MMMM DD, YYYY HH:mm')}</td>
                       <td>{additional_info}</td>
                        <td>{amount}</td>
-                        <td>{cancellation_reason}</td>
+                        <td>{reason}</td>
                       <td>
                         <div className="btn-group">
                             <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "pending"})} variant="Primary" >Pending<i className="fas fa-check"></i></Button>
