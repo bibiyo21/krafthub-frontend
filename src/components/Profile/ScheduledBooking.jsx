@@ -217,7 +217,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit
 
 
           </Form>
-           <br></br>
+           <br></br> <br></br> <br></br>
             <Form hidden ={statusDone} onSubmit={handleSubmit(onSubmitDone)}>
                        <Form.Group className="mb-3">
                          <div className="wrapper">
