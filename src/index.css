@@ -19,7 +19,7 @@ h1,h2,h3,h4,h5,h6,label,span {
 
 
 .wrapper {
-	position: absolute;
+	position: static;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%) rotateY(180deg);
@@ -31,20 +31,20 @@ h1,h2,h3,h4,h5,h6,label,span {
 .wrapper label {
 	display: block;
 	cursor: pointer;
-	width: 50px;
+	width: 20px;
 }
 .wrapper label:before {
 	content: '★';
 	position: relative;
 	display: block;
-	font-size: 50px;
+	font-size: 20px;
 	color: black;
 }
 .wrapper label:after {
 	content: '★';
 	position: absolute;
 	display: block;
-	font-size: 50px;
+	font-size: 20px;
 	color: deeppink;
 	top: 0;
 	opacity: 0;
