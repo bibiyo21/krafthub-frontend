@@ -207,7 +207,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit
         <Modal.Body>
           Are you sure you want to set this booking to <b>{status}</b> ?
 
-          <Form onSubmit={handleSubmit(onSubmit)}>
+          <Form hidden ={statusCancel} onSubmit={handleSubmit(onSubmit)}>
              <Form.Group className="mb-3">
                 <input type="text" hidden ={statusCancel} className="form-control" placeholder="Reason" {...register("reason")}/>
               </Form.Group>
@@ -218,7 +218,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit
 
           </Form>
            <br></br>
-            <Form onSubmit={handleSubmit(onSubmitDone)}>
+            <Form hidden ={statusDone} onSubmit={handleSubmit(onSubmitDone)}>
                        <Form.Group className="mb-3">
                          <div className="wrapper">
                                       <div className="wrapper">
