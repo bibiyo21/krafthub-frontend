@@ -31,20 +31,20 @@ h1,h2,h3,h4,h5,h6,label,span {
 .wrapper label {
 	display: block;
 	cursor: pointer;
-	width: 150px;
+	width: 50px;
 }
 .wrapper label:before {
 	content: '★';
 	position: relative;
 	display: block;
-	font-size: 150px;
+	font-size: 50px;
 	color: black;
 }
 .wrapper label:after {
 	content: '★';
 	position: absolute;
 	display: block;
-	font-size: 150px;
+	font-size: 50px;
 	color: deeppink;
 	top: 0;
 	opacity: 0;
