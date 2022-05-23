@@ -200,7 +200,20 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit
             
             <Form onSubmit={handleSubmit(onSubmitDone)}>
                        <Form.Group className="mb-3">
-                          <input type="text" className="form-control" hidden ={statusDone} placeholder="Rate the Service" {...register("rate")}/>
+                         <div className="wrapper">
+                                      <div className="wrapper">
+                                   <input type="radio" name="rate" id="rate1" value="1" {...register("reason")}>
+                                   <label for="rate1"></label>
+                                   <input type="radio" name="rate" id="rate2" value="2" {...register("reason")}>
+                                   <label for="rate2"></label>
+                                   <input type="radio" name="rate" id="rate3" value="3" {...register("reason")}>
+                                   <label for="rate3"></label>
+                                   <input type="radio" name="rate" id="rate4" value="4" {...register("reason")}>
+                                   <label for="rate4"></label>
+                                   <input type="radio" name="rate" id="rate5" value="5" {...register("reason")}>
+                                   <label for="rate5"></label>
+                                  </div>
+                                    </div>
                         </Form.Group>
                         <Button variant="primary" hidden ={statusDone} type="submit" disabled={loading}>
                           Post a Rating
