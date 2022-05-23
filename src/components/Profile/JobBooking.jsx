@@ -20,6 +20,7 @@ const JobBooking = () => {
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
+  const [statusCancel , setStatusCancel] = useState(true);
 
   const handleClose = () => {
     setShow(false)
@@ -32,6 +33,13 @@ const JobBooking = () => {
     console.log(bookingId +'--'+ status);
     setBookingState(status);
     setBookingId(bookingId);
+    
+    if(status === "cancelled") {
+      setStatusCancel(false); 
+    } else {
+      setStatusCancel(true);
+    }
+    
   };
 
   const loadScheduledBooking = () => {
@@ -104,12 +112,12 @@ const JobBooking = () => {
           </Card.Body>
         </Card>
       </Wrapper>
-      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} />
+      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} statusCancel={statusCancel} />
     </>
   );
 };
 
-const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
+const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel }) => {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
@@ -117,7 +125,11 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
           <Modal.Title>Job Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to set this job to <b>{status}</b>
+          Are you sure you want to set this job to <b>{status}</b> ?
+            
+              <Form.Group className="mb-3">
+                <input type="text" hidden ={statusCancel} className="form-control" placeholder="Reason" />
+              </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
