@@ -24,6 +24,18 @@ class UsersService extends CommonService {
     });
   }; 
   
+   updateUserRatings = (params) => {
+    return this.http
+      .post(
+        `/api/user/updateratings`, params
+      )
+      .then(({ data }) => data)
+      .catch((error) => {
+        console.log(error);
+        throw error;
+    });
+  }; 
+  
    updateUserValidity = (params) => {
     return this.http
       .post(
