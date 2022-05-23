@@ -108,7 +108,7 @@ const MyJob = () => {
               </Form.Group>
               
               <Form.Group className="mb-3">
-                <input type="file" className="form-control" placeholder="choose a file" {...register("file_path")} />
+                <input type="file" className="form-control" placeholder="choose a file for your Portfolio" {...register("file_path")} />
               </Form.Group>
 
               <Button variant="primary" type="submit" disabled={loading}>
