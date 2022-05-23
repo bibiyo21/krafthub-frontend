@@ -123,13 +123,14 @@ const Admin = () => {
                   <th>Email</th>
                   <th>Mobile No</th>
                   <th>Validity</th>
+                  <th>User Ratings</th>   
                   <th>Action</th>   
                 </tr>
               </thead>
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    id, first_name, last_name, access_level, email, cellphone_number, created_at, street_name, barangay, city, isValidated
+                    id, first_name, last_name, access_level, email, cellphone_number, created_at, street_name, barangay, city, isValidated, ratings
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -139,6 +140,7 @@ const Admin = () => {
                       <td>{email}</td>
                       <td>{cellphone_number}</td>
                       <td><span className={VALID_ATTR[isValidated].color}>{VALID_ATTR[isValidated].msg}</span></td>
+                      <td>{ratings}</td>
                       <td>
                         <div className="btn-group">
                             <Button  onClick={() => handleShow({bookingId: id, status: "0"})} variant="danger" >Inactive<i className="fas fa-times"></i></Button>
