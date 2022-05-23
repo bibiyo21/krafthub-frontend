@@ -99,9 +99,7 @@ const [loading, setLoading] = useState(false);
       id: bookingId,
       reason: reason
     }).then((data) => {
-      toast.success(data.message);
-      handleClose();
-      loadScheduledBooking()
+      console.log(data.message);
     })
      
        setLoading(false);
