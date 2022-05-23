@@ -10,11 +10,11 @@ import { useForm } from "react-hook-form";
 
 const ScheduledBooking = () => {
   const STATUS_ATTR = {
-    pending: {color: 'text-primary', msg: "Pending"},
+    pending: {color: 'text-primary', msg: "Pending for Acceptance"},
     done: {color: 'text-success', msg: "Done"},
     paid: {color: 'text-warning', msg: "Paid"},
     cancelled: {color: 'text-danger', msg: "Cancelled"},
-    in_progress: {color: 'text-info', msg: "In Progress"},
+    in_progress: {color: 'text-info', msg: "Accepted"},
   }
   
   
