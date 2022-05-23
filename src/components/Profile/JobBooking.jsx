@@ -10,11 +10,11 @@ import { useForm } from "react-hook-form";
 
 const JobBooking = () => {
   const STATUS_ATTR = {
-    pending: {color: 'text-warning', msg: "Pending"},
+    pending: {color: 'text-warning', msg: "Pending for Acceptance"},
     done: {color: 'text-success', msg: "Done"},
     paid: {color: 'text-success', msg: "Paid"},
     cancelled: {color: 'text-danger', msg: "Cancelled"},
-    in_progress: {color: 'text-info', msg: "In Progress"},
+    in_progress: {color: 'text-info', msg: "Accepted"},
   }
   
   const { register, handleSubmit } = useForm();
@@ -107,7 +107,7 @@ const [loading, setLoading] = useState(false);
                       <td>{amount}</td>
                       <td>
                         <div className="btn-group">
-                          <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "in_progress"})} variant="info" >In Progress<i className="fas fa-spinner"></i></Button>
+                          <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "in_progress"})} variant="info" >Accept<i className="fas fa-spinner"></i></Button>
                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" >Done<i className="fas fa-check"></i></Button>
                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
                            <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "paid"})} variant="warning" >Paid<i className="fas fa-check"></i></Button>
