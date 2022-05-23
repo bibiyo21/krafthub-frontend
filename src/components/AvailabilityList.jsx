@@ -159,7 +159,7 @@ const AvailabilityList = ({ list = null }) => {
 
 
 
-const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, amountD, amountH showModal, handleOnClose, image, minDate, radioValue, status, minTime, maxTime}) => {
+const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amountS, amountD, amountH, showModal, handleOnClose, image, minDate, radioValue, status, minTime, maxTime}) => {
   const form = useRef(null);
   const onBookMaker = () => {
       
@@ -186,7 +186,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
   
   return ReactDOM.createPortal(
     <>
-      <Modal minTime={minTime} maxTime={maxTime} status={status} radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} showModal={showModal} handleOnClose={handleOnClose}>
+      <Modal minTime={minTime} maxTime={maxTime} status={status} radioValue={radioValue} image={image} minDate={minDate} checked={checked} show={show} onHide={handleClose} changeRadio={changeRadio} amountS={amountS} amountD={amountD} amountH={amountH} showModal={showModal} handleOnClose={handleOnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Schedule Booking with Maker Worker</Modal.Title>
         </Modal.Header>
@@ -207,10 +207,10 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, checked , amoun
             <label> Amount </label> 
             
             <select id="comboA" onChange={changeSelect}>
-                <option value="" disabled>Select combo</option>
-                <option value={amountS}>{amountS}</option>
-                <option value={amountD}>{amountD}</option>
-                <option value={amountH}>{amountH}</option>
+                <option value="" disabled>Select Amount per Rate</option>
+                <option value={amountS}>Per Contract - {amountS}</option>
+                <option value={amountD}>Per Day - {amountD}</option>
+                <option value={amountH}>Per Hour - {amountH}</option>
               </select>
             
                   
