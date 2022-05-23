@@ -217,10 +217,9 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit
 
 
           </Form>
-            
+           <br></br>
             <Form onSubmit={handleSubmit(onSubmitDone)}>
                        <Form.Group className="mb-3">
-                            <br> </br>
                          <div className="wrapper">
                                       <div className="wrapper">
                                    <input type="radio" name="rate" id="rate1" value="1" {...register("rate")} />
@@ -236,6 +235,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit
                                   </div>
                             </div>
                         </Form.Group>
+                         <br></br>
                         <Button variant="primary" hidden ={statusDone} type="submit" disabled={loading}>
                           Post a Rating
                         </Button>
