@@ -95,6 +95,18 @@ const [loading, setLoading] = useState(false);
     setLoading(true);
      console.log(reason);
    
+     
+       BookingsServiceAPI.updateBookingReason({
+      id: bookingId,
+      reason: reason
+    }).then((data) => {
+      toast.success(data.message);
+      handleClose();
+      loadScheduledBooking()
+    })
+     
+     
+     
    };
   
 
