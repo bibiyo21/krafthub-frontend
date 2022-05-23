@@ -133,8 +133,8 @@ const ScheduledBooking = () => {
               <Button onClick={() => showFilter({ status: "Pending for Acceptance"})} variant="primary" >Pending Status</Button>
               <Button  onClick={() => showFilter({ status: "Done"})} variant="primary" >Done Status</Button>
               <Button onClick={() => showFilter({ status: "Paid"})} variant="primary" >Paid Status</Button>
-              <Button onClick={() => showFilter({ status: "Cancelled"})} variant="primary" >Cancelled Status</i></Button>
-              <Button onClick={() => showFilter({ status: "Accepted"})} variant="primary" >Accepted Status</i></Button>  
+              <Button onClick={() => showFilter({ status: "Cancelled"})} variant="primary" >Cancelled Status</Button>
+              <Button onClick={() => showFilter({ status: "Accepted"})} variant="primary" >Accepted Status</Button>  
              </div>
             <table  id = "bookings" className="table table-responsive table-condensed table-striped table-hover">
               <thead>
