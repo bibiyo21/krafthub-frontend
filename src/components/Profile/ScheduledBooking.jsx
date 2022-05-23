@@ -25,12 +25,16 @@ const ScheduledBooking = () => {
   const [bookingId, setBookingId] = useState(null);
   const [additionalInfo, setadditionalInfo] = useState(null);
     const [loading, setLoading] = useState(false);
-  
+    const [statusDone , setStatusDone] = useState(true);
+  const [statusCancel , setStatusCancel] = useState(true);
 
   const handleClose = () => {
     setShow(false)
     setBookingState(null)
     setBookingId(null);
+    
+   
+    
   };
 
   const handleShow = ({bookingId, status, additional_info}) => {
@@ -39,6 +43,22 @@ const ScheduledBooking = () => {
     setadditionalInfo(additional_info);
     console.log(bookingState);
     setBookingId(bookingId);
+    
+    
+     
+      if(status === "cancelled") {
+      setStatusCancel(false); 
+    } else {
+      setStatusCancel(true);
+    }
+    
+     if(status === "done") {
+      setStatusDone(false); 
+    } else {
+      setStatusDone(true);
+    }
+    
+    
   };
 
   const loadScheduledBooking = () => {
@@ -71,6 +91,11 @@ const ScheduledBooking = () => {
    
    };
   
+  const onSubmitDone = ({ rate }) => { 
+    setLoading(true);
+     console.log(rate);
+   
+   };
 
   useEffect(() => {
     loadScheduledBooking()
@@ -104,8 +129,10 @@ const ScheduledBooking = () => {
                       <td>{additional_info}</td>
                       <td>
                         <div className="btn-group">
+                           
                            <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled", additional_info: additional_info})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
-                        </div>
+                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" >Done<i className="fas fa-check"></i></Button>
+                             </div>
                       </td>
                     </tr>)
                   })
@@ -116,12 +143,12 @@ const ScheduledBooking = () => {
           </Card.Body>
         </Card>
       </Wrapper>
-      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} loading={loading}/>
+      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} loading={loading} onSubmitDone={onSubmitDone} statusDone={statusDone} statusCancel={statusCancel}/>
     </>
   );
 };
 
-const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit, register, onSubmit, loading}) => {
+const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit, register, onSubmit, loading, onSubmitDone , statusDone , statusCancel }) => {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
@@ -133,12 +160,25 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit
 
           <Form onSubmit={handleSubmit(onSubmit)}>
              <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Reason" {...register("reason")}/>
+                <input type="text" hidden ={statusCancel} className="form-control" placeholder="Reason" {...register("reason")}/>
               </Form.Group>
-              <Button variant="primary" type="submit" disabled={loading}>
+              <Button variant="primary" hidden ={statusCancel} type="submit" disabled={loading}>
                 Post Reason
               </Button>
+
+
           </Form>
+            
+            <Form onSubmit={handleSubmit(onSubmitDone)}>
+                       <Form.Group className="mb-3">
+                          <input type="text" className="form-control" hidden ={statusDone} placeholder="Rate the Service" {...register("rate")}/>
+                        </Form.Group>
+                        <Button variant="primary" hidden ={statusDone} type="submit" disabled={loading}>
+                          Post a Rating
+                        </Button>
+                  </Form>
+
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
