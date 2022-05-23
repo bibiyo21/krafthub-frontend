@@ -23,7 +23,8 @@ const JobBooking = () => {
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   const [statusCancel , setStatusCancel] = useState(true);
-
+const [loading, setLoading] = useState(false);
+  
   const handleClose = () => {
     setShow(false)
     setBookingState(null)
@@ -66,7 +67,8 @@ const JobBooking = () => {
 
     
    const onSubmit = ({ reason }) => { 
-      console.log(reason);
+    setLoading(true);
+     console.log(reason);
    
    };
   
@@ -121,12 +123,12 @@ const JobBooking = () => {
           </Card.Body>
         </Card>
       </Wrapper>
-      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} statusCancel={statusCancel} />
+      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} statusCancel={statusCancel} handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} loading={loading} />
     </>
   );
 };
 
-const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel }) => {
+const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel handleSubmit, register, onSubmit, loading}) => {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
