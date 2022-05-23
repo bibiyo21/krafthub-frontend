@@ -64,7 +64,6 @@ const ScheduledBooking = () => {
   const handleShow = ({bookingId, status, userId}) => {
     setShow(true);
     setBookingState(status);
-    setadditionalInfo(additional_info);
     console.log(bookingState);
     setBookingId(bookingId);
     setUserID(userId);
