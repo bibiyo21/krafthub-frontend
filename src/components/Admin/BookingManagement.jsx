@@ -11,11 +11,11 @@ import "jspdf-autotable";
 
 const BookingManagement = () => {
    const STATUS_ATTR = {
-    pending: {color: 'text-warning', msg: "Pending"},
+    pending: {color: 'text-warning', msg: "Pending for Acceptance"},
     done: {color: 'text-success', msg: "Done"},
     paid: {color: 'text-success', msg: "Paid"},
     cancelled: {color: 'text-danger', msg: "Cancelled"},
-    in_progress: {color: 'text-info', msg: "In Progress"},
+    in_progress: {color: 'text-info', msg: "Accepted"},
   }
   const [show, setShow] = useState(false);
   const [scheduledBookings, setScheduledBookings] = useState(null);
