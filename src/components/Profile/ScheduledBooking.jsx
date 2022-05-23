@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import { Card, Button, Modal, Form } from "react-bootstrap";
 import Wrapper from "./Wrapper";
 import BookingsServiceAPI from "../../api/services/Bookings/BookingsService";
+import UserServiceAPI from "../../api/services/Users/UsersService";
 import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useForm } from "react-hook-form";
+
 
 const ScheduledBooking = () => {
   const STATUS_ATTR = {
@@ -22,6 +24,7 @@ const ScheduledBooking = () => {
   const [show, setShow] = useState(false);
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
+    const [userID, setUserID] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   const [additionalInfo, setadditionalInfo] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -58,13 +61,13 @@ const ScheduledBooking = () => {
     
   };
 
-  const handleShow = ({bookingId, status, additional_info}) => {
+  const handleShow = ({bookingId, status, userId}) => {
     setShow(true);
     setBookingState(status);
     setadditionalInfo(additional_info);
     console.log(bookingState);
     setBookingId(bookingId);
-    
+    setUserID(userId);
     
      
       if(status === "cancelled") {
@@ -109,12 +112,30 @@ const ScheduledBooking = () => {
       setLoading(true);
      console.log(reason);
 
+     BookingsServiceAPI.updateBookingReason({
+      id: bookingId,
+      reason: reason
+    }).then((data) => {
+      toast.success(data.message);
+      handleClose();
+      loadScheduledBooking()
+    })
    
    };
   
   const onSubmitDone = ({ rate }) => { 
     setLoading(true);
      console.log(rate);
+    
+    
+     UserServiceAPI.updateUserStatus({
+        id: userID,
+        ratings: rate,
+      }).then((data) => {
+        toast.success(data.message);
+        handleClose();
+        loadScheduledBooking()
+      })
    
    };
 
@@ -149,7 +170,7 @@ const ScheduledBooking = () => {
               <tbody>
                 {
                   scheduledBookings && scheduledBookings.map(({
-                    bookingid, first_name, last_name, status, eta, additional_info
+                    bookingid, first_name, last_name, status, eta, additional_info, id
                   }) => {
                     return (<tr>
                       <td>{first_name} {last_name}</td>
@@ -159,8 +180,8 @@ const ScheduledBooking = () => {
                       <td>
                         <div className="btn-group">
                            
-                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled", additional_info: additional_info})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
-                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" >Done<i className="fas fa-check"></i></Button>
+                           <Button disabled={status === 'in_progress' || status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled", userId: id})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
+                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done", userId: id})} variant="success" >Done<i className="fas fa-check"></i></Button>
                              </div>
                       </td>
                     </tr>)
