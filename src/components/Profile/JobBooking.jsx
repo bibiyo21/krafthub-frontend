@@ -43,12 +43,7 @@ const [loading, setLoading] = useState(false);
     } else {
       setStatusCancel(true);
     }
-    
-     if(status === "done") {
-      setStatusDone(false); 
-    } else {
-      setStatusDone(true);
-    }
+   
     
   };
   
