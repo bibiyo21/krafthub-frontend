@@ -30,7 +30,7 @@ const Wrapper = ({ children }) => {
             <Card>
               <Nav className="flex-column">
                 <div>
-                        <Button onClick={handleSP} className="btn block btn-warning">Client</Button> | 
+                        <Button onClick={handleSP} className="btn block btn-warning">Client</Button>
                         <Button onClick={handleC} className="btn block btn-primary">Service Provider</Button>
                 </div>
                 <Nav.Link href={`/profile`} className="text-dark">Profile</Nav.Link>
