@@ -200,6 +200,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit
             
             <Form onSubmit={handleSubmit(onSubmitDone)}>
                        <Form.Group className="mb-3">
+                            <br> </br>
                          <div className="wrapper">
                                       <div className="wrapper">
                                    <input type="radio" name="rate" id="rate1" value="1" {...register("rate")} />
