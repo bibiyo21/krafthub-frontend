@@ -115,12 +115,10 @@ const ScheduledBooking = () => {
       id: bookingId,
       reason: reason
     }).then((data) => {
-      toast.success(data.message);
-      handleClose();
-      loadScheduledBooking()
+      console.log(data.message);
     })
      
-          setLoading(false);
+      setLoading(false);
    
    };
   
@@ -129,13 +127,11 @@ const ScheduledBooking = () => {
      console.log(rate);
     
     
-     UserServiceAPI.updateUserStatus({
+     UserServiceAPI.updateUserRatings({
         id: userID,
         ratings: rate,
       }).then((data) => {
-        toast.success(data.message);
-        handleClose();
-        loadScheduledBooking()
+        console.log(data.message);
       })
     
      setLoading(false);
