@@ -6,7 +6,7 @@ import BookingsServiceAPI from "../../api/services/Bookings/BookingsService";
 import * as dayjs from 'dayjs'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useForm } from "react-hook-form";
 
 const ScheduledBooking = () => {
   const STATUS_ATTR = {
@@ -17,6 +17,8 @@ const ScheduledBooking = () => {
     in_progress: {color: 'text-info', msg: "In Progress"},
   }
   
+  
+  const { register, handleSubmit } = useForm();
   const [show, setShow] = useState(false);
   const [scheduledBookings, setScheduledBookings] = useState(null);
   const [bookingState, setBookingState] = useState(null);
@@ -58,6 +60,14 @@ const ScheduledBooking = () => {
       loadScheduledBooking()
     })
   }
+  
+  
+  
+   const onSubmit = ({ reason }) => { 
+      console.log(reason);
+   
+   };
+  
 
   useEffect(() => {
     loadScheduledBooking()
@@ -117,9 +127,15 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
         </Modal.Header>
         <Modal.Body>
           Are you sure you want to set this booking to <b>{status}</b> ?
+
+          <Form onSubmit={handleSubmit(onSubmit)}>
              <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Reason" />
+                <input type="text" className="form-control" placeholder="Reason" {...register("reason")}/>
               </Form.Group>
+              <Button variant="primary" type="submit" disabled={loading}>
+                Post Reason
+              </Button>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
