@@ -55,7 +55,7 @@ const AvailabilityList = ({ list = null }) => {
   
    const changeSelect = (e) => {
     console.log([e.target.value].toString());
-     
+     setAmount([e.target.value].toString());
     
   };
   
@@ -137,7 +137,7 @@ const AvailabilityList = ({ list = null }) => {
                       <p><b>Payment Per Contract:</b> {amount} </p>
                       <p><b>Payment Per Day:</b> {amount_per_day} </p>
                       <p><b>Payment Per hour:</b> {amount_per_hour} </p>
-                      <p><b>User Ratings:</b> {ratings} </p>
+                      <p><b>User Ratings:</b> {ratings}  </p>
                       <div class="d-grid gap-2">
                         <Button onClick={() => handleShow({selectedId: id, timeout: time_out, timein: time_in}, getProfession({selectedProf: amount, selectedPD: amount_per_day, selectedPH: amount_per_hour}) )} className="btn block btn-success">Book Now</Button>
                       </div>
@@ -205,7 +205,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, changeSelect, c
             </Form.Group>
             
             <label> Amount </label> 
-            
+            <br></br>
             <select id="comboA" onChange={changeSelect}>
                 <option value="" disabled>Select Amount per Rate</option>
                 <option value={amountS}>Per Contract - {amountS}</option>
@@ -213,7 +213,7 @@ const BookingModal = ({ show, handleClose, makerId, changeRadio, changeSelect, c
                 <option value={amountH}>Per Hour - {amountH}</option>
               </select>
             
-                  
+               <br></br>  <br></br>     
             <label>Mode of Payment</label>
             <Form.Group className="mb-3">
           <label>
