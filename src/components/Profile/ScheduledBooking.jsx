@@ -119,6 +119,8 @@ const ScheduledBooking = () => {
       handleClose();
       loadScheduledBooking()
     })
+     
+          setLoading(false);
    
    };
   
@@ -135,6 +137,8 @@ const ScheduledBooking = () => {
         handleClose();
         loadScheduledBooking()
       })
+    
+     setLoading(false);
    
    };
 
