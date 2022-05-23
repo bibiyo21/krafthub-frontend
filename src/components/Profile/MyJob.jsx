@@ -20,11 +20,11 @@ const MyJob = () => {
     })
   }
 
-  const onSubmit = ({ jobType: job_id, time_in, time_out, amount, amountPerHour , amountPerDay}) => {
+  const onSubmit = ({ jobType: job_id, time_in, time_out, amount, amount_per_hour , amount_per_day}) => {
     setLoading(true);
     time_in = "8:30am";
     time_out = "6:00pm";
-    JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount, amountPerHour, amountPerDay})
+    JobsServiceAPI.saveAvailability({ job_id, time_in, time_out, amount, amount_per_hour, amount_per_day})
       .then((response) => {
         setSavingMessage({responseType: "success",  message: response.message})
         AvailabilitiesServiceAPI.getMyJobs().then(({ results }) => {
@@ -100,11 +100,11 @@ const MyJob = () => {
               </Form.Group>
               
                <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Payment (0.00) Per Hour" {...register("amountPerHour")} />
+                <input type="text" className="form-control" placeholder="Payment (0.00) Per Hour" {...register("amount_per_hour")} />
               </Form.Group>
               
                <Form.Group className="mb-3">
-                <input type="text" className="form-control" placeholder="Payment (0.00) Per Day" {...register("amountPerDay")} />
+                <input type="text" className="form-control" placeholder="Payment (0.00) Per Day" {...register("amount_per_day")} />
               </Form.Group>
               
               <Form.Group className="mb-3">
