@@ -116,7 +116,7 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
           <Modal.Title>Booking Confirmation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to set this booking to <b>{status}</b>
+          Are you sure you want to set this booking to <b>{status}</b> ?
              <Form.Group className="mb-3">
                 <input type="text" className="form-control" placeholder="Reason" />
               </Form.Group>
