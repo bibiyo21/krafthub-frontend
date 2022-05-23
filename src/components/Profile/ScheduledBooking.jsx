@@ -24,6 +24,7 @@ const ScheduledBooking = () => {
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   const [additionalInfo, setadditionalInfo] = useState(null);
+    const [loading, setLoading] = useState(false);
   
 
   const handleClose = () => {
@@ -64,7 +65,9 @@ const ScheduledBooking = () => {
   
   
    const onSubmit = ({ reason }) => { 
-      console.log(reason);
+      setLoading(true);
+     console.log(reason);
+
    
    };
   
@@ -113,12 +116,12 @@ const ScheduledBooking = () => {
           </Card.Body>
         </Card>
       </Wrapper>
-      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} />
+      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} loading={loading}/>
     </>
   );
 };
 
-const BookingModal = ({ show, handleClose, status, onChangeStatus }) => {
+const BookingModal = ({ show, handleClose, status, onChangeStatus , handleSubmit, register, onSubmit, loading}) => {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
