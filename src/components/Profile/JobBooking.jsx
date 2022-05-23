@@ -57,7 +57,7 @@ const [loading, setLoading] = useState(false);
     
     const table = document.getElementById("bookings");
     const tr = table.getElementsByTagName("tr");
-      for (i = 0; i < tr.length; i++) {
+      for (const i = 0; i < tr.length; i++) {
         const td = tr[i].getElementsByTagName("td")[1];
         if (td) {
           const txtValue = td.textContent || td.innerText;
