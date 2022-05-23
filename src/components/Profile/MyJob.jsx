@@ -140,8 +140,8 @@ const MyJob = () => {
                           <td>{job.profession}</td>
                           <td>{job.specialty}</td>
                           <td>{job.amount}</td>
-                          <td>{job.amountPerHour}</td>
-                          <td>{job.amountPerDay}</td>
+                          <td>{job.amount_per_day}</td>
+                          <td>{job.amount_per_hour}</td>
                           {/* <td><Button variant="danger"><i className="fas fa-trash"></i></Button></td> */}
                         </tr>
                       )
