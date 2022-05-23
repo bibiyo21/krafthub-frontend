@@ -95,7 +95,6 @@ const [loading, setLoading] = useState(false);
     setLoading(true);
      console.log(reason);
    
-     
        BookingsServiceAPI.updateBookingReason({
       id: bookingId,
       reason: reason
@@ -105,7 +104,7 @@ const [loading, setLoading] = useState(false);
       loadScheduledBooking()
     })
      
-     
+       setLoading(false);
      
    };
   
