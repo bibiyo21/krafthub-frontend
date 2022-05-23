@@ -23,6 +23,7 @@ const JobBooking = () => {
   const [bookingState, setBookingState] = useState(null);
   const [bookingId, setBookingId] = useState(null);
   const [statusCancel , setStatusCancel] = useState(true);
+  const [statusDone , setStatusDone] = useState(true);
 const [loading, setLoading] = useState(false);
   
   const handleClose = () => {
@@ -41,6 +42,12 @@ const [loading, setLoading] = useState(false);
       setStatusCancel(false); 
     } else {
       setStatusCancel(true);
+    }
+    
+     if(status === "done") {
+      setStatusDone(false); 
+    } else {
+      setStatusDone(true);
     }
     
   };
@@ -93,6 +100,11 @@ const [loading, setLoading] = useState(false);
    
    };
   
+  const onSubmitDone = ({ rate }) => { 
+    setLoading(true);
+     console.log(rate);
+   
+   };
   
   useEffect(() => {
     loadScheduledBooking()
@@ -136,7 +148,6 @@ const [loading, setLoading] = useState(false);
                       <td>
                         <div className="btn-group">
                           <Button disabled={status === 'pending' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "in_progress"})} variant="info" >Accept<i className="fas fa-spinner"></i></Button>
-                          <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "done"})} variant="success" >Done<i className="fas fa-check"></i></Button>
                           <Button disabled={status === 'in_progress' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "cancelled"})} variant="danger" >Cancel<i className="fas fa-times"></i></Button>
                            <Button disabled={status === 'done' ? false : true} onClick={() => handleShow({bookingId: bookingid, status: "paid"})} variant="warning" >Paid<i className="fas fa-check"></i></Button>
                          
@@ -151,12 +162,12 @@ const [loading, setLoading] = useState(false);
           </Card.Body>
         </Card>
       </Wrapper>
-      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} statusCancel={statusCancel} handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} loading={loading} />
+      <BookingModal show={show} handleClose={handleClose} status={STATUS_ATTR?.[bookingState]?.msg} onChangeStatus={onChangeStatus} statusCancel={statusCancel} handleSubmit={handleSubmit} register={register} onSubmit={onSubmit} loading={loading} onSubmitDone={onSubmitDone} statusDone={statusDone} />
     </>
   );
 };
 
-const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel, handleSubmit, register, onSubmit, loading}) => {
+const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel, handleSubmit, register, onSubmit, loading, onSubmitDone, statusDone}) => {
   return ReactDOM.createPortal(
     <>
       <Modal show={show} onHide={handleClose}>
@@ -172,6 +183,15 @@ const BookingModal = ({ show, handleClose, status, onChangeStatus, statusCancel,
                         </Form.Group>
                         <Button variant="primary" hidden ={statusCancel} type="submit" disabled={loading}>
                           Post Reason
+                        </Button>
+                  </Form>
+
+                  <Form onSubmit={handleSubmit(onSubmitDone)}>
+                       <Form.Group className="mb-3">
+                          <input type="text" className="form-control" hidden ={statusDone} placeholder="Rate the Service" {...register("rate")}/>
+                        </Form.Group>
+                        <Button variant="primary" hidden ={statusDone} type="submit" disabled={loading}>
+                          Post a Rating
                         </Button>
                   </Form>
 
