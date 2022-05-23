@@ -36,6 +36,27 @@ const ScheduledBooking = () => {
    
     
   };
+  
+   const showFilter = ({status}) => {
+    
+    
+     var  table = document.getElementById("bookings");
+     var  tr = table.getElementsByTagName("tr");
+      for (var  i = 0; i < tr.length; i++) {
+        var td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          const txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase() === status.toUpperCase()) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+     }
+    
+    
+    
+  };
 
   const handleShow = ({bookingId, status, additional_info}) => {
     setShow(true);
@@ -107,7 +128,15 @@ const ScheduledBooking = () => {
         <Card className="mb-4">
           <Card.Body>
             <Card.Title>Scheduled Bookings</Card.Title>
-            <table className="table table-responsive table-condensed table-striped table-hover">
+    
+            <div>
+              <Button onClick={() => showFilter({ status: "Pending for Acceptance"})} variant="primary" >Pending Status</Button>
+              <Button  onClick={() => showFilter({ status: "Done"})} variant="primary" >Done Status</Button>
+              <Button onClick={() => showFilter({ status: "Paid"})} variant="primary" >Paid Status</Button>
+              <Button onClick={() => showFilter({ status: "Cancelled"})} variant="primary" >Cancelled Status</i></Button>
+              <Button onClick={() => showFilter({ status: "Accepted"})} variant="primary" >Accepted Status</i></Button>  
+             </div>
+            <table  id = "bookings" className="table table-responsive table-condensed table-striped table-hover">
               <thead>
                 <tr>
                   <th>Maker</th>
